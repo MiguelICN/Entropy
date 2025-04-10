@@ -157,7 +157,7 @@ StyleBox[\",\",\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\"d\",\nFontSlant->\"Italic\"]\)] returns the spin-1/2 chain of eq. (1) in Am. J. Phys. 80, 246\[Dash]251 (2012).";
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Beginning of Package*)
 
 
@@ -228,8 +228,8 @@ Braket[a_,b_]:=Conjugate[a] . b
 
 StateEvolution[t_,psi0_List,eigenvals_List,eigenvecs_List]:=
 (*|\[Psi](t)\[RightAngleBracket] = Underscript[\[Sum], k] Subscript[c, k]\[ExponentialE]^(-Subscript[\[ImaginaryI]E, k]t)|Subscript[E, k]\[RightAngleBracket], Subscript[c, k]=\[LeftAngleBracket]Subscript[E, k]\[VerticalSeparator] Subscript[\[Psi], 0]\[RightAngleBracket]*)
-	Module[{ck=Conjugate[eigenvecs] . psi0},
-		N[Total[ ck * Exp[-I*eigenvals*N[t]] * eigenvecs]]
+	Module[{ck=Conjugate[eigenvecs] . psi0, newevals=Chop[eigenvals]},
+		N[Total[ ck * Exp[-I*newevals*t] * eigenvecs]]
 	]
 
 
@@ -517,8 +517,8 @@ palindromes=Complement[tuples,nonPalindromes];
 nonPalindromes=DeleteDuplicatesBy[nonPalindromes,Sort[{#,Reverse[#]}]&];
 Normal[
 {
-Join[SparseArray[FromDigits[#,2]+1->1.,2^L]&/@palindromes,Normalize[SparseArray[{FromDigits[#,2]+1->1.,FromDigits[Reverse[#],2]+1->1.},2^L]]&/@nonPalindromes],
-Normalize[SparseArray[{FromDigits[#,2]+1->-1.,FromDigits[Reverse[#],2]+1->1.},2^L]]&/@nonPalindromes
+Join[SparseArray[FromDigits[#,2]+1->1,2^L]&/@palindromes,Normalize[SparseArray[{FromDigits[#,2]+1->1,FromDigits[Reverse[#],2]+1->1},2^L]]&/@nonPalindromes],
+Normalize[SparseArray[{FromDigits[#,2]+1->-1,FromDigits[Reverse[#],2]+1->1},2^L]]&/@nonPalindromes
 }]
 ]
 
