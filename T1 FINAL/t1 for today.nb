@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[   3548514,      60714]
-NotebookOptionsPosition[   3533273,      60460]
-NotebookOutlinePosition[   3539196,      60583]
-CellTagsIndexPosition[   3539153,      60580]
+NotebookDataLength[   3579642,      61363]
+NotebookOptionsPosition[   3563593,      61096]
+NotebookOutlinePosition[   3569510,      61219]
+CellTagsIndexPosition[   3569467,      61216]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -60004,9 +60004,10 @@ ncfAfw5wqfQ=
 
 Cell[CellGroupData[{
 
-Cell["Cycle", "Title",
- CellChangeTimes->{{3.9585139022383327`*^9, 
-  3.958513902894755*^9}},ExpressionUUID->"2a109ceb-41d3-47df-bd0f-\
+Cell["Cycle g", "Title",
+ CellChangeTimes->{{3.9585139022383327`*^9, 3.958513902894755*^9}, {
+  3.958514724047739*^9, 
+  3.958514724559868*^9}},ExpressionUUID->"2a109ceb-41d3-47df-bd0f-\
 49a2f22ed920"],
 
 Cell[BoxData[{
@@ -60031,13 +60032,13 @@ Cell[BoxData[{
    RowBox[{"Table", "[", 
     RowBox[{"i", ",", 
      RowBox[{"{", 
-      RowBox[{"i", ",", "0", ",", "1000", ",", "0.1"}], "}"}]}], "]"}]}], 
+      RowBox[{"i", ",", "0", ",", "500", ",", "0.05"}], "}"}]}], "]"}]}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.958513995466731*^9, 3.958513995677409*^9}, {
   3.958514401822792*^9, 3.95851440224022*^9}, {3.958514504399229*^9, 
-  3.958514504640993*^9}},
+  3.958514504640993*^9}, {3.9585147094589663`*^9, 3.958514712029532*^9}},
  CellLabel->
-  "In[1011]:=",ExpressionUUID->"570a5848-8c45-40c6-b22e-801cd6986387"],
+  "In[1046]:=",ExpressionUUID->"570a5848-8c45-40c6-b22e-801cd6986387"],
 
 Cell[BoxData[
  RowBox[{
@@ -60408,8 +60409,8 @@ Cell[BoxData[{
       RowBox[{"Style", "[", 
        RowBox[{
         RowBox[{
-        "\"\<L = 8, 100 Full RPS, Total time T = 1000, \[CapitalDelta]t = \
-0.1, \[Mu] = \>\"", "<>", 
+        "\"\<L = 8, 100 Full RPS, Total time T = 500, \[CapitalDelta]t = \
+0.05, \[Mu] = \>\"", "<>", 
          RowBox[{"ToString", "[", 
           RowBox[{"Mean", "[", 
            RowBox[{"infofull", "[", 
@@ -60454,12 +60455,647 @@ Cell[BoxData[{
    3.957310972286368*^9, 3.957310972794379*^9}, {3.958505714515321*^9, 
    3.958505714772151*^9}, {3.958514224691605*^9, 3.958514268222992*^9}, {
    3.958514316463522*^9, 3.9585143645218773`*^9}, {3.958514425233159*^9, 
-   3.958514463534667*^9}},ExpressionUUID->"bd158efc-dd24-4679-82f1-\
+   3.958514463534667*^9}, {3.958514905361042*^9, 
+   3.9585149084947367`*^9}},ExpressionUUID->"bd158efc-dd24-4679-82f1-\
 ba3bd74f949f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cycle h", "Title",
+ CellChangeTimes->{{3.9585139022383327`*^9, 3.958513902894755*^9}, {
+  3.958514724047739*^9, 
+  3.958514732782913*^9}},ExpressionUUID->"791a1788-230f-404a-a697-\
+82901a1d917f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"J", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"La", "=", 
+   RowBox[{"L", "/", "2"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Lb", "=", 
+   RowBox[{"L", "-", "La"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"allstates", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"RandomChainProductState", "[", "L", "]"}], ",", "100"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tlist", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"i", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0", ",", "2000", ",", "0.05"}], "}"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.958513995466731*^9, 3.958513995677409*^9}, {
+  3.958514401822792*^9, 3.95851440224022*^9}, {3.958514504399229*^9, 
+  3.958514504640993*^9}, {3.9585147094589663`*^9, 3.958514749056254*^9}, {
+  3.958514795877342*^9, 3.958514796385659*^9}},
+ CellLabel->
+  "In[1095]:=",ExpressionUUID->"903ecc6f-2d3a-4467-85ac-f16056408c01"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"hlist", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"i", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0.4", ",", "1", ",", "0.01"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"hlist", "//", "Length"}]}], "Input",
+ CellChangeTimes->{{3.9585139246587133`*^9, 3.9585139568984423`*^9}, {
+  3.958514738830454*^9, 3.958514753875785*^9}},
+ CellLabel->
+  "In[1101]:=",ExpressionUUID->"b53e6bd0-6b2d-4cdb-8600-6624736ce516"],
+
+Cell[BoxData["61"], "Output",
+ CellChangeTimes->{{3.958514754988324*^9, 3.958514765762857*^9}, 
+   3.9585148067020483`*^9},
+ CellLabel->
+  "Out[1102]=",ExpressionUUID->"3dfd5762-7104-4d72-bf3c-8ed500a85e4f"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"h", "=", "0.4"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "=", 
+   RowBox[{"IsingNNOpenHamiltonian", "[", 
+    RowBox[{"h", ",", "g", ",", "J", ",", "L"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Heven", "=", 
+   RowBox[{
+    RowBox[{"ConjugateTranspose", "[", "Beven", "]"}], ".", "H", ".", 
+    "Beven"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Hodd", "=", 
+   RowBox[{
+    RowBox[{"ConjugateTranspose", "[", "Bodd", "]"}], ".", "H", ".", 
+    "Bodd"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"eveneigenval", ",", "eveneigenvec"}], "}"}], "=", 
+   RowBox[{"Transpose", "[", 
+    RowBox[{"Sort", "[", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"Eigensystem", "[", 
+       RowBox[{"N", "[", "Heven", "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"oddeigenval", ",", "oddeigenvec"}], "}"}], "=", 
+   RowBox[{"Transpose", "[", 
+    RowBox[{"Sort", "[", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"Eigensystem", "[", 
+       RowBox[{"N", "[", "Hodd", "]"}], "]"}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"uno", "=", 
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"Beven", ".", "i"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "eveneigenvec"}], "}"}], ",", 
+     RowBox[{"DistributedContexts", "->", "Full"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dos", "=", 
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"Bodd", ".", "i"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "oddeigenvec"}], "}"}], ",", 
+     RowBox[{"DistributedContexts", "->", "Full"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"allvecs", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"uno", ",", "dos"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"allvals", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"eveneigenval", ",", "oddeigenval"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"newall", "=", 
+   RowBox[{"SortBy", "[", 
+    RowBox[{
+     RowBox[{"Transpose", "[", 
+      RowBox[{"{", 
+       RowBox[{"allvals", ",", "allvecs"}], "}"}], "]"}], ",", "First"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"allvecs", "=", 
+   RowBox[{"newall", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"allvals", "=", 
+   RowBox[{"newall", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{
+  3.954453103083866*^9, 3.954454631575614*^9, 3.954464264503697*^9, {
+   3.954464317387063*^9, 3.9544643174456797`*^9}, {3.9544644361387672`*^9, 
+   3.954464437449024*^9}, 3.9544646654364777`*^9, {3.9550532130888*^9, 
+   3.955053217680091*^9}, 3.95505328918531*^9, 3.955490961625278*^9, {
+   3.95549769921983*^9, 3.955497699472145*^9}, {3.9554987593057423`*^9, 
+   3.9554987594317093`*^9}, {3.9555089535745697`*^9, 
+   3.9555089564639597`*^9}, {3.95556695778911*^9, 3.955566958197667*^9}, 
+   3.95558527404388*^9, {3.955586325704926*^9, 3.955586326340584*^9}, 
+   3.9555873519947968`*^9, {3.955587423290759*^9, 3.955587424488111*^9}, {
+   3.9555874859628677`*^9, 3.955587488361108*^9}, {3.9555877212761517`*^9, 
+   3.955587721480105*^9}, {3.9555882192867737`*^9, 3.955588221136332*^9}, {
+   3.95558871868188*^9, 3.955588749588784*^9}, {3.95558882702888*^9, 
+   3.955588857526998*^9}, {3.955591144953738*^9, 3.955591146420393*^9}, {
+   3.955592308699369*^9, 3.955592316271543*^9}, {3.9555950254590807`*^9, 
+   3.9555950288787127`*^9}, {3.9555959540769663`*^9, 3.955595973815483*^9}, {
+   3.9556634180304832`*^9, 3.955663420446097*^9}, {3.9556753111416807`*^9, 
+   3.9556753241835747`*^9}, {3.9556759726534433`*^9, 
+   3.9556759747453823`*^9}, {3.955677095240304*^9, 3.9556770970899563`*^9}, {
+   3.955677786646892*^9, 3.955677791398143*^9}, {3.956003396573719*^9, 
+   3.9560033966280107`*^9}, {3.956008093621663*^9, 3.956008106163587*^9}, {
+   3.95600840323398*^9, 3.956008405137356*^9}, {3.956008845922181*^9, 
+   3.956008860063155*^9}, {3.956011723609666*^9, 3.956011723676505*^9}, {
+   3.9560117604699097`*^9, 3.956011788037344*^9}, {3.9560118237377768`*^9, 
+   3.956011823793034*^9}, {3.956011867974292*^9, 3.956011892308062*^9}, {
+   3.956011939380348*^9, 3.9560119407719812`*^9}, 3.956012101304537*^9, {
+   3.956015285406866*^9, 3.956015285675399*^9}, {3.9560156429903*^9, 
+   3.9560156430519733`*^9}, {3.9560172659924717`*^9, 3.956017266087826*^9}, {
+   3.9560186085884027`*^9, 3.95601860863138*^9}, {3.956019928690337*^9, 
+   3.956019928718781*^9}, {3.956023995286674*^9, 3.956023995372726*^9}, {
+   3.9560325042186127`*^9, 3.956032504271097*^9}, {3.956033526361226*^9, 
+   3.9560335268564167`*^9}, {3.956033822201445*^9, 3.956033822261876*^9}, 
+   3.956034241125196*^9, 3.9560352489862843`*^9, {3.9560404152531157`*^9, 
+   3.9560404153286448`*^9}, {3.956040545049756*^9, 3.956040545140809*^9}, {
+   3.956040661242364*^9, 3.95604066129988*^9}, {3.956040777646052*^9, 
+   3.9560407777399187`*^9}, {3.956040893199258*^9, 3.956040893224893*^9}, 
+   3.9561070331997957`*^9, {3.95611892187016*^9, 3.956118925361478*^9}, {
+   3.956123229658889*^9, 3.9561232328119*^9}, {3.956123457504634*^9, 
+   3.956123472139598*^9}, 3.9561235843789463`*^9, 3.956173208229579*^9, {
+   3.9561929846835957`*^9, 3.956192988108006*^9}, {3.956193044776617*^9, 
+   3.956193046051547*^9}, 3.956193236605215*^9, {3.956350071783784*^9, 
+   3.956350088056891*^9}, {3.956350562127496*^9, 3.9563505624972963`*^9}, {
+   3.9563508558879137`*^9, 3.956350855969871*^9}, {3.9563510398977833`*^9, 
+   3.956351040726581*^9}, {3.956432959476986*^9, 3.956432961540537*^9}, {
+   3.9564332101324177`*^9, 3.956433210180416*^9}, {3.956433256196146*^9, 
+   3.9564333298746853`*^9}, {3.9564336082593575`*^9, 
+   3.9564336120042095`*^9}, {3.956433661108856*^9, 3.9564336611548576`*^9}, {
+   3.956433715475666*^9, 3.956433718088724*^9}, {3.9564337575564766`*^9, 
+   3.956433775556324*^9}, {3.9564339149163895`*^9, 3.956433915170391*^9}, {
+   3.9564343426752625`*^9, 3.956434384642975*^9}, 3.9564347444674664`*^9, {
+   3.9564356112666416`*^9, 3.956435615953272*^9}, {3.956436027282921*^9, 
+   3.9564360513138905`*^9}, {3.9564361460495186`*^9, 
+   3.9564361492967377`*^9}, {3.9564363288499813`*^9, 3.956436329089945*^9}, {
+   3.956438450975788*^9, 3.9564384514229527`*^9}, {3.9564402359175434`*^9, 
+   3.956440236989294*^9}, {3.956606726118643*^9, 3.956606727590786*^9}, {
+   3.956609594345873*^9, 3.956609596825918*^9}, {3.956615655374756*^9, 
+   3.9566156573731747`*^9}, {3.956617219322298*^9, 3.956617222279039*^9}, {
+   3.956623546383115*^9, 3.956623549161454*^9}, {3.9566236801270237`*^9, 
+   3.956623680636306*^9}, {3.9566237487334023`*^9, 3.956623785725586*^9}, {
+   3.956623899312189*^9, 3.956623920092601*^9}, {3.956624257520042*^9, 
+   3.9566242715403767`*^9}, {3.956624357949768*^9, 3.956624365999379*^9}, {
+   3.956624402973135*^9, 3.95662440849155*^9}, {3.956624454703781*^9, 
+   3.956624480843133*^9}, {3.956624517770797*^9, 3.9566245178353977`*^9}, {
+   3.956624563198324*^9, 3.956624563256297*^9}, {3.956626107833416*^9, 
+   3.9566261147953663`*^9}, {3.956626258602056*^9, 3.956626264792059*^9}, {
+   3.95662635671319*^9, 3.9566263859980783`*^9}, {3.956626452595106*^9, 
+   3.9566264571448803`*^9}, {3.956626498498642*^9, 3.956626502377672*^9}, {
+   3.956626622568193*^9, 3.9566266269498377`*^9}, {3.95662674519106*^9, 
+   3.9566267498045483`*^9}, {3.956626797158646*^9, 3.956626799576118*^9}, {
+   3.956626839740654*^9, 3.956626842258514*^9}, {3.956626916026083*^9, 
+   3.956626918460726*^9}, {3.956627012818125*^9, 3.956627015563451*^9}, {
+   3.95662798209466*^9, 3.9566279855426073`*^9}, {3.9566280206557837`*^9, 
+   3.956628048061922*^9}, {3.95662809113347*^9, 3.956628115005012*^9}, {
+   3.95662834951593*^9, 3.956628356234202*^9}, {3.956628399673962*^9, 
+   3.956628399733057*^9}, {3.956628760036182*^9, 3.956628797342382*^9}, {
+   3.9566288529708147`*^9, 3.956628853048633*^9}, 3.956628968064372*^9, {
+   3.956629006672566*^9, 3.956629150000301*^9}, {3.956629553632317*^9, 
+   3.956629553728652*^9}, {3.956630067465555*^9, 3.956630068021695*^9}, 
+   3.9566368002524757`*^9, {3.956636879286024*^9, 3.956636879689714*^9}, {
+   3.956636913626727*^9, 3.956636947816265*^9}, {3.956638069579035*^9, 
+   3.956638070568901*^9}, {3.956638537511691*^9, 3.956638537603137*^9}, {
+   3.9566426843061733`*^9, 3.956642685887039*^9}, {3.956691654429414*^9, 
+   3.956691655000546*^9}, {3.956692006634336*^9, 3.956692006692665*^9}, {
+   3.956692341231069*^9, 3.9566923417701263`*^9}, {3.9566927969694357`*^9, 
+   3.956692797044384*^9}, {3.956693142103351*^9, 3.956693158725051*^9}, {
+   3.956693582654666*^9, 3.956693583885148*^9}, {3.956694176187785*^9, 
+   3.956694176614944*^9}, {3.9566942132858963`*^9, 3.956694219240451*^9}, 
+   3.956694578680456*^9, {3.9566953686246977`*^9, 3.9566953708357067`*^9}, {
+   3.9566954460368757`*^9, 3.956695446372081*^9}, 3.956704691726522*^9, {
+   3.956704735438168*^9, 3.956704735500301*^9}, {3.956704784792686*^9, 
+   3.9567047849827213`*^9}, {3.956708285076932*^9, 3.956708289398179*^9}, {
+   3.9567083544418163`*^9, 3.956708354531473*^9}, {3.956708411930799*^9, 
+   3.95670841198739*^9}, {3.95670885667634*^9, 3.956708858294626*^9}, {
+   3.956709245672284*^9, 3.956709270649115*^9}, {3.956709311657823*^9, 
+   3.956709311768957*^9}, {3.956711129881338*^9, 3.956711129936646*^9}, {
+   3.9567128463506737`*^9, 3.956712846869652*^9}, {3.9567134950569153`*^9, 
+   3.956713495880013*^9}, {3.956716713891597*^9, 3.95671671435076*^9}, {
+   3.956726023717935*^9, 3.956726028163571*^9}, {3.956726351864209*^9, 
+   3.956726352851302*^9}, {3.9567264715608997`*^9, 3.956726500245666*^9}, {
+   3.956726535083271*^9, 3.9567265351449423`*^9}, {3.956729286808033*^9, 
+   3.956729288597146*^9}, {3.956729469957082*^9, 3.956729469984971*^9}, {
+   3.9567295155386477`*^9, 3.956729545010559*^9}, {3.956782092416803*^9, 
+   3.956782158989406*^9}, {3.9567821967995367`*^9, 3.956782220937551*^9}, {
+   3.9567823734498787`*^9, 3.9567823755962048`*^9}, {3.956864862940021*^9, 
+   3.9568648689870253`*^9}, {3.9568649888601093`*^9, 3.956865016554932*^9}, {
+   3.956865416411265*^9, 3.95686541815687*^9}, {3.9569726518497257`*^9, 
+   3.956972654930133*^9}, {3.956985565853026*^9, 3.956985566167572*^9}, {
+   3.957225945833075*^9, 3.957225949882235*^9}, {3.95722602936989*^9, 
+   3.957226034664785*^9}, {3.957228361347269*^9, 3.957228361557135*^9}, {
+   3.9572284257135572`*^9, 3.957228527171175*^9}, {3.957390773176784*^9, 
+   3.9573907732549257`*^9}, {3.957390958956862*^9, 3.9573909589793673`*^9}, {
+   3.95739101098501*^9, 3.957391011079599*^9}, {3.957392997360441*^9, 
+   3.9573929974867067`*^9}, {3.957394986964033*^9, 3.957394987020871*^9}, {
+   3.957397885223819*^9, 3.957397885270187*^9}, {3.95741496002913*^9, 
+   3.957414960952218*^9}, {3.9574184521930428`*^9, 3.95741845267581*^9}, {
+   3.957421635989924*^9, 3.9574216367248573`*^9}, {3.957471295319434*^9, 
+   3.957471296806004*^9}, {3.957476143256966*^9, 3.957476143543675*^9}, {
+   3.9578371818721943`*^9, 3.957837188718109*^9}, {3.9578372590194273`*^9, 
+   3.957837259292781*^9}, {3.957921991015223*^9, 3.957921991123864*^9}, {
+   3.9579233701429243`*^9, 3.9579233702028103`*^9}, {3.957924449828714*^9, 
+   3.9579244499523373`*^9}, {3.9579261140134573`*^9, 3.957926114105012*^9}, {
+   3.957933651802506*^9, 3.957933651894434*^9}, {3.9579354982573767`*^9, 
+   3.957935498683694*^9}, {3.958504464083733*^9, 3.958504465592187*^9}, {
+   3.958505421108502*^9, 3.958505421608829*^9}, {3.958505653896603*^9, 
+   3.958505653956884*^9}, {3.958505768215769*^9, 3.958505768275951*^9}, {
+   3.958505981600239*^9, 3.958505984410667*^9}, {3.958506102380879*^9, 
+   3.958506102439948*^9}, {3.958506204029011*^9, 3.958506204085223*^9}, {
+   3.95850667563206*^9, 3.958506676007618*^9}, {3.9585080062756577`*^9, 
+   3.9585080073768673`*^9}, {3.9585083712611113`*^9, 3.958508371517022*^9}, {
+   3.958508809072484*^9, 3.958508809361878*^9}, 3.9585100342871*^9, {
+   3.958513965161046*^9, 3.958513969770108*^9}, {3.958514001771927*^9, 
+   3.9585140019149847`*^9}, {3.958514779057675*^9, 3.958514783025848*^9}},
+ CellLabel->
+  "In[1103]:=",ExpressionUUID->"2c850aed-6fba-4810-b75c-9ee5df048630"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"iprs", "=", 
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"Quiet", "[", 
+      RowBox[{"Total", "[", 
+       RowBox[{
+        RowBox[{"Abs", "[", 
+         RowBox[{
+          RowBox[{"Conjugate", "[", "allvecs", "]"}], ".", "i"}], "]"}], "^", 
+        "4"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "allstates"}], "}"}], ",", 
+     RowBox[{"DistributedContexts", "->", "Full"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"SortBy", "[", 
+    RowBox[{
+     RowBox[{"Transpose", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"1", "/", "iprs"}], ",", "allstates"}], "}"}], "]"}], ",", 
+     "First"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"productstatesfull", "=", 
+   RowBox[{"data", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"svntproductfull", "=", 
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"t", ",", 
+       RowBox[{"svn", "[", 
+        RowBox[{
+        "L", ",", "La", ",", "Lb", ",", "j", ",", "allvals", ",", "allvecs", 
+         ",", "t"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "productstatesfull"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "tlist"}], "}"}], ",", 
+     RowBox[{"DistributedContexts", "->", "Full"}], ",", 
+     RowBox[{"Method", "->", "\"\<CoarsestGrained\>\""}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"t1s", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"limits", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"list", "=", 
+      RowBox[{"svntproductfull", "[", 
+       RowBox[{"[", "j", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"times", "=", "tlist"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"series", "=", 
+      RowBox[{"list", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"limit", "=", 
+      RowBox[{"Mean", "[", 
+       RowBox[{"series", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"-", "1000"}], ";;", 
+          RowBox[{"-", "1"}]}], "]"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"position", "=", 
+      RowBox[{"FirstPosition", "[", 
+       RowBox[{
+        RowBox[{"series", "-", "limit"}], ",", 
+        RowBox[{"x_", "/;", 
+         RowBox[{"x", ">", "0"}]}], ",", "None"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"t1", "=", 
+      RowBox[{"times", "[", 
+       RowBox[{"[", 
+        RowBox[{"position", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"t1s", ",", "t1"}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"limits", ",", "limit"}], "]"}], ";"}], "\[IndentingNewLine]", 
+    ",", 
+    RowBox[{"{", 
+     RowBox[{"j", ",", 
+      RowBox[{"Length", "[", "productstatesfull", "]"}]}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sortediprs", "=", 
+   RowBox[{"data", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "1"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"energies", "=", 
+   RowBox[{"ParallelTable", "[", 
+    RowBox[{
+     RowBox[{"Chop", "[", 
+      RowBox[{
+       RowBox[{"Conjugate", "[", "i", "]"}], ".", "H", ".", "i"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "productstatesfull"}], "}"}], ",", 
+     RowBox[{"DistributedContexts", "->", "Full"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"infofull", "=", 
+   RowBox[{"Transpose", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "sortediprs", ",", "t1s", ",", "limits", ",", "energies", ",", 
+      "productstatesfull"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"unsortedlimits", "=", 
+   RowBox[{"infofull", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "3"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plot", "=", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{
+     RowBox[{"infofull", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", "50", ",", 
+     RowBox[{"PlotRange", "->", "All"}], ",", 
+     RowBox[{"ImageSize", "->", "800"}], ",", 
+     RowBox[{"PlotLabel", "->", 
+      RowBox[{"Style", "[", 
+       RowBox[{
+        RowBox[{
+        "\"\<L = 8, 100 Full RPS, Total time T = 2000, \[CapitalDelta]t = \
+0.05, \[Mu] = \>\"", "<>", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"Mean", "[", 
+           RowBox[{"infofull", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}], "<>", 
+         "\"\<, \[Sigma] = \>\"", "<>", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"StandardDeviation", "[", 
+           RowBox[{"infofull", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}]}], ",", 
+        "20", ",", "Black"}], "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{"\"\<data_t1_g_1_h_\>\"", "<>", 
+    RowBox[{"ToString", "[", "h", "]"}], "<>", "\"\<_.m\>\""}], ",", 
+   RowBox[{"infofull", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{"\"\<data_saturation_g_1_h_\>\"", "<>", 
+    RowBox[{"ToString", "[", "h", "]"}], "<>", "\"\<_.m\>\""}], ",", 
+   RowBox[{"infofull", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{"\"\<histogram_g_1_h_\>\"", "<>", 
+    RowBox[{"ToString", "[", "h", "]"}], "<>", "\"\<_.png\>\""}], ",", 
+   "plot"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.957297584975164*^9, 3.957297591885475*^9}, {
+   3.95729793708088*^9, 3.957297951604825*^9}, {3.957297983237459*^9, 
+   3.957298166809354*^9}, {3.957298199864668*^9, 3.957298203381295*^9}, {
+   3.957298236753441*^9, 3.957298284315116*^9}, {3.957298365773613*^9, 
+   3.957298393209291*^9}, 3.957298453420339*^9, 3.9572990332488956`*^9, {
+   3.9573088468431873`*^9, 3.957308876808769*^9}, {3.9573089107442513`*^9, 
+   3.957308931190448*^9}, {3.9573103810596647`*^9, 3.957310381313982*^9}, {
+   3.957310972286368*^9, 3.957310972794379*^9}, {3.958505714515321*^9, 
+   3.958505714772151*^9}, {3.958514224691605*^9, 3.958514268222992*^9}, {
+   3.958514316463522*^9, 3.9585143645218773`*^9}, {3.958514425233159*^9, 
+   3.958514463534667*^9}, {3.958514812193841*^9, 3.958514851458213*^9}},
+ CellLabel->
+  "In[1116]:=",ExpressionUUID->"aa122974-bba6-4583-b17b-5d5b69dcc027"],
+
+Cell[BoxData[
+ DynamicModuleBox[{Progress`ProgressDump`forceRedraw$$ = {{}, {}}, 
+  Progress`ProgressDump`open$$ = True, Progress`ProgressDump`clock$$ = 56., 
+  Progress`ProgressDump`maxTime$$ = DirectedInfinity[1]}, 
+  OverlayBox[{
+   AnimatorBox[Dynamic[Progress`ProgressDump`clock$$], {2., 
+     DirectedInfinity[1], 1.},
+    AnimationRate->1,
+    AnimationRunTime->54.47700023651123,
+    AnimationTimeIndex->54.47700023651123,
+    AppearanceElements->None,
+    ImageSize->{1, 1}], 
+   DynamicWrapperBox[
+    DynamicBox[ToBoxes[
+      Progress`GenerateProgressPanel[{
+       "Progress" :> (Parallel`Combine`Private`nreceived + 
+          Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10, "Results" :> 
+        StringTemplate["`1`/`2` evaluations of `3` items each (`4` kernels)"][
+         Parallel`Combine`Private`nreceived, 10, 10, 10], "Times" :> 
+        With[{Parallel`Combine`Private`elapsed$ = 
+           AbsoluteTime[] - Parallel`Combine`Private`start}, {
+          Parallel`Combine`Private`remaining$ = (
+             1./((Parallel`Combine`Private`nreceived + 
+               Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10) - 1) 
+            Parallel`Combine`Private`elapsed$}, 
+          StringTemplate["Elapsed: `1`, remaining: `2`, ETA: `3`"][
+           Parallel`Combine`Private`timefmt[
+           Parallel`Combine`Private`elapsed$], 
+           Parallel`Combine`Private`timefmt[
+           Parallel`Combine`Private`remaining$], 
+           DateString[
+           Parallel`Combine`Private`remaining$ + AbsoluteTime[]]]]}, <|{
+        "DelayedTask" -> ScheduledTaskObject[138, 
+           HoldForm[AppendTo[Progress`ProgressDump`this$state$468870, 
+              Progress`ProgressDump`CreateProgressState[
+              Progress`ProgressDump`parameters$468870, 
+               Progress`ProgressDump`info$468870, ProgressReporting -> 
+               Automatic, "Title" -> "ParallelTable", UpdateInterval -> 1, 
+               "ConsoleSupport" -> False, "TimeEstimate" -> None]]; 
+            Progress`ProgressDump`ProgressInit[
+             Progress`ProgressDump`this$state$468870]; Null], {2, 1}, 
+           Automatic, True, "AutoRemove" -> False, "EpilogFunction" :> Null, 
+           "TaskGroup" -> "Global`"], "State" :> 
+         Progress`ProgressDump`this$state$468870, "Title" -> "ParallelTable", 
+         "Type" -> "Grid", "Environment" -> "Notebook", 
+         "Parameters" -> {
+          "Progress" :> (Parallel`Combine`Private`nreceived + 
+             Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10, 
+           "Results" :> 
+           StringTemplate[
+            "`1`/`2` evaluations of `3` items each (`4` kernels)"][
+            Parallel`Combine`Private`nreceived, 10, 10, 10], "Times" :> 
+           With[{Parallel`Combine`Private`elapsed$ = 
+              AbsoluteTime[] - Parallel`Combine`Private`start}, {
+             Parallel`Combine`Private`remaining$ = (
+                1./((Parallel`Combine`Private`nreceived + 
+                  Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10) - 1)
+                 Parallel`Combine`Private`elapsed$}, 
+             StringTemplate["Elapsed: `1`, remaining: `2`, ETA: `3`"][
+              Parallel`Combine`Private`timefmt[
+              Parallel`Combine`Private`elapsed$], 
+              Parallel`Combine`Private`timefmt[
+              Parallel`Combine`Private`remaining$], 
+              DateString[
+              Parallel`Combine`Private`remaining$ + AbsoluteTime[]]]]}, 
+         "PreemptibleQ" -> True, "ConsoleQ" -> False, "Evaluator" -> "Local", 
+         "EvaluationCell" -> 
+         CellObject[
+          "aa122974-bba6-4583-b17b-5d5b69dcc027", 
+           "ff994ad5-eb98-44b9-b163-7e4b71acbcc6"], "TimeStart" -> 
+         3.95854726491325`16.350110823927274*^9, "TimeStartLocal" -> 
+         3.95854726491325`16.350110823927274*^9, "InitialTimeEstimate" -> 
+         Indeterminate, "UpdateInterval" -> 1, "OuterUpdateInterval" -> 1, 
+         "Buttons" -> None, "Optional" -> {}, "ContainerQ" -> False, 
+         "CreateContainerQ" -> False, "CurrentContainer" -> None, 
+         "PreviousContainer" -> None, "ContainerName" -> None, "Cell" -> 
+         Hold[Progress`ProgressDump`cell$468884], "Clock" :> 
+         Dynamic[Progress`ProgressDump`clock$$], "Redraw" -> 
+         Progress`ProgressDump`forceRedraw$$, "Open" :> 
+         Dynamic[Progress`ProgressDump`open$$]}|>], StandardForm],
+     ImageSizeCache->{561., {55., 63.}},
+     TrackedSymbols:>{Progress`ProgressDump`forceRedraw$$}], Refresh[
+    Progress`ProgressDump`forceRedraw$$ = 
+     With[{Progress`ProgressDump`values = Quiet[
+          
+          Values[{"Progress" :> (Parallel`Combine`Private`nreceived + 
+              Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10, 
+            "Results" :> 
+            StringTemplate[
+             "`1`/`2` evaluations of `3` items each (`4` kernels)"][
+             Parallel`Combine`Private`nreceived, 10, 10, 10], "Times" :> 
+            With[{Parallel`Combine`Private`elapsed$ = 
+               AbsoluteTime[] - Parallel`Combine`Private`start}, {
+              Parallel`Combine`Private`remaining$ = (
+                 1./((Parallel`Combine`Private`nreceived + 
+                   Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10) - 
+                 1) Parallel`Combine`Private`elapsed$}, 
+              StringTemplate["Elapsed: `1`, remaining: `2`, ETA: `3`"][
+               Parallel`Combine`Private`timefmt[
+               Parallel`Combine`Private`elapsed$], 
+               Parallel`Combine`Private`timefmt[
+               Parallel`Combine`Private`remaining$], 
+               DateString[
+               Parallel`Combine`Private`remaining$ + AbsoluteTime[]]]]}]]}, 
+       Map[
+       Position[Progress`ProgressDump`values, #, Infinity]& , {
+        None, Automatic}]], UpdateInterval -> 
+     Lookup[<|"DelayedTask" -> ScheduledTaskObject[138, 
+          HoldForm[AppendTo[Progress`ProgressDump`this$state$468870, 
+             Progress`ProgressDump`CreateProgressState[
+             Progress`ProgressDump`parameters$468870, 
+              Progress`ProgressDump`info$468870, ProgressReporting -> 
+              Automatic, "Title" -> "ParallelTable", UpdateInterval -> 1, 
+              "ConsoleSupport" -> False, "TimeEstimate" -> None]]; 
+           Progress`ProgressDump`ProgressInit[
+            Progress`ProgressDump`this$state$468870]; Null], {2, 1}, 
+          Automatic, True, "AutoRemove" -> False, "EpilogFunction" :> Null, 
+          "TaskGroup" -> "Global`"], "State" :> 
+        Progress`ProgressDump`this$state$468870, "Title" -> "ParallelTable", 
+        "Type" -> "Grid", "Environment" -> "Notebook", 
+        "Parameters" -> {
+         "Progress" :> (Parallel`Combine`Private`nreceived + 
+            Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10, "Results" :> 
+          StringTemplate[
+           "`1`/`2` evaluations of `3` items each (`4` kernels)"][
+           Parallel`Combine`Private`nreceived, 10, 10, 10], "Times" :> 
+          With[{Parallel`Combine`Private`elapsed$ = 
+             AbsoluteTime[] - Parallel`Combine`Private`start}, {
+            Parallel`Combine`Private`remaining$ = (
+               1./((Parallel`Combine`Private`nreceived + 
+                 Min[10, 10 - Parallel`Combine`Private`nreceived]/2)/10) - 1) 
+              Parallel`Combine`Private`elapsed$}, 
+            StringTemplate["Elapsed: `1`, remaining: `2`, ETA: `3`"][
+             Parallel`Combine`Private`timefmt[
+             Parallel`Combine`Private`elapsed$], 
+             Parallel`Combine`Private`timefmt[
+             Parallel`Combine`Private`remaining$], 
+             DateString[
+             Parallel`Combine`Private`remaining$ + AbsoluteTime[]]]]}, 
+        "PreemptibleQ" -> True, "ConsoleQ" -> False, "Evaluator" -> "Local", 
+        "EvaluationCell" -> 
+        CellObject[
+         "aa122974-bba6-4583-b17b-5d5b69dcc027", 
+          "ff994ad5-eb98-44b9-b163-7e4b71acbcc6"], "TimeStart" -> 
+        3.95854726491325`16.350110823927274*^9, "TimeStartLocal" -> 
+        3.95854726491325`16.350110823927274*^9, "InitialTimeEstimate" -> 
+        Indeterminate, "UpdateInterval" -> 1, "OuterUpdateInterval" -> 1, 
+        "Buttons" -> None, "Optional" -> {}, "ContainerQ" -> False, 
+        "CreateContainerQ" -> False, "CurrentContainer" -> None, 
+        "PreviousContainer" -> None, "ContainerName" -> None, "Cell" -> 
+        Hold[Progress`ProgressDump`cell$468884], "Clock" -> Dynamic[None]|>, 
+       "OuterUpdateInterval"], TrackedSymbols :> {}],
+    ImageSizeCache->{561., {55., 63.}}]}, All, 2],
+  DynamicModuleValues:>{}]], "PrintTemporary",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.9585148669263363`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1116]:=",ExpressionUUID->"33af5d71-7753-45a6-a271-9d6dd5c12e00"]
+}, Open  ]]
 }, Open  ]]
 },
-WindowSize->{2269, 1337},
-WindowMargins->{{1874, Automatic}, {Automatic, -13}},
+WindowSize->{1728, 989},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 TaggingRules-><|"TryRealOnly" -> False, "SSOActivationInProgress" -> False|>,
 CellContext->Notebook,
 InputAliases-><|"intt" -> RowBox[{"\[Integral]", 
@@ -60710,11 +61346,24 @@ Cell[3437640, 58745, 74941, 1254, 850, "Output",ExpressionUUID->"44efa5f2-5ef9-4
 }, Open  ]]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[3512642, 60006, 150, 3, 89, "Title",ExpressionUUID->"2a109ceb-41d3-47df-bd0f-49a2f22ed920"],
-Cell[3512795, 60011, 976, 28, 168, "Input",ExpressionUUID->"570a5848-8c45-40c6-b22e-801cd6986387"],
-Cell[3513774, 60041, 365, 10, 37, "Input",ExpressionUUID->"66d4396a-ab81-475d-83d7-a040075568bd"],
-Cell[3514142, 60053, 12352, 217, 350, "Input",ExpressionUUID->"8fa40662-b1c6-41bd-83fe-500847d7f2de"],
-Cell[3526497, 60272, 6760, 185, 662, "Input",ExpressionUUID->"bd158efc-dd24-4679-82f1-ba3bd74f949f"]
+Cell[3512642, 60006, 201, 4, 89, "Title",ExpressionUUID->"2a109ceb-41d3-47df-bd0f-49a2f22ed920"],
+Cell[3512846, 60012, 1024, 28, 168, "Input",ExpressionUUID->"570a5848-8c45-40c6-b22e-801cd6986387"],
+Cell[3513873, 60042, 365, 10, 37, "Input",ExpressionUUID->"66d4396a-ab81-475d-83d7-a040075568bd"],
+Cell[3514241, 60054, 12352, 217, 350, "Input",ExpressionUUID->"8fa40662-b1c6-41bd-83fe-500847d7f2de"],
+Cell[3526596, 60273, 6812, 186, 688, "Input",ExpressionUUID->"bd158efc-dd24-4679-82f1-ba3bd74f949f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3533445, 60464, 201, 4, 123, "Title",ExpressionUUID->"791a1788-230f-404a-a697-82901a1d917f"],
+Cell[3533649, 60470, 1074, 29, 168, "Input",ExpressionUUID->"903ecc6f-2d3a-4467-85ac-f16056408c01"],
+Cell[CellGroupData[{
+Cell[3534748, 60503, 475, 12, 64, "Input",ExpressionUUID->"b53e6bd0-6b2d-4cdb-8600-6624736ce516"],
+Cell[3535226, 60517, 207, 4, 60, "Output",ExpressionUUID->"3dfd5762-7104-4d72-bf3c-8ed500a85e4f"]
+}, Open  ]],
+Cell[3535448, 60524, 12397, 217, 350, "Input",ExpressionUUID->"2c850aed-6fba-4810-b75c-9ee5df048630"],
+Cell[CellGroupData[{
+Cell[3547870, 60745, 6898, 187, 714, "Input",ExpressionUUID->"aa122974-bba6-4583-b17b-5d5b69dcc027"],
+Cell[3554771, 60934, 8794, 158, 148, "PrintTemporary",ExpressionUUID->"33af5d71-7753-45a6-a271-9d6dd5c12e00"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
