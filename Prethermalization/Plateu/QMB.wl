@@ -19,7 +19,7 @@ BeginPackage["QMB`"];
 (*Hay cosas de Heisenberg meets fuzzy que tambi\[EAcute]n tengo que pasar para ac\[AAcute]*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Usage definitions*)
 
 
@@ -48,9 +48,6 @@ RandomQubitState::usage = "RandomQubitState[] returns a random qubit state.";
 
 
 RandomChainProductState::usage = "RandomChainProductState[L] returns a random product state of L qubits.";
-
-
-RandomChainProductState2::usage = "RandomChainProductState[L] returns a random product state of L qubits up and down.";
 
 
 Dyad::usage = "Dyad[a] returns \!\(\*TemplateBox[{\"a\"},\n\"Ket\"]\)\!\(\*TemplateBox[{\"a\"},\n\"Bra\"]\).
@@ -160,7 +157,7 @@ StyleBox[\",\",\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\"d\",\nFontSlant->\"Italic\"]\)] returns the spin-1/2 chain of eq. (1) in Am. J. Phys. 80, 246\[Dash]251 (2012).";
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Beginning of Package*)
 
 
@@ -175,7 +172,7 @@ Begin["`Private`"];
 ClearAll[SigmaPlusSigmaMinus,SigmaMinusSigmaPlus,SigmaPlusSigmaMinus2,SigmaMinusSigmaPlus2]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*General quantum mechanics*)
 
 
@@ -206,17 +203,6 @@ Module[{x,y,z,\[Theta],\[Phi]},
 RandomChainProductState[0] := {1}
 RandomChainProductState[1] := RandomQubitState[]
 RandomChainProductState[L_] := Flatten[KroneckerProduct@@Table[RandomQubitState[],L]]
-
-
-RandomQubitState2[] := 
-Module[{x=RandomInteger[]},
-	If[x==0,{1,0},{0,1}]
-]
-
-
-RandomChainProductState2[0] := {1}
-RandomChainProductState2[1] := RandomQubitState2[]
-RandomChainProductState2[L_] := Flatten[KroneckerProduct@@Table[RandomQubitState2[],L]]
 
 
 Dyad[a_]:=Outer[Times,a,Conjugate[a]]
@@ -520,7 +506,7 @@ MeanLevelSpacingRatio[eigenvalues_]:=Mean[Min/@Transpose[{#,1/#}]&[Ratios[Differ
 Reshuffle[m_] := ArrayFlatten[ArrayFlatten/@Partition[Partition[ArrayReshape[#,{Sqrt[Dimensions[m][[1]]],Sqrt[Dimensions[m][[1]]]}]&/@m,Sqrt[Dimensions[m][[1]]]],Sqrt[Dimensions[m][[1]]]],1];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Spins*)
 
 
@@ -559,10 +545,10 @@ ClosedXXZHamiltonian[L_,\[CapitalDelta]_]:=
 	]
 
 
-OpenXXZHamiltonian[L_,\[CapitalDelta]_,\[CapitalDelta]1_,\[CapitalDelta]2_,h1_,h2_]:=
+OpenXXZHamiltonian[L_,\[CapitalDelta]_,h1_,h2_]:=
 	Module[{NNindices},
 		NNindices = Normal[ SparseArray[Thread[{#, Mod[# + 1, L, 1]}->1], {L}] &/@ Range[L-1] ];
-		N[Normal[-1/2*Total[Join[(\[CapitalDelta]1)Pauli/@NNindices,(\[CapitalDelta]2)Pauli/@(2NNindices),\[CapitalDelta](Pauli[#]-IdentityMatrix[2^L])&/@(3NNindices)]]  
+		N[Normal[-1/2*Total[Join[Pauli/@NNindices,Pauli/@(2NNindices),\[CapitalDelta] (Pauli[#]-IdentityMatrix[2^L])&/@(3NNindices)]]  
 		- 1/2*(h1 Pauli[Join[{1},ConstantArray[0,L-1]]] + h2*Pauli[Join[ConstantArray[0,L-1],{1}]])+ 1/2*(h1 + h2)IdentityMatrix[2^L]]]
 	]
 
@@ -578,7 +564,7 @@ HamiltonianZ[\[Omega]_,\[Epsilon]d_,L_,d_]:=N[(1/2)*(\[Omega]*Total[Pauli/@(3*Id
 LeaSpinChainHamiltonian[Jxy_,Jz_,\[Omega]_,\[Epsilon]d_,L_,d_]:=HamiltonianNN[Jxy,Jz,L]+HamiltonianZ[\[Omega],\[Epsilon]d,L,d]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*End of Package*)
 
 
