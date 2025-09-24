@@ -104,27 +104,74 @@ Reshuffle::usage = "Reshuffle[m] applies the reshuffle transformation to the mat
 
 
 (* ::Subsection::Closed:: *)
-(*Spins*)
+(*Spins chais*)
+
+
+(* ::Subsubsection:: *)
+(*Symmetries*)
 
 
 SpinParityEigenvectors::usage = "SpinParityEigenvectors[L] gives a list of {even, odd} eigenvectors of the L-spin system parity operator P; P\!\(\*TemplateBox[{RowBox[{SubscriptBox[\"k\", \"1\"], \",\", \"\[Ellipsis]\", \",\", SubscriptBox[\"k\", \"L\"]}]},\n\"Ket\"]\) = \!\(\*TemplateBox[{RowBox[{SubscriptBox[\"k\", \"L\"], \",\", \"\[Ellipsis]\", \",\", SubscriptBox[\"k\", \"1\"]}]},\n\"Ket\"]\), \!\(\*SubscriptBox[\(k\), \(i\)]\)=0,1.";
+
+
+TranslationEigenvectorRepresentatives::usage = FormatUsage[
+  "TranslationEigenvectorRepresentatives[L] returns a list of sublists, each containing:\
+  the decimal representation of a bit-string representative eigenvector,\
+  its pseudomomentum k, and the length of its translation orbit,\
+  for a system of ```L``` qubits."
+];
+
+
+BlockDiagonalize::usage = FormatUsage[
+	"BlockDiagonalize[matrix,opts] returns ```matrix``` in block-diagonal form. Only \
+	option is '''Symmetry'''."
+];
+
+
+Symmetry::usage = FormatUsage[
+	"Symmetry is an option for '''BlockDiagonalize''' to specify the symmetry according to which \
+	```matrix``` in '''BlockDiagonalize'''[```matrix```] is block diagonalized. It takes the values: \
+	\"Translation\". Default option is \"Translation\"."
+];
 
 
 (* ::Subsubsection:: *)
 (*Spin chains*)
 
 
-IsingNNOpenHamiltonian::usage = "IsingNNOpenHamiltonian[\!\(\*SubscriptBox[\(h\), \(x\)]\), \!\(\*SubscriptBox[\(h\), \(z\)]\), {\!\(\*SubscriptBox[\(J\), \(1\)]\),\[Ellipsis],\!\(\*SubscriptBox[\(J\), \(L - 1\)]\)}, L] returns the Hamiltonian \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), \(L\)]\)(\!\(\*SubscriptBox[\(h\), \(x\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(x\)]\) + \!\(\*SubscriptBox[\(h\), \(z\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(z\)]\)) + \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), \(L - 1\)]\) \!\(\*SubscriptBox[\(J\), \(i\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(z\)]\)\!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i + 1\), \(z\)]\)";
+IsingHamiltonian::usage = FormatUsage[
+	"IsingHamiltonian[h_x,h_z,J,L,opts] returns the Hamiltonian \ 
+	H = \[Sum]_{*i=1*}^L (```h_x```\[Sigma]_i^x + ```h_z```\[Sigma]_i^z) - ```J``` \[Sum]_{*i=1*}^{*L-1*} \[Sigma]^z_i \[Sigma]^z_{*i+1*} \
+	with boundary conditions specified by option BoundaryConditions (default is \"Open\")."
+];
 
 
-IsingNNClosedHamiltonian::usage = "IsingNNClosedHamiltonian[\!\(\*
+BoundaryConditions::usage = FormatUsage[
+	"BoundaryConditions is an option for '''IsingHamiltonian''' to specify the boundary conditions. It \
+	takes the values \"Open\" or \"Periodic\". Default option is \"Open\"."
+];
+
+
+IsingNNOpenHamiltonian::replaced = "Function `1` has been replaced by `2`.";
+
+
+(*Quiet[
+IsingNNOpenHamiltonian::usage = FormatUsage["IsingNNOpenHamiltonian[h_x,h_z,J,L] returns the Hamiltonian H = \[Sum]_{*i=1*}^L (```h_x```\[Sigma]_i^x + ```h_z```\[Sigma]_i^z) - ```J```\[Sum]_{*i=1*}^{*L-1*} \[Sigma]^z_i \[Sigma]^z_{*i+1*}.
+IsingNNOpenHamiltonian[h_x,h_z,{J_1,...,J_L},L] returns the Hamiltonian H = \[Sum]_{*i=1*}^L (```h_x```\[Sigma]_i^x + ```h_z```\[Sigma]_i^z) - \[Sum]_{*i=1*}^{*L-1*} ```J_i``` \[Sigma]^z_i \[Sigma]^z_{*i+1*}."];
+, {FrontEndObject::notavail, First::normal}];*)
+
+
+IsingNNClosedHamiltonian::replaced = "Function `1` has been replaced by `2`.";
+
+
+(*IsingNNClosedHamiltonian::usage = "IsingNNClosedHamiltonian[\!\(\*
 StyleBox[SubscriptBox[\"h\", \"x\"],\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\",\",\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[SubscriptBox[\"h\", \"z\"],\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\",\",\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\"J\",\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\",\",\nFontSlant->\"Italic\"]\)\!\(\*
-StyleBox[\"L\",\nFontSlant->\"Italic\"]\)] returns the Hamiltonian \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), \(L\)]\)(\!\(\*SubscriptBox[\(h\), \(x\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(x\)]\) + \!\(\*SubscriptBox[\(h\), \(z\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(z\)]\)) + \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), L]\) \!\(\*SubscriptBox[\(J\), \(i\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(z\)]\)\!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i + 1\), \(z\)]\) with \!\(\*SubscriptBox[\(\[Sigma]\), \(L + 1\)]\) = \!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\).";
+StyleBox[\"L\",\nFontSlant->\"Italic\"]\)] returns the Hamiltonian \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), \(L\)]\)(\!\(\*SubscriptBox[\(h\), \(x\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(x\)]\) + \!\(\*SubscriptBox[\(h\), \(z\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(z\)]\)) + \!\(\*UnderoverscriptBox[\(\[Sum]\), \(i = 1\), L]\) \!\(\*SubscriptBox[\(J\), \(i\)]\) \!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i\), \(z\)]\)\!\(\*SubsuperscriptBox[\(\[Sigma]\), \(i + 1\), \(z\)]\) with \!\(\*SubscriptBox[\(\[Sigma]\), \(L + 1\)]\) = \!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\).";*)
 
 
 ClosedXXZHamiltonian::usage = "ClosedXXZHamiltonian[\!\(\*
@@ -506,8 +553,12 @@ MeanLevelSpacingRatio[eigenvalues_]:=Mean[Min/@Transpose[{#,1/#}]&[Ratios[Differ
 Reshuffle[m_] := ArrayFlatten[ArrayFlatten/@Partition[Partition[ArrayReshape[#,{Sqrt[Dimensions[m][[1]]],Sqrt[Dimensions[m][[1]]]}]&/@m,Sqrt[Dimensions[m][[1]]]],Sqrt[Dimensions[m][[1]]]],1];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Spins*)
+
+
+(* ::Subsubsection::Closed:: *)
+(*Symmetries*)
 
 
 SpinParityEigenvectors[L_]:=Module[{tuples,nonPalindromes,palindromes},
@@ -517,25 +568,149 @@ palindromes=Complement[tuples,nonPalindromes];
 nonPalindromes=DeleteDuplicatesBy[nonPalindromes,Sort[{#,Reverse[#]}]&];
 Normal[
 {
-Join[SparseArray[FromDigits[#,2]+1->1,2^L]&/@palindromes,Normalize[SparseArray[{FromDigits[#,2]+1->1,FromDigits[Reverse[#],2]+1->1},2^L]]&/@nonPalindromes],
-Normalize[SparseArray[{FromDigits[#,2]+1->-1,FromDigits[Reverse[#],2]+1->1},2^L]]&/@nonPalindromes
+Join[SparseArray[FromDigits[#,2]+1->1.,2^L]&/@palindromes,Normalize[SparseArray[{FromDigits[#,2]+1->1.,FromDigits[Reverse[#],2]+1->1.},2^L]]&/@nonPalindromes],
+Normalize[SparseArray[{FromDigits[#,2]+1->-1.,FromDigits[Reverse[#],2]+1->1.},2^L]]&/@nonPalindromes
 }]
 ]
 
 
-(* ::Subsubsection:: *)
+Translation[state_, L_] := BitShiftRight[state] + BitAnd[state, 1]*2^(L-1)
+BinaryNecklaces[L_Integer] := Module[{tuples=Tuples[{0,1},L]},
+	Union[Table[First[Sort[NestList[RotateLeft, t, L-1]]], {t,tuples}]]
+]
+\[Omega][L_,k_] := Exp[2Pi*k*I/L]
+
+TranslationEigenvectorRepresentatives[L_Integer] := Module[
+	{
+	necklaces = FromDigits[#,2]& /@ BinaryNecklaces[L],
+	orbits
+	},
+	
+	orbits = DeleteDuplicates[
+	Sort[NestWhileList[Translation[#, L]&, #, UnsameQ[##]&, All][[;;-2]]]& /@ necklaces
+	 ];
+	Catenate[
+		Outer[
+			If[Mod[Length[#1]*#2, L]==0, {First[#1], #2, Length[#1]}, Nothing]&, 
+			orbits, 
+			Range[0, L-1], 
+			1
+		]
+	]
+]
+
+
+RepresentativesOddBasis[basis_]:=DeleteDuplicatesBy[Discard[basis,PalindromeQ],Sort[{#,Reverse[#]}]&]
+RepresentativesEvenBasis[basis_]:=DeleteDuplicatesBy[basis,Sort[{#,Reverse[#]}]&]
+
+
+Options[BlockDiagonalize] = {
+  Symmetry -> "Translation" (*coming soon: \"Parity\"*)
+};
+
+BlockDiagonalize[A_, opts:OptionsPattern[]]:= 
+Switch[OptionValue[Symmetry],
+	"Translation",
+		Module[
+			{
+				L = Log[2, Length[A]],
+				repsgathered,
+				P
+			},
+				(*Gather translation eigenvectors by their pseudomomentum k*)
+				repsgathered = GatherBy[TranslationEigenvectorRepresentatives[L], #[[2]]&];
+				
+				(*change of basis matrix*)
+				P = SparseArray[
+						Catenate[
+							Apply[
+								Normalize[SparseArray[
+									Thread[
+										FoldList[Translation[#, L]&, #1, Range[#3 - 1]] + 1 -> 
+										Power[\[Omega][L, #2], Range[0., #3 - 1]]
+									]
+										, 2^L
+								]]&,
+								repsgathered,
+								{2}
+							]
+						]
+					];
+					
+				BlockDiagonalMatrix[Chop[Conjugate[P] . A . Transpose[P]]]
+		],
+	"Parity",
+		Module[
+		{
+			L = Log[2, Length[A]],
+			basis, reps, rules, Heven, Hodd
+		},
+			basis = Tuples[{0, 1}, L];
+			rules=AssociationThread[basis->Range[Length[basis]]];
+			reps=Comap[{RepresentativesEvenBasis, RepresentativesOddBasis},basis];
+			Heven=1/2 (A[[#1,#1]] + A[[#1,#2]] + A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[1]]], {2}]);
+			Hodd=1/2 (A[[#1,#1]] - A[[#1,#2]] - A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[2]]], {2}]);
+			Heven = # . Heven . #&[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]],TargetStructure->"Sparse"]];
+			
+			{Heven, Hodd}
+		],
+	_,
+		Message[BlockDiagonalize::badSymmetry, OptionValue[Symmetry]];
+		Return[$Failed];
+]
+
+(*Mensaje de error si la opci\[OAcute]n es inv\[AAcute]lida*)
+BlockDiagonalize::badSymmetry = 
+  "Option badSymmetry -> `1` is not valid. Valid options: \"Translation\".";
+
+
+(* ::Subsubsection::Closed:: *)
 (*Spin chains*)
 
 
-IsingNNOpenHamiltonian[h_,g_,J_,L_] := Module[{NNIndices},
+Options[IsingHamiltonian] = {
+  BoundaryConditions -> "Open"
+};
+
+IsingHamiltonian[hx_, hz_, J_, L_, opts:OptionsPattern[]] := Module[
+	{NNIndices},
+	NNIndices = Switch[OptionValue[BoundaryConditions],
+		"Open",
+			Normal[SparseArray[Thread[{#,#+1}->3],{L}]&/@Range[L-1]],
+		"Periodic",
+			Normal[SparseArray[Thread[{#,Mod[#+1,L,1]}->3],{L}]&/@Range[L]],
+		_,
+			Message[
+                IsingHamiltonian::badBoundaryCondition, 
+                OptionValue[BoundaryConditions]
+            ];
+            Return[$Failed];
+	];
+	
+	Total[{hx*Pauli[#]+hz*Pauli[3#]&/@IdentityMatrix[L],-J*(Pauli/@NNIndices)},2]
+]
+
+(*Mensaje de error si la opci\[OAcute]n es inv\[AAcute]lida*)
+IsingHamiltonian::badBoundaryCondition = 
+  "Option BoundaryConditions -> `1` not valid. Valid options: \"Open\" o \"Periodic\".";
+
+
+IsingNNOpenHamiltonian[args___] := Message[
+	IsingNNOpenHamiltonian::replaced, "IsingNNOpenHamiltonian", "IsingHamiltonian"];
+	
+(*IsingNNOpenHamiltonian[hx_,hz_,J_,L_] := Module[{NNIndices},
 	NNIndices=Normal[SparseArray[Thread[{#,#+1}->3],{L}]&/@Range[L-1]];
-	(*-N[Normal[Total[{h*Pauli[#]+g*Pauli[3#]&/@IdentityMatrix[L],J*(Pauli/@NNIndices)},2]]]*)
-	-Normal[Total[{h*Pauli[#]+g*Pauli[3#]&/@IdentityMatrix[L],J*(Pauli/@NNIndices)},2]]]
+	N[Normal[Total[{hx*Pauli[#]+hz*Pauli[3#]&/@IdentityMatrix[L],-J*(Pauli/@NNIndices)},2]]]]*)
 
 
-IsingNNClosedHamiltonian[h_,g_,J_,L_] := Module[{NNIndices},
+IsingNNClosedHamiltonian[args___] := Message[
+	IsingNNClosedHamiltonian::replaced, "IsingNNClosedHamiltonian", "IsingHamiltonian"];
+
+(*IsingNNClosedHamiltonian[hx_,hz_,J_,L_] := 
+Module[{NNIndices},
 	NNIndices=Normal[SparseArray[Thread[{#,Mod[#+1,L,1]}->3],{L}]&/@Range[L]];
-	-N[Normal[Total[{h*Pauli[#]+g*Pauli[3#]&/@IdentityMatrix[L],J*(Pauli/@NNIndices)},2]]]]
+	Total[{hx*Pauli[#]+hz*Pauli[3#]&/@IdentityMatrix[L],-J*(Pauli/@NNIndices)},2]
+]*)
 
 
 ClosedXXZHamiltonian[L_,\[CapitalDelta]_]:=
