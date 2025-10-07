@@ -19,7 +19,7 @@ BeginPackage["QMB`"];
 (*Hay cosas de Heisenberg meets fuzzy que tambi\[EAcute]n tengo que pasar para ac\[AAcute]*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Usage definitions*)
 
 
@@ -580,6 +580,19 @@ Normalize[SparseArray[{FromDigits[#,2]+1->-1.,FromDigits[Reverse[#],2]+1->1.},2^
 ]
 
 
+SpinParityEigenvectors[L_]:=Module[{tuples,nonPalindromes,palindromes},
+tuples=Tuples[{0,1},L];
+nonPalindromes=Select[tuples,#!=Reverse[#]&];
+palindromes=Complement[tuples,nonPalindromes];
+nonPalindromes=DeleteDuplicatesBy[nonPalindromes,Sort[{#,Reverse[#]}]&];
+Normal[
+{
+Join[SparseArray[FromDigits[#,2]+1->1.,2^L]&/@palindromes,Normalize[SparseArray[{FromDigits[#,2]+1->1.,FromDigits[Reverse[#],2]+1->1.},2^L]]&/@nonPalindromes],
+Normalize[SparseArray[{FromDigits[#,2]+1->-1.,FromDigits[Reverse[#],2]+1->1.},2^L]]&/@nonPalindromes
+}]
+]
+
+
 Translation[state_, L_] := BitShiftRight[state] + BitAnd[state, 1]*2^(L-1)
 BinaryNecklaces[L_Integer] := Module[{tuples=Tuples[{0,1},L]},
 	Union[Table[First[Sort[NestList[RotateLeft, t, L-1]]], {t,tuples}]]
@@ -606,7 +619,8 @@ TranslationEigenvectorRepresentatives[L_Integer] := Module[
 ]
 
 
-RepresentativesOddBasis[basis_]:=DeleteDuplicatesBy[Discard[basis,PalindromeQ],Sort[{#,Reverse[#]}]&]
+(*RepresentativesOddBasis[basis_]:=DeleteDuplicatesBy[Discard[basis,PalindromeQ],Sort[{#,Reverse[#]}]&]*)
+RepresentativesOddBasis[basis_]:=DeleteDuplicatesBy[Select[basis, Not@*PalindromeQ],Sort[{#,Reverse[#]}]&]
 RepresentativesEvenBasis[basis_]:=DeleteDuplicatesBy[basis,Sort[{#,Reverse[#]}]&]
 
 
@@ -653,10 +667,13 @@ Switch[OptionValue[Symmetry],
 		},
 			basis = Tuples[{0, 1}, L];
 			rules=AssociationThread[basis->Range[Length[basis]]];
-			reps=Comap[{RepresentativesEvenBasis, RepresentativesOddBasis},basis];
+			(*reps=Comap[{RepresentativesEvenBasis, RepresentativesOddBasis},basis];*)
+			reps=Through[{RepresentativesEvenBasis,RepresentativesOddBasis}[basis]];
 			Heven=1/2 (A[[#1,#1]] + A[[#1,#2]] + A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[1]]], {2}]);
 			Hodd=1/2 (A[[#1,#1]] - A[[#1,#2]] - A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[2]]], {2}]);
-			Heven = # . Heven . #&[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]],TargetStructure->"Sparse"]];
+			(*Heven = # . Heven . #&[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]],TargetStructure->"Sparse"]];*)
+			Heven = # . Heven . #&[SparseArray[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]]]]];
+			Hodd=1/2 (A[[#1,#1]] - A[[#1,#2]] - A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[2]]], {2}]);
 			
 			{Heven, Hodd}
 		],
@@ -713,10 +730,13 @@ Switch[OptionValue[Symmetry],
 		},
 			basis = Tuples[{0, 1}, L];
 			rules=AssociationThread[basis->Range[Length[basis]]];
-			reps=Comap[{RepresentativesEvenBasis, RepresentativesOddBasis},basis];
+			(*reps=Comap[{RepresentativesEvenBasis, RepresentativesOddBasis},basis];*)
+			reps=Through[{RepresentativesEvenBasis,RepresentativesOddBasis}[basis]];
 			Heven=1/2 (A[[#1,#1]] + A[[#1,#2]] + A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[1]]], {2}]);
 			Hodd=1/2 (A[[#1,#1]] - A[[#1,#2]] - A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[2]]], {2}]);
-			Heven = # . Heven . #&[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]],TargetStructure->"Sparse"]];
+			(*Heven = # . Heven . #&[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]],TargetStructure->"Sparse"]];*)
+			Heven = # . Heven . #&[SparseArray[DiagonalMatrix[ReplacePart[ConstantArray[1.,Length[reps[[1]]]],Thread[Catenate[Position[reps[[1]],_?PalindromeQ,1]]->1/Sqrt[2.]]]]]];
+			Hodd=1/2 (A[[#1,#1]] - A[[#1,#2]] - A[[#2,#1]] + A[[#2,#2]] & @@ Map[rules, {#, Reverse/@#}&[reps[[2]]], {2}]);
 			
 			{Heven, Hodd}
 		],
