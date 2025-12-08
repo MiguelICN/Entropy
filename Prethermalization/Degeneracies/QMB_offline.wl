@@ -19,7 +19,7 @@ BeginPackage["QMB`"];
 (*Hay cosas de Heisenberg meets fuzzy que tambi\[EAcute]n tengo que pasar para ac\[AAcute]*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Usage definitions*)
 
 
@@ -200,7 +200,7 @@ StyleBox[\",\",\nFontSlant->\"Italic\"]\)\!\(\*
 StyleBox[\"d\",\nFontSlant->\"Italic\"]\)] returns the spin-1/2 chain of eq. (1) in Am. J. Phys. 80, 246\[Dash]251 (2012).";
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Entanglement worker (MACHINE PRECISION ONLY)*)
 
 
@@ -574,7 +574,7 @@ Module[{UR},
 ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Spins*)
 
 
@@ -742,7 +742,7 @@ IsingHamiltonian[hx_, hz_, J_, L_, opts:OptionsPattern[]] := Module[
             Return[$Failed];
 	];
 	
-	Total[{hx*Pauli[#]+hz*Pauli[3#]&/@IdentityMatrix[L],-J*(Pauli/@NNIndices)},2]
+	Total[{hx*Pauli[#]+hz*Pauli[3#]&/@IdentityMatrix[L],J*(Pauli/@NNIndices)},2]
 ]
 
 (*Mensaje de error si la opci\[OAcute]n es inv\[AAcute]lida*)
@@ -794,7 +794,7 @@ HamiltonianZ[\[Omega]_,\[Epsilon]d_,L_,d_]:=N[(1/2)*(\[Omega]*Total[Pauli/@(3*Id
 LeaSpinChainHamiltonian[Jxy_,Jz_,\[Omega]_,\[Epsilon]d_,L_,d_]:=HamiltonianNN[Jxy,Jz,L]+HamiltonianZ[\[Omega],\[Epsilon]d,L,d]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Entanglement worker (MACHINE PRECISION ONLY)*)
 
 
