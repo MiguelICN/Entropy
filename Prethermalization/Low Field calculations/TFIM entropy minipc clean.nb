@@ -1,0 +1,2662 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    105692,       2654]
+NotebookOptionsPosition[     91179,       2422]
+NotebookOutlinePosition[     97138,       2546]
+CellTagsIndexPosition[     97095,       2543]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Setup", "Title",
+ CellChangeTimes->{{3.9786184163069324`*^9, 3.9786184274356327`*^9}, {
+  3.978673148832325*^9, 3.9786731491708755`*^9}, {3.9786733836829624`*^9, 
+  3.978673385089258*^9}},ExpressionUUID->"25be0cfd-3fc1-144d-b227-\
+6ee01f96ece8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"::", "Section", "::"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"0", ")"}], " ", "General", " ", "setup", " ", 
+    RowBox[{"(", "portable", ")"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"projectDir", "=", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\n", 
+   RowBox[{"(*", 
+    RowBox[{"parallel", " ", "kernels"}], "*)"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"nKernels", "=", 
+      RowBox[{"Min", "[", 
+       RowBox[{"14", ",", "$ProcessorCount"}], "]"}]}], ";", "\n", 
+     RowBox[{"LaunchKernels", "[", "nKernels", "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"LaunchKernels", "[", "14", "]"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "load", " ", "your", " ", "library", " ", "from", " ", "the", " ", 
+      "same", " ", "folder", " ", "as", " ", "the", " ", "notebook"}], ",", 
+     RowBox[{"on", " ", "ALL", " ", "kernels"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"libFile", "=", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"projectDir", ",", "\"\<QMB_offline_new.wl\>\""}], "}"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"FileExistsQ", "[", "libFile", "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<Missing library file: \>\"", ",", "libFile"}], "]"}], ";",
+        "\[IndentingNewLine]", 
+       RowBox[{"Abort", "[", "]"}], ";"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "if", " ", "your", " ", "library", " ", "tries", " ", "to", " ", 
+      "SetDelayed", " ", 
+      RowBox[{"Commutator", "[", "...", "]"}], " ", "you", " ", "may", " ", 
+      "see", " ", 
+      RowBox[{"SetDelayed", "::", "write"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{
+     "best", " ", "fix", " ", "is", " ", "to", " ", "rename", " ", "that", " ",
+       "symbol", " ", "inside", " ", "the", " ", "library"}], ";", 
+     RowBox[{
+     "this", " ", "Quiet", " ", "just", " ", "avoids", " ", "clutter"}]}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Quiet", "[", 
+     RowBox[{
+      RowBox[{"Get", "[", "libFile", "]"}], ",", 
+      RowBox[{"SetDelayed", "::", "write"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ParallelEvaluate", "[", 
+     RowBox[{"Quiet", "[", 
+      RowBox[{
+       RowBox[{"Get", "[", "libFile", "]"}], ",", 
+       RowBox[{"SetDelayed", "::", "write"}]}], "]"}], "]"}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.978679595705988*^9, 3.9786796037174206`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"2998d024-face-a443-8764-bae37a8722ed"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<Developer`\>\"", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ensureDir", "[", "dir_", "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"DirectoryQ", "[", "dir", "]"}]}], ",", 
+      RowBox[{"CreateDirectory", "[", 
+       RowBox[{"dir", ",", 
+        RowBox[{"CreateIntermediateDirectories", "->", "True"}]}], "]"}]}], 
+     "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"helper", ":", 
+    RowBox[{"parity", " ", "maps", " ", 
+     RowBox[{"(", 
+      RowBox[{
+      "uses", " ", "revIndex", " ", "from", " ", "your", " ", "library"}], 
+      ")"}]}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"getParityMaps", "[", "L_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"visited", ",", "evenMap", ",", "oddMap", ",", "j"}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"visited", "=", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{"False", ",", 
+          RowBox[{"2", "^", "L"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"evenMap", "=", 
+        RowBox[{"{", "}"}]}], ";", 
+       RowBox[{"oddMap", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"!", 
+            RowBox[{"visited", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", "+", "1"}], "]"}], "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"j", "=", 
+             RowBox[{"revIndex", "[", 
+              RowBox[{"i", ",", "L"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"visited", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", "+", "1"}], "]"}], "]"}], "=", "True"}], ";", 
+            RowBox[{
+             RowBox[{"visited", "[", 
+              RowBox[{"[", 
+               RowBox[{"j", "+", "1"}], "]"}], "]"}], "=", "True"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"i", "==", "j"}], ",", 
+              RowBox[{"AppendTo", "[", 
+               RowBox[{"evenMap", ",", 
+                RowBox[{"{", "i", "}"}]}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"evenMap", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"i", ",", "j"}], "}"}]}], "]"}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"oddMap", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"i", ",", "j"}], "}"}]}], "]"}]}]}], "]"}], ";"}]}],
+           "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "0", ",", 
+           RowBox[{
+            RowBox[{"2", "^", "L"}], "-", "1"}]}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"evenMap", ",", "oddMap"}], "}"}]}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"file", " ", "naming", " ", 
+    RowBox[{"(", 
+     RowBox[{
+     "kept", " ", "consistent", " ", "with", " ", "your", " ", 
+      "conventions"}], ")"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"gTag", "[", "gExp_", "]"}], ":=", 
+   RowBox[{"StringDelete", "[", 
+    RowBox[{
+     RowBox[{"ToString", "[", 
+      RowBox[{"NumberForm", "[", 
+       RowBox[{"gExp", ",", 
+        RowBox[{"{", 
+         RowBox[{"2", ",", "1"}], "}"}]}], "]"}], "]"}], ",", "\"\< \>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"entropyFileBase", "[", 
+    RowBox[{"L_", ",", "gExp_", ",", "rangeName_"}], "]"}], ":=", 
+   RowBox[{"\"\<Entropy_L\>\"", "<>", 
+    RowBox[{"ToString", "[", "L", "]"}], "<>", "\"\<_g\>\"", "<>", 
+    RowBox[{"gTag", "[", "gExp", "]"}], "<>", "\"\<_\>\"", "<>", 
+    "rangeName"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.97867961253327*^9, 3.978679612720543*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"f9fb6d27-1ddc-4b4d-b039-149a731134f1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Method", "Title",
+ CellChangeTimes->{{3.9786733918424873`*^9, 
+  3.978673396764408*^9}},ExpressionUUID->"79d71e16-ad58-174d-998a-\
+124939f5754b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"--", 
+                  RowBox[{"--", 
+                   RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{"--", 
+                    RowBox[{
+                    "--", "-"}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}\
+]}]}]}]}]}]}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Parameters", " ", 
+    RowBox[{"(", "shared", ")"}]}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Lvalues", "=", 
+     RowBox[{"{", "6", "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"J", "=", "1"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"gExponents", "=", 
+     RowBox[{"Range", "[", 
+      RowBox[{
+       RowBox[{"-", "8"}], ",", 
+       RowBox[{"-", "1"}], ",", "1."}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"tlist", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"10.", "^", "i"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"-", "1"}], ",", "12", ",", "0.001"}], "}"}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"hRanges", "=", 
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"\"\<LowField\>\"", ",", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"10.", "^", "i"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{"-", "8"}], ",", 
+            RowBox[{"-", "1"}], ",", "0.1"}], "}"}]}], "]"}]}], "}"}], 
+      "}"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.978679545832632*^9, 3.9786795461766415`*^9}, {
+  3.978679622148405*^9, 3.9786796275875225`*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"c1e7d88b-6e93-4447-be83-9b946c8b5e08"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"::", "Section", "::"}], "*)"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"1", ")"}], " ", 
+    RowBox[{"Calculations", ":", 
+     RowBox[{"generate", " ", "Entropy_", "*", 
+      RowBox[{".", "mx"}], " ", "files"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"simulateEntropy", "[", "L_Integer", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "dataDir", ",", "ini", ",", "evenMap", ",", "oddMap", ",", "psitb", ",",
+          "N", ",", "gExp", ",", "gVal", ",", "rangeName", ",", "hList", ",", 
+         "hVal", ",", "Ha", ",", "system", ",", "evenvals", ",", "evenvecs", ",",
+          "oddvals", ",", "oddvecs", ",", "neweven", ",", "newodd", ",", 
+         "allvals", ",", "allvecs", ",", "sortedSystem", ",", "vals", ",", 
+         "vecs", ",", "ck", ",", "phaseTable", ",", "tCoeffs", ",", 
+         "finalState", ",", "entropySeries", ",", "batchResults", ",", 
+         "exportPath", ",", "exportAssoc"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"dataDir", "=", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"projectDir", ",", "\"\<Data\>\"", ",", 
+            RowBox[{"\"\<L\>\"", "<>", 
+             RowBox[{"ToString", "[", "L", "]"}]}]}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ensureDir", "[", "dataDir", "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"\"\<\\nStarting computation for L = \>\"", "<>", 
+            RowBox[{"ToString", "[", "L", "]"}]}], ",", "Bold", ",", "Blue", ",",
+            "18"}], "]"}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ini", "=", 
+         RowBox[{"RandomChainProductState", "[", "L", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"evenMap", ",", "oddMap"}], "}"}], "=", 
+         RowBox[{"getParityMaps", "[", "L", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"compile", " ", "once"}], "*)"}], 
+        RowBox[{"psitb", "=", 
+         RowBox[{"Compile", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"ck", ",", "_Complex", ",", "1"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"phases", ",", "_Complex", ",", "2"}], "}"}]}], "}"}], ",", 
+           RowBox[{"ck", "*", "phases"}], ",", 
+           RowBox[{"CompilationTarget", "->", "\"\<WVM\>\""}], ",", 
+           RowBox[{"RuntimeOptions", "->", "\"\<Speed\>\""}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"N", "=", 
+         RowBox[{"2", "^", "L"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"gVal", "=", 
+            RowBox[{"10.", "^", "gExp"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"Print", "[", 
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"\"\<  Running g = 10^\>\"", "<>", 
+               RowBox[{"ToString", "[", 
+                RowBox[{"NumberForm", "[", 
+                 RowBox[{"gExp", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}], "]"}], "]"}]}], ",", 
+              RowBox[{"Darker", "[", "Green", "]"}], ",", "14"}], "]"}], 
+            "]"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"Do", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"rangeName", "=", 
+               RowBox[{"hSet", "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+              
+              RowBox[{"hList", "=", 
+               RowBox[{"hSet", "[", 
+                RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+              
+              RowBox[{"Print", "[", 
+               
+               RowBox[{"\"\<    Processing \>\"", ",", "rangeName", 
+                ",", "\"\< (\>\"", ",", 
+                RowBox[{"Length", "[", "hList", "]"}], 
+                ",", "\"\< values)...\>\""}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"batchResults", "=", 
+               RowBox[{"Table", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"hVal", "=", "h"}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"Ha", "=", 
+                   RowBox[{"IsingHamiltonian", "[", 
+                    RowBox[{"hVal", ",", "gVal", ",", "J", ",", "L", ",", 
+                    RowBox[{"BoundaryConditions", "->", "\"\<Open\>\""}]}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"system", "=", 
+                   RowBox[{"BlockDiagonalize", "[", 
+                    RowBox[{"Ha", ",", 
+                    RowBox[{"Symmetry", "->", "\"\<Parity\>\""}]}], "]"}]}], ";",
+                   "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"evenvals", ",", "evenvecs"}], "}"}], "=", 
+                   RowBox[{"Transpose", "@", 
+                    RowBox[{"Sort", "@", 
+                    RowBox[{"Transpose", "@", 
+                    RowBox[{"Quiet", "[", 
+                    RowBox[{"Eigensystem", "[", 
+                    RowBox[{"system", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}]}]}]}]}], ";",
+                   "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"oddvals", ",", "oddvecs"}], "}"}], "=", 
+                   RowBox[{"Transpose", "@", 
+                    RowBox[{"Sort", "@", 
+                    RowBox[{"Transpose", "@", 
+                    RowBox[{"Quiet", "[", 
+                    RowBox[{"Eigensystem", "[", 
+                    RowBox[{"system", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}], "]"}]}]}]}]}], ";",
+                   "\[IndentingNewLine]", 
+                  RowBox[{"neweven", "=", 
+                   RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"ExpandBlockVector", "[", 
+                    RowBox[{
+                    "v", ",", "evenMap", ",", "\"\<even\>\"", ",", "L"}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"v", ",", "evenvecs"}], "}"}]}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"newodd", "=", 
+                   RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"ExpandBlockVector", "[", 
+                    RowBox[{
+                    "v", ",", "oddMap", ",", "\"\<odd\>\"", ",", "L"}], "]"}],
+                     ",", 
+                    RowBox[{"{", 
+                    RowBox[{"v", ",", "oddvecs"}], "}"}]}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"allvals", "=", 
+                   RowBox[{"Join", "[", 
+                    RowBox[{"evenvals", ",", "oddvals"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"allvecs", "=", 
+                   RowBox[{"Join", "[", 
+                    RowBox[{"neweven", ",", "newodd"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"sortedSystem", "=", 
+                   RowBox[{"SortBy", "[", 
+                    RowBox[{
+                    RowBox[{"Transpose", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"allvals", ",", "allvecs"}], "}"}], "]"}], ",", 
+                    "First"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"vals", "=", 
+                   RowBox[{"sortedSystem", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"vecs", "=", 
+                   RowBox[{"sortedSystem", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"ck", "=", 
+                   RowBox[{
+                    RowBox[{"Conjugate", "[", "vecs", "]"}], ".", "ini"}]}], ";",
+                   "\[IndentingNewLine]", 
+                  RowBox[{"phaseTable", "=", 
+                   RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "I"}], " ", 
+                    RowBox[{"Outer", "[", 
+                    RowBox[{"Times", ",", "vals", ",", "tlist"}], "]"}]}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"tCoeffs", "=", 
+                   RowBox[{"psitb", "[", 
+                    RowBox[{
+                    RowBox[{"Developer`ToPackedArray", "[", "ck", "]"}], ",", 
+                    
+                    RowBox[{
+                    "Developer`ToPackedArray", "[", "phaseTable", "]"}]}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"finalState", "=", 
+                   RowBox[{
+                    RowBox[{"Transpose", "[", "vecs", "]"}], ".", 
+                    "tCoeffs"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"entropySeries", "=", 
+                   RowBox[{"ParallelMap", "[", 
+                    RowBox[{"newb", ",", 
+                    RowBox[{"Transpose", "[", "finalState", "]"}]}], "]"}]}], 
+                  ";", "\[IndentingNewLine]", 
+                  RowBox[{"{", 
+                   RowBox[{"hVal", ",", "entropySeries"}], "}"}]}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"h", ",", "hList"}], "}"}]}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"exportPath", "=", 
+               RowBox[{"FileNameJoin", "[", 
+                RowBox[{"{", 
+                 RowBox[{"dataDir", ",", 
+                  RowBox[{
+                   RowBox[{"entropyFileBase", "[", 
+                    RowBox[{"L", ",", "gExp", ",", "rangeName"}], "]"}], 
+                   "<>", "\"\<.mx\>\""}]}], "}"}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"exportAssoc", "=", 
+               RowBox[{"<|", 
+                RowBox[{
+                 RowBox[{"\"\<L\>\"", "->", "L"}], ",", 
+                 RowBox[{"\"\<J\>\"", "->", "J"}], ",", 
+                 RowBox[{"\"\<g\>\"", "->", "gVal"}], ",", 
+                 RowBox[{"\"\<h_range_name\>\"", "->", "rangeName"}], ",", 
+                 RowBox[{"\"\<tlist\>\"", "->", "tlist"}], ",", 
+                 RowBox[{"\"\<h_values\>\"", "->", "hList"}], ",", 
+                 RowBox[{"\"\<initial_state\>\"", "->", "ini"}], ",", 
+                 RowBox[{"\"\<data\>\"", "->", "batchResults"}]}], "|>"}]}], ";",
+               "\[IndentingNewLine]", 
+              RowBox[{"Export", "[", 
+               RowBox[{"exportPath", ",", "exportAssoc"}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Print", "[", 
+               RowBox[{"\"\<    Saved: \>\"", ",", 
+                RowBox[{"FileNameTake", "[", "exportPath", "]"}]}], "]"}], ";",
+               "\[IndentingNewLine]", 
+              RowBox[{"Clear", "[", "batchResults", "]"}], ";"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"hSet", ",", "hRanges"}], "}"}]}], "]"}], ";"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"gExp", ",", "gExponents"}], "}"}]}], "]"}], ";"}]}], 
+      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Do", "[", 
+     RowBox[{
+      RowBox[{"simulateEntropy", "[", "L", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"L", ",", "Lvalues"}], "}"}]}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.9786732509933224`*^9, 3.9786732530558033`*^9}, {
+  3.978679632556837*^9, 3.978679633353489*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"bed2e216-ce59-e649-86c4-96c3ea6a86c0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ StyleBox["\<\"\\nStarting computation for L = 6\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 0, 1],
+  FrontFaceColor->RGBColor[0, 0, 1],
+  BackFaceColor->RGBColor[0, 0, 1],
+  GraphicsColor->RGBColor[0, 0, 1],
+  FontSize->18,
+  FontWeight->Bold,
+  FontColor->RGBColor[0, 0, 1]]], "Print",
+ CellChangeTimes->{3.978679634353485*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"4df00641-955e-ab4a-81ca-70caedcb19e3"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-8.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9786796343849735`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"b7f57d36-9e02-6143-8731-298b5c8a150e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786796343849735`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"14e55b17-e233-ba48-9d30-1f5271cfaea2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-8.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-8.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786796736985016`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"33910422-a106-804c-8f4e-f1f99c830f56"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-7.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9786796736985016`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"f12fc0d9-8f53-e846-b97e-80222794a533"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786796736985016`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"d186c8d0-3bd0-6841-b787-543552fb9a02"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-7.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-7.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786797122179127`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"c8ea4590-efab-b346-849a-44348959f9a4"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-6.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9786797122179127`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"e3851852-7054-f54c-81ce-fad55ad62997"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786797122179127`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"dab6bd27-69d0-394b-8fda-860c5fc51ac6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-6.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-6.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679750381893*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"aba1cb61-dc6f-3d44-9ae6-8b84d1eb239c"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-5.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.978679750381893*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"fdc920ea-476d-0f48-8559-5a98365a4caa"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679750381893*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"34def890-9d37-3648-86d9-dd2898295472"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-5.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-5.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679787997465*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"04cd041c-2ca1-6543-bb7a-d6cad9eadbfc"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-4.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.978679788013077*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"21a12966-2078-f54d-80a2-3806a49f8259"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679788013077*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"c48d2dd3-c06e-4747-905a-9c7fd5f5aebd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-4.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-4.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786798253962*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"aa6e480f-5e13-cc47-9b44-fa5e46a103a1"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-3.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9786798253962*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"54dd3448-50c4-c842-9785-c9dd26f0e9b3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786798253962*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"c8c40cf8-952c-9c42-9554-3061d96dee99"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-3.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-3.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679862650955*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"3d14b1a3-8e76-3f41-b245-15e35d2380c6"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-2.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.978679862650955*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"22b3f01d-dc6f-c842-96d7-cfd2ecd9c2cd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679862650955*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"c3b630db-b3d7-2548-94bf-3440d49f2d27"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-2.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-2.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799000924683`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"8a1cc4c9-225a-074c-b2a8-2c7d8ba1f59a"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-1.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9786799000924683`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"685f4e26-c683-514d-aaa1-d51a3e950f7e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "71", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 71, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799000924683`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"8189e176-1d09-9d4d-b944-5d8a86405063"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-1.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799375507927`*^9},
+ CellLabel->
+  "During evaluation of \
+In[28]:=",ExpressionUUID->"a49a538b-1640-3f49-b727-f6bb34f3f801"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Processing and plotting", "Title",
+ CellChangeTimes->{{3.978673365330433*^9, 
+  3.9786733723334923`*^9}},ExpressionUUID->"b5c61b6d-2746-0844-ab12-\
+76c3dc851366"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"::", "Section", "::"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"2", ")"}], " ", "Import", " ", "for", " ", 
+     RowBox[{"plotting", ":", 
+      RowBox[{"Entropy", 
+       RowBox[{"(", "t", ")"}], " ", "curves"}]}]}], "->", 
+    RowBox[{"PNG", " ", "per", " ", "Entropy_", "*", 
+     RowBox[{".", "mx"}]}]}], "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"ValueQ", "[", "pageEntropy", "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"pageEntropy", "[", 
+        RowBox[{"La_", ",", "Lb_"}], "]"}], ":=", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"La", "*", 
+          RowBox[{"Log", "[", "2", "]"}]}], "-", "0.5"}], ")"}]}]}], "]"}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"myGradient", "=", 
+     RowBox[{
+      RowBox[{"Blend", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "Blue"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.5", ",", "Purple"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", "Red"}], "}"}]}], "}"}], ",", "#"}], "]"}], 
+      "&"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"processAndPlotEntropy", "[", "fullPath_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "dataAssoc", ",", "L", ",", "g", ",", "hRangeName", ",", "tlistLocal",
+          ",", "hValues", ",", "rawData", ",", "w", ",", "tSmoothed", ",", 
+         "plotData", ",", "minLogH", ",", "maxLogH", ",", "colorList", ",", 
+         "legend", ",", "yPage", ",", "plotTitle", ",", "outputDir", ",", 
+         "pngName", ",", "finalPath", ",", "finalPlot", ",", "tMin", ",", 
+         "tMax", ",", "sClean", ",", "entropyData"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{
+        "Print", 
+         "[", "\"\<-------------------------------------------------\>\"", 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<Reading: \>\"", ",", 
+          RowBox[{"FileBaseName", "[", "fullPath", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"dataAssoc", "=", 
+         RowBox[{"Import", "[", "fullPath", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"L", "=", 
+         RowBox[{"dataAssoc", "[", "\"\<L\>\"", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"g", "=", 
+         RowBox[{"dataAssoc", "[", "\"\<g\>\"", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"hRangeName", "=", 
+         RowBox[{"dataAssoc", "[", "\"\<h_range_name\>\"", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tlistLocal", "=", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"dataAssoc", "[", "\"\<tlist\>\"", "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"hValues", "=", 
+         RowBox[{"dataAssoc", "[", "\"\<h_values\>\"", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rawData", "=", 
+         RowBox[{"dataAssoc", "[", "\"\<data\>\"", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"outputDir", "=", 
+         RowBox[{"DirectoryName", "[", "fullPath", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"w", "=", "100"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"tSmoothed", "=", 
+         RowBox[{"MovingAverage", "[", 
+          RowBox[{"tlistLocal", ",", "w"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tMin", "=", 
+         RowBox[{"Min", "[", "tlistLocal", "]"}]}], ";", 
+        RowBox[{"tMax", "=", 
+         RowBox[{"Max", "[", "tlistLocal", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"plotData", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"entropyData", "=", 
+             RowBox[{"entry", "[", 
+              RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"sClean", "=", 
+             RowBox[{"MovingAverage", "[", 
+              RowBox[{
+               RowBox[{"Re", "@", 
+                RowBox[{"Flatten", "@", "entropyData"}]}], ",", "w"}], 
+              "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Length", "[", "tSmoothed", "]"}], "===", 
+               RowBox[{"Length", "[", "sClean", "]"}]}], ",", 
+              RowBox[{"Transpose", "[", 
+               RowBox[{"{", 
+                RowBox[{"tSmoothed", ",", "sClean"}], "}"}], "]"}], ",", 
+              RowBox[{"{", "}"}]}], "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"entry", ",", "rawData"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"minLogH", "=", 
+         RowBox[{"Min", "[", 
+          RowBox[{"Log10", "[", "hValues", "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"maxLogH", "=", 
+         RowBox[{"Max", "[", 
+          RowBox[{"Log10", "[", "hValues", "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"minLogH", "===", "maxLogH"}], ",", 
+          RowBox[{
+           RowBox[{"colorList", "=", 
+            RowBox[{"{", "Blue", "}"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"legend", "=", 
+            RowBox[{"Placed", "[", 
+             RowBox[{
+              RowBox[{"\"\<h = \>\"", "<>", 
+               RowBox[{"ToString", "[", 
+                RowBox[{"hValues", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ",", "Right"}], 
+             "]"}]}], ";"}], ",", 
+          RowBox[{
+           RowBox[{"colorList", "=", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"myGradient", "[", 
+               RowBox[{"Rescale", "[", 
+                RowBox[{
+                 RowBox[{"Log10", "[", "h", "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"minLogH", ",", "maxLogH"}], "}"}]}], "]"}], "]"}], 
+              ",", 
+              RowBox[{"{", 
+               RowBox[{"h", ",", "hValues"}], "}"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"legend", "=", 
+            RowBox[{"BarLegend", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"myGradient", ",", 
+                RowBox[{"{", 
+                 RowBox[{"minLogH", ",", "maxLogH"}], "}"}]}], "}"}], ",", 
+              RowBox[{"\"\<Ticks\>\"", "->", 
+               RowBox[{"Range", "[", 
+                RowBox[{
+                 RowBox[{"Ceiling", "[", "minLogH", "]"}], ",", 
+                 RowBox[{"Floor", "[", "maxLogH", "]"}]}], "]"}]}], ",", 
+              RowBox[{"\"\<TickLabels\>\"", "->", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Superscript", "[", 
+                   RowBox[{"10", ",", "#"}], "]"}], "&"}], "/@", 
+                 RowBox[{"Range", "[", 
+                  RowBox[{
+                   RowBox[{"Ceiling", "[", "minLogH", "]"}], ",", 
+                   RowBox[{"Floor", "[", "maxLogH", "]"}]}], "]"}]}], ")"}]}],
+               ",", 
+              RowBox[{"LegendLabel", "->", 
+               RowBox[{"Style", "[", 
+                RowBox[{"\"\<Field (h)\>\"", ",", "Black", ",", "14"}], 
+                "]"}]}], ",", 
+              RowBox[{"LegendMarkerSize", "->", "300"}]}], "]"}]}], ";"}]}], 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"yPage", "=", 
+         RowBox[{"N", "[", 
+          RowBox[{"pageEntropy", "[", 
+           RowBox[{
+            RowBox[{"L", "/", "2"}], ",", 
+            RowBox[{"L", "/", "2"}]}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"plotTitle", "=", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<L=\>\"", ",", "L", ",", "\"\<, g=\>\"", ",", 
+            RowBox[{"NumberForm", "[", 
+             RowBox[{"g", ",", 
+              RowBox[{"{", 
+               RowBox[{"3", ",", "5"}], "}"}]}], "]"}], ",", "\"\< (\>\"", ",",
+             "hRangeName", ",", "\"\<)\>\""}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"finalPlot", "=", 
+         RowBox[{"ListLogLinearPlot", "[", 
+          RowBox[{"plotData", ",", 
+           RowBox[{"PlotStyle", "->", "colorList"}], ",", 
+           RowBox[{"PlotRange", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"tMin", ",", "tMax"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"yPage", "*", "1.2"}]}], "}"}]}], "}"}]}], ",", 
+           RowBox[{"Frame", "->", "True"}], ",", 
+           RowBox[{"FrameStyle", "->", 
+            RowBox[{"Directive", "[", 
+             RowBox[{"Black", ",", "18"}], "]"}]}], ",", 
+           RowBox[{"FrameLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Time (t)\>\"", ",", "22"}], "]"}], ",", 
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Entropy S(t)\>\"", ",", "22"}], "]"}]}], "}"}]}], 
+           ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{"Style", "[", 
+             RowBox[{"plotTitle", ",", "20", ",", "Black"}], "]"}]}], ",", 
+           RowBox[{"ImageSize", "->", "800"}], ",", 
+           RowBox[{"Joined", "->", "True"}], ",", 
+           RowBox[{"Epilog", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Directive", "[", 
+               RowBox[{"Black", ",", "Dashed", ",", 
+                RowBox[{"AbsoluteThickness", "[", "2", "]"}]}], "]"}], ",", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"tMin", ",", "yPage"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"tMax", ",", "yPage"}], "}"}]}], "}"}], "]"}], ",", 
+              
+              RowBox[{"Directive", "[", 
+               RowBox[{"Green", ",", "Dashed", ",", 
+                RowBox[{"AbsoluteThickness", "[", "2", "]"}]}], "]"}], ",", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"tMin", ",", "1.0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"tMax", ",", "1.0"}], "}"}]}], "}"}], "]"}]}], 
+             "}"}]}], ",", 
+           RowBox[{"PlotLegends", "->", 
+            RowBox[{"Placed", "[", 
+             RowBox[{"legend", ",", "Right"}], "]"}]}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"pngName", "=", 
+         RowBox[{
+          RowBox[{"FileBaseName", "[", "fullPath", "]"}], 
+          "<>", "\"\<.png\>\""}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"finalPath", "=", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"outputDir", ",", "pngName"}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Export", "[", 
+         RowBox[{"finalPath", ",", "finalPlot"}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<   -> Saved Plot: \>\"", ",", "finalPath"}], "]"}], 
+        ";"}]}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"entropyMX", "=", 
+     RowBox[{"FileNames", "[", 
+      RowBox[{"\"\<Entropy_*.mx\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{"projectDir", ",", "\"\<Data\>\""}], "}"}], "]"}], "}"}], ",",
+        "Infinity"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"entropyMX", "===", 
+       RowBox[{"{", "}"}]}], ",", 
+      RowBox[{"Print", "[", "\"\<No Entropy_*.mx files found.\>\"", "]"}], ",", 
+      RowBox[{"Scan", "[", 
+       RowBox[{"processAndPlotEntropy", ",", "entropyMX"}], "]"}]}], "]"}], 
+    ";"}]}]}]], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"bd3ba7f5-57f0-ea46-8354-c24772cb5233"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.978679943095131*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"ed5f4408-c565-6e45-9d57-d123046f6f0f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-1.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679943095131*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"a5e04408-0d5f-394c-a717-38a9aca01e4b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-1.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-1.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679953677412*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"f8f215e4-3364-6041-9ee0-823501c92dc4"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.978679953708967*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"a83420f0-732a-5f49-a012-805769f09084"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-2.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-2.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679953708967*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"2549fc9c-3ae6-b24f-9034-bcce9b3e84a3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-2.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-2.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679963289572*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"d27e52a1-210e-3845-bdd2-6ee305c5b396"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.978679963336447*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"909e047d-9ffa-5e45-a8fa-f55fe8c61e3c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-3.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-3.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679963336447*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"47dc55dd-07d9-9b4e-93bf-94d3de7c0e91"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-3.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-3.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.97867997287051*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"e5f01057-db86-4d4f-b039-83a221270664"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.978679972917385*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"3dc4a76f-7827-0d4b-9bba-d7c637d6c6d4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-4.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-4.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978679972917385*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"2deb673d-49cd-7a43-91a4-ecf7395a1aaa"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-4.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-4.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799824500713`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"afbb7fac-0a02-694e-8a23-e995244c8e65"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.9786799824969463`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"69ad358d-07b3-a648-855c-e0ba555dee6b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-5.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-5.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799824969463`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"17f73123-13e5-0c42-978b-5cf5b50ea941"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-5.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-5.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799918772316`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"dc868810-aa67-f643-b4b4-26c269df8038"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.9786799919241066`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"97a2404e-1ce4-034e-a4fa-e7ae82223786"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-6.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-6.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786799919241066`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"50088b7c-525f-de48-990e-6d818aec0b7e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-6.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-6.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680001098234*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"53b5b739-e875-db47-b106-c3f04fe44f40"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.978680001145111*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"d36d9ef9-da2a-ed4d-85c1-0bbe13dc3059"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-7.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-7.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680001145111*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"699c86a3-3170-644c-b3fd-257aef965de8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-7.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-7.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786800104001064`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"9e21e02f-19f0-4941-99d4-65bffb10ab3a"],
+
+Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
+"Print",
+ CellChangeTimes->{3.9786800104626045`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"b30f568d-d932-dd44-b609-392ca3a2df28"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Reading: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-8.0_LowField\"\>"}],
+  SequenceForm["Reading: ", "Entropy_L6_g-8.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9786800104626045`*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"69edc5a9-6882-e244-92af-0bd501fb0e80"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved Plot: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Entropy_L6_g-8.0_LowField.png\"\>"}],
+  SequenceForm[
+  "   -> Saved Plot: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Entropy_L6_g-8.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680019725172*^9},
+ CellLabel->
+  "During evaluation of \
+In[30]:=",ExpressionUUID->"ee21bb1c-e96c-594e-86f0-2aa3d0613803"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Melting", "Title",
+ CellChangeTimes->{{3.9786786998572693`*^9, 3.9786787029201546`*^9}, {
+  3.978679494063051*^9, 
+  3.9786794944692993`*^9}},ExpressionUUID->"4f696317-79a2-7e41-a065-\
+402bd0c30e34"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"::", "Section", "::"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"3", ")"}], " ", 
+     RowBox[{"Processing", ":", 
+      RowBox[{"extract", " ", "crossing", " ", "times"}]}]}], "->", 
+    RowBox[{"TimeScale_", "*", 
+     RowBox[{".", "dat"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"one", " ", "per", " ", "Entropy_", "*", 
+       RowBox[{".", "mx"}]}], ")"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "ExtractCrossingTime", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ExtractCrossingTime", "[", 
+      RowBox[{"timeList_", ",", "entropy_", ",", 
+       RowBox[{"window_", ":", "200"}], ",", 
+       RowBox[{"threshold_", ":", 
+        RowBox[{"N", "@", 
+         RowBox[{"Log", "[", "2", "]"}]}]}]}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "sClean", ",", "smoothS", ",", "smoothT", ",", "crossPos", ",", "k", ",",
+          "t1", ",", "t2", ",", "s1", ",", "s2"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"sClean", "=", 
+         RowBox[{"Re", "@", 
+          RowBox[{"Flatten", "@", "entropy"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "timeList", "]"}], "=!=", 
+           RowBox[{"Length", "[", "sClean", "]"}]}], ",", 
+          RowBox[{"Return", "[", "Indeterminate", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"smoothS", "=", 
+         RowBox[{"MovingAverage", "[", 
+          RowBox[{"sClean", ",", "window"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"smoothT", "=", 
+         RowBox[{"MovingAverage", "[", 
+          RowBox[{"timeList", ",", "window"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"crossPos", "=", 
+         RowBox[{"FirstPosition", "[", 
+          RowBox[{"smoothS", ",", 
+           RowBox[{"_", "?", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"#", ">=", "threshold"}], "&"}], ")"}]}]}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"MissingQ", "[", "crossPos", "]"}], ",", 
+          RowBox[{"Return", "[", "Indeterminate", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"k", "=", 
+         RowBox[{"crossPos", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"k", "==", "1"}], ",", 
+          RowBox[{"Return", "[", 
+           RowBox[{"smoothT", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"t1", "=", 
+         RowBox[{"smoothT", "[", 
+          RowBox[{"[", 
+           RowBox[{"k", "-", "1"}], "]"}], "]"}]}], ";", 
+        RowBox[{"t2", "=", 
+         RowBox[{"smoothT", "[", 
+          RowBox[{"[", "k", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"s1", "=", 
+         RowBox[{"smoothS", "[", 
+          RowBox[{"[", 
+           RowBox[{"k", "-", "1"}], "]"}], "]"}]}], ";", 
+        RowBox[{"s2", "=", 
+         RowBox[{"smoothS", "[", 
+          RowBox[{"[", "k", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t1", "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"t2", "-", "t1"}], ")"}], " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"threshold", "-", "s1"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"s2", "-", "s1"}], ")"}]}]}]}]}]}], "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellLabel->"In[49]:=",ExpressionUUID->"41ee1747-658e-214d-8877-9467e7137ada"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"crossingWindow", "=", "200"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"crossingThreshold", "=", 
+   RowBox[{"N", "@", 
+    RowBox[{"Log", "[", "2", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"processCrossingTimes", "[", "fullPath_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "dataAssoc", ",", "tlistLocal", ",", "curves", ",", "crossingTimes", ",",
+         "outBase", ",", "outPath"}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<Processing crossings: \>\"", ",", 
+         RowBox[{"FileBaseName", "[", "fullPath", "]"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"dataAssoc", "=", 
+        RowBox[{"Import", "[", "fullPath", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tlistLocal", "=", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"dataAssoc", "[", "\"\<tlist\>\"", "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"curves", "=", 
+        RowBox[{"dataAssoc", "[", "\"\<data\>\"", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"crossingTimes", "=", 
+        RowBox[{
+         RowBox[{"Reap", "[", 
+          RowBox[{"Do", "[", 
+           RowBox[{
+            RowBox[{"With", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"hVal", "=", 
+                 RowBox[{"curve", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+                RowBox[{"sSeries", "=", 
+                 RowBox[{"curve", "[", 
+                  RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ",", 
+              RowBox[{"With", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"tm", "=", 
+                  RowBox[{"ExtractCrossingTime", "[", 
+                   RowBox[{
+                   "tlistLocal", ",", "sSeries", ",", "crossingWindow", ",", 
+                    "crossingThreshold"}], "]"}]}], "}"}], ",", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"NumericQ", "[", "tm", "]"}], ",", 
+                  RowBox[{"Sow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"hVal", ",", "tm"}], "}"}], "]"}]}], "]"}]}], 
+               "]"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"curve", ",", "curves"}], "}"}]}], "]"}], "]"}], "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"crossingTimes", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"crossingTimes", "===", 
+           RowBox[{"{", "}"}]}], ",", 
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{"First", "[", "crossingTimes", "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"crossingTimes", "===", 
+          RowBox[{"{", "}"}]}], ",", 
+         RowBox[{"Return", "[", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"outBase", "=", 
+        RowBox[{"StringReplace", "[", 
+         RowBox[{
+          RowBox[{"FileBaseName", "[", "fullPath", "]"}], ",", 
+          RowBox[{
+           RowBox[{"StartOfString", "~~", "\"\<Entropy\>\""}], 
+           "->", "\"\<TimeScale\>\""}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"outPath", "=", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"DirectoryName", "[", "fullPath", "]"}], ",", 
+           RowBox[{"outBase", "<>", "\"\<.dat\>\""}]}], "}"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Export", "[", 
+        RowBox[{"outPath", ",", "crossingTimes", ",", "\"\<Table\>\""}], 
+        "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<   -> Saved: \>\"", ",", "outPath"}], "]"}], ";"}]}], 
+     "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"entropyMX", "===", 
+     RowBox[{"{", "}"}]}], ",", 
+    RowBox[{"Print", "[", "\"\<No Entropy_*.mx files found.\>\"", "]"}], ",", 
+    
+    RowBox[{"Scan", "[", 
+     RowBox[{"processCrossingTimes", ",", "entropyMX"}], "]"}]}], "]"}], 
+  ";"}]}], "Input",
+ CellLabel->"In[51]:=",ExpressionUUID->"a16ef64b-6869-534a-93e3-e2eb54241e2b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-1.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801771796036`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"8007b101-4947-2c4d-9cf3-30954bc66473"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-1.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-1.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801776324596`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"f175407a-bc5e-2e47-bab4-387efbd30fa3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-2.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-2.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801776324596`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"0b6b8449-3da5-8449-bcda-85aa73435614"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-2.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-2.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801781168575`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"b5f02229-ad48-204a-988b-7fb775d927b2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-3.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-3.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801781324615`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"33fe7b13-7cd8-da4d-966f-39f7056c6c55"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-3.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-3.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801785546627`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"bf382020-984f-dc46-90e5-3c0c212c5e2c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-4.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-4.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801785546627`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"782a1aa5-ab82-244a-a1dc-60296dc47907"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-4.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-4.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.978680178991869*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"3b519b52-9be6-5c45-9bed-95da2887c7be"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-5.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-5.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.978680178991869*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"82c76c6b-13c3-f04c-b023-4a9ab01ffbcf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-5.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-5.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.978680179413719*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"925465e9-7b11-844b-bb55-21537c0d15f2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-6.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-6.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.978680179413719*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"82356b8c-c287-5341-b092-5dda92b95111"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-6.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-6.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.978680179804373*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"c63ea943-8009-d945-bc90-9438a003d636"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-7.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-7.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.978680179804373*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"96258eee-13ab-5449-b328-0336a4b6aa59"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-7.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-7.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801802106075`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"e4dc3aea-6da4-3a49-b776-9e74af0bb23a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Processing crossings: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-8.0_LowField\"\>"}],
+  SequenceForm["Processing crossings: ", "Entropy_L6_g-8.0_LowField"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801802106075`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"e502bf43-f6a1-ff42-86d5-3bc250a6cdb4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   -> Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\TimeScale_L6_g-8.0_LowField.dat\"\>"}],
+  SequenceForm[
+  "   -> Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\TimeScale_L6_g-8.0_LowField.dat"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680076643198*^9, 3.9786801806012344`*^9},
+ CellLabel->
+  "During evaluation of \
+In[51]:=",ExpressionUUID->"abc33f01-371e-3e44-9310-38c54a7dc0de"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"===", "===", "===", "===", "===", "===", "===", "===", "==="}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Low", "-", 
+       RowBox[{"field", " ", "module", " ", 
+        RowBox[{"(", "independent", ")"}]}]}], "===", "===", "===", "===", "===",
+       "===", "===", "===", "==="}], "="}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "MakeTimeScalePlotsLowField", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"MakeTimeScalePlotsLowField", "[", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "baseDir", ",", "datFiles", ",", "ensureDirLocal", ",", "datPath", ",",
+          "data", ",", "meta", ",", "gVal", ",", "xRange", ",", "Lstr", ",", 
+         "plot1", ",", "outDir", ",", "outPath", ",", "outName", ",", 
+         "gExp"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"baseDir", "=", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"projectDir", ",", "\"\<Data\>\""}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"ensureDirLocal", "[", "dir_", "]"}], ":=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"!", 
+            RowBox[{"DirectoryQ", "[", "dir", "]"}]}], ",", 
+           RowBox[{"CreateDirectory", "[", 
+            RowBox[{"dir", ",", 
+             RowBox[{"CreateIntermediateDirectories", "->", "True"}]}], 
+            "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"datFiles", "=", 
+         RowBox[{"FileNames", "[", 
+          RowBox[{"\"\<TimeScale_*_LowField.dat\>\"", ",", 
+           RowBox[{"{", "baseDir", "}"}], ",", "Infinity"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"datFiles", "===", 
+           RowBox[{"{", "}"}]}], ",", 
+          RowBox[{
+           RowBox[{"Print", "[", 
+            
+            RowBox[{"\"\<No TimeScale_*_LowField.dat files found under: \>\"",
+              ",", "baseDir"}], "]"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "$Failed", "]"}], ";"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "FIXED", " ", "horizontal", " ", "axis", " ", "range", " ", "for", " ",
+           "ALL", " ", "LowField", " ", "plots"}], "*)"}], 
+        RowBox[{"xRange", "=", 
+         RowBox[{"fixedPlotRanges", "[", "\"\<LowField\>\"", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Scan", "[", 
+         RowBox[{
+          RowBox[{"Function", "[", 
+           RowBox[{
+            RowBox[{"{", "file", "}"}], ",", 
+            RowBox[{
+             RowBox[{"datPath", "=", "file"}], ";", "\[IndentingNewLine]", 
+             RowBox[{"data", "=", 
+              RowBox[{"Import", "[", 
+               RowBox[{"datPath", ",", "\"\<Table\>\""}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"data", "=", 
+              RowBox[{"Select", "[", 
+               RowBox[{"data", ",", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"MatchQ", "[", 
+                   RowBox[{"#", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"_", "?", "NumericQ"}], ",", 
+                    RowBox[{"_", "?", "NumericQ"}]}], "}"}]}], "]"}], "&&", 
+                  RowBox[{
+                   RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ">", "0"}], "&&", 
+                  RowBox[{
+                   RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ">", "0"}]}], "&"}]}], 
+               "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"(*", 
+              RowBox[{"NEW", ":", 
+               RowBox[{
+                RowBox[{"enforce", " ", "same", " ", "data", " ", "x"}], "-", 
+                
+                RowBox[{"range", " ", "for", " ", "all", " ", "plots"}]}]}], 
+              "*)"}], 
+             RowBox[{"data", "=", 
+              RowBox[{"Select", "[", 
+               RowBox[{"data", ",", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"xRange", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], "<=", 
+                  RowBox[{"#", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], "<=", 
+                  RowBox[{"xRange", "[", 
+                   RowBox[{"[", "2", "]"}], "]"}]}], "&"}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"data", "===", 
+                RowBox[{"{", "}"}]}], ",", 
+               RowBox[{
+                RowBox[{"Print", "[", 
+                 
+                 RowBox[{"\"\<(LowField) Skipping empty/invalid (or \
+out-of-range) data: \>\"", ",", "datPath"}], "]"}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"Return", "[", "]"}], ";"}]}], "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"meta", "=", 
+              RowBox[{"timeScaleMeta", "[", "datPath", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"gVal", "=", 
+              RowBox[{"meta", "[", "\"\<gVal\>\"", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Lstr", "=", 
+              RowBox[{"meta", "[", "\"\<Lstr\>\"", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"(*", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"--", 
+                 RowBox[{"-", "plot"}]}], " ", "settings", " ", 
+                RowBox[{"unchanged", "--"}]}], "-"}], "*)"}], 
+             RowBox[{"plot1", "=", 
+              RowBox[{"ListLogLogPlot", "[", 
+               RowBox[{"data", ",", 
+                RowBox[{"PlotRange", "->", "All"}], ",", 
+                RowBox[{"GridLines", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", "gVal", "}"}], ",", "None"}], "}"}]}], ",", 
+                RowBox[{"GridLinesStyle", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Directive", "[", 
+                    RowBox[{"Red", ",", "Thick"}], "]"}], ",", "None"}], 
+                  "}"}]}], ",", 
+                RowBox[{"PlotTheme", "->", "\"\<Detailed\>\""}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"xRange", ",", "All"}], "}"}]}], ",", 
+                RowBox[{"Frame", "->", "True"}], ",", 
+                RowBox[{"FrameStyle", "->", 
+                 RowBox[{"Directive", "[", 
+                  RowBox[{"Black", ",", "24"}], "]"}]}], ",", 
+                RowBox[{"ImageSize", "->", "1000"}], ",", 
+                RowBox[{"FrameLabel", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Style", "[", 
+                    RowBox[{"\"\<h\>\"", ",", "28"}], "]"}], ",", 
+                   RowBox[{"Style", "[", 
+                    
+                    RowBox[{"\"\<Melting Time (\\!\\(\\*SubscriptBox[\\(T\\), \
+\\(M\\)]\\))\>\"", ",", "28"}], "]"}]}], "}"}]}], ",", 
+                RowBox[{"PlotLabel", "->", 
+                 RowBox[{"Style", "[", 
+                  RowBox[{
+                   RowBox[{"\"\<L = \>\"", "<>", 
+                    RowBox[{"ToString", "[", "Lstr", "]"}], 
+                    "<>", "\"\<, J = 1, g = \>\"", "<>", 
+                    RowBox[{"ToString", "[", "gVal", "]"}]}], ",", "25", ",", 
+                   "Black"}], "]"}]}], ",", 
+                RowBox[{"PlotStyle", "->", 
+                 RowBox[{"Directive", "[", "Black", "]"}]}]}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"outDir", "=", 
+              RowBox[{"FileNameJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"DirectoryName", "[", "datPath", "]"}], 
+                 ",", "\"\<Plots\>\"", ",", "\"\<LowField\>\""}], "}"}], 
+               "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"ensureDirLocal", "[", "outDir", "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"outName", "=", 
+              RowBox[{
+               RowBox[{"FileBaseName", "[", "datPath", "]"}], 
+               "<>", "\"\<.png\>\""}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"outPath", "=", 
+              RowBox[{"FileNameJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{"outDir", ",", "outName"}], "}"}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Export", "[", 
+              RowBox[{"outPath", ",", "plot1"}], "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<(LowField) Saved: \>\"", ",", "outPath"}], "]"}], 
+             ";"}]}], "]"}], ",", "datFiles"}], "]"}], ";", 
+        "\[IndentingNewLine]", "True"}]}], "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.9786787042480392`*^9, 3.9786787122167683`*^9}, {
+   3.9786790074672203`*^9, 3.9786790139046497`*^9}, {3.9786790531710377`*^9, 
+   3.978679053718174*^9}, {3.978679179951082*^9, 3.978679248587841*^9}, {
+   3.9786793319670353`*^9, 3.978679405405651*^9}, 3.9786794520998573`*^9, {
+   3.978679505049404*^9, 3.978679505674595*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"cdf649e8-cc68-694b-ad4f-7142f0e9ed1a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"::", "Section", "::"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"4", ")"}], " ", 
+    RowBox[{"Plotting", ":", 
+     RowBox[{"TimeScale", 
+      RowBox[{"(", "h", ")"}], " ", "from", " ", "TimeScale_", "*", 
+      RowBox[{".", "dat"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"minimal", " ", "first", " ", "pass"}], ")"}]}]}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"fixedPlotRanges", "=", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"\"\<LowField\>\"", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"10", "^", 
+           RowBox[{"-", "8"}]}], ",", 
+          RowBox[{"10", "^", 
+           RowBox[{"-", "1"}]}]}], "}"}]}], ",", 
+       RowBox[{"\"\<HighField\>\"", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"10", "^", 
+           RowBox[{"-", "1"}]}], ",", 
+          RowBox[{"10", "^", "0.5"}]}], "}"}]}]}], "|>"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", "metadata"}]}], " ", "parser", " ", "from", " ", 
+      RowBox[{"filename", "--"}]}], "-"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"timeScaleMeta", "[", "datPath_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "base", ",", "rangeName", ",", "gExpStr", ",", "gExp", ",", "gVal", ",",
+          "Lstr"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"base", "=", 
+         RowBox[{"FileBaseName", "[", "datPath", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rangeName", "=", 
+         RowBox[{"Last", "@", 
+          RowBox[{"StringSplit", "[", 
+           RowBox[{"base", ",", "\"\<_\>\""}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"gExpStr", "=", 
+         RowBox[{"First", "@", 
+          RowBox[{"StringCases", "[", 
+           RowBox[{"base", ",", 
+            RowBox[{
+             RowBox[{"\"\<g\>\"", "~~", 
+              RowBox[{"x", ":", 
+               RowBox[{"Shortest", "[", "__", "]"}]}], "~~", "\"\<_\>\""}], ":>",
+              "x"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"gExp", "=", 
+         RowBox[{"ToExpression", "[", "gExpStr", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"gVal", "=", 
+         RowBox[{"10.", "^", "gExp"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Lstr", "=", 
+         RowBox[{"First", "@", 
+          RowBox[{"StringCases", "[", 
+           RowBox[{"base", ",", 
+            RowBox[{
+             RowBox[{"\"\<L\>\"", "~~", 
+              RowBox[{"x", ":", 
+               RowBox[{"DigitCharacter", ".."}]}]}], ":>", "x"}]}], "]"}]}]}],
+         ";", "\[IndentingNewLine]", 
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{"\"\<Base\>\"", "->", "base"}], ",", 
+          RowBox[{"\"\<RangeName\>\"", "->", "rangeName"}], ",", 
+          RowBox[{"\"\<gExpStr\>\"", "->", "gExpStr"}], ",", 
+          RowBox[{"\"\<gExp\>\"", "->", "gExp"}], ",", 
+          RowBox[{"\"\<gVal\>\"", "->", "gVal"}], ",", 
+          RowBox[{"\"\<Lstr\>\"", "->", "Lstr"}]}], "|>"}]}]}], "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.978680170036873*^9, 3.978680171505331*^9}},
+ CellLabel->"In[57]:=",ExpressionUUID->"733b7598-af56-cf43-9b2a-6cdf18726a22"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"--", 
+     RowBox[{"--", "Run"}]}], " ", "whichever", " ", "you", " ", 
+    RowBox[{
+     RowBox[{"want", "--"}], "--"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"MakeTimeScalePlotsLowField", "[", "]"}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.9786787159980984`*^9, 3.9786787339828854`*^9}},
+ CellLabel->"In[59]:=",ExpressionUUID->"99bbca76-c6f8-2b45-849e-02bc7d675f2b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-1.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-1.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.9786801865264072`*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"af299fb8-0dcb-8244-9216-e5ea860a11fe"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-2.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-2.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680186949316*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"9f524fa2-8f83-a54e-853e-44fd982ccb48"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-3.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-3.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680187386814*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"8d958619-3129-ff4e-95d7-b72fb4c76757"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-4.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-4.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680187730568*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"d848e352-23e1-104f-8a01-2baf8ad91013"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-5.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-5.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680188058689*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"42cdc740-cae2-f84e-a6c9-561e5051ba22"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-6.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-6.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680188386814*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"91050179-eea2-ce4e-9643-239ac5734c35"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-7.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-7.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680188714939*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"918b519d-b38f-3e46-8e9b-464fcb2ceed0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(LowField) Saved: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\\
+Survival\\\\Data\\\\L6\\\\Plots\\\\LowField\\\\TimeScale_L6_g-8.0_LowField.\
+png\"\>"}],
+  SequenceForm[
+  "(LowField) Saved: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Survival\\Data\\L6\
+\\Plots\\LowField\\TimeScale_L6_g-8.0_LowField.png"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.978680031821556*^9, 3.9786800926938686`*^9, 
+  3.978680189043064*^9},
+ CellLabel->
+  "During evaluation of \
+In[59]:=",ExpressionUUID->"5e9eb5e1-c611-b64d-adbf-238f3f5ac82b"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1645.7142857142856`, 858},
+WindowMargins->{{
+  Automatic, -5.14285714285711}, {-5.14285714285711, Automatic}},
+LightDark->"Dark",
+TaggingRules-><|"TryRealOnly" -> False, "SSOActivationInProgress" -> False|>,
+CellContext->Notebook,
+InputAliases-><|"intt" -> RowBox[{"\[Integral]", 
+     RowBox[{"\[SelectionPlaceholder]", 
+       RowBox[{"\[DifferentialD]", "\[Placeholder]"}]}]}], "dintt" -> 
+  RowBox[{
+     SubsuperscriptBox[
+     "\[Integral]", "\[SelectionPlaceholder]", "\[Placeholder]"], 
+     RowBox[{"\[Placeholder]", 
+       RowBox[{"\[DifferentialD]", "\[Placeholder]"}]}]}], "rintt" -> 
+  RowBox[{
+     UnderscriptBox["\[Integral]", 
+      RowBox[{"\[SelectionPlaceholder]", "\[Element]", "\[Placeholder]"}]], 
+     "\[Placeholder]"}], "sumt" -> RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"\[SelectionPlaceholder]", "=", "\[Placeholder]"}], 
+      "\[Placeholder]"], "\[Placeholder]"}], "prodt" -> RowBox[{
+     UnderoverscriptBox["\[Product]", 
+      RowBox[{"\[SelectionPlaceholder]", "=", "\[Placeholder]"}], 
+      "\[Placeholder]"], "\[Placeholder]"}], "dt" -> RowBox[{
+     SubscriptBox["\[PartialD]", "\[SelectionPlaceholder]"], 
+     "\[Placeholder]"}], "cbrt" -> 
+  RadicalBox[
+   "\[SelectionPlaceholder]", "3", SurdForm -> True, MultilineFunction -> 
+    None], "surd" -> 
+  RadicalBox[
+   "\[SelectionPlaceholder]", "\[Placeholder]", SurdForm -> True, 
+    MultilineFunction -> None], "ket" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "Ket"], "bra" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "Bra"], "braket" -> 
+  TemplateBox[{"\[SelectionPlaceholder]", "\[Placeholder]"}, "BraKet"], 
+  "delay" -> TemplateBox[{"\[SelectionPlaceholder]"}, "SystemsModelDelay"], 
+  "grad" -> RowBox[{
+     SubscriptBox["\[Del]", "\[SelectionPlaceholder]"], "\[Placeholder]"}], 
+  "del." -> RowBox[{
+     SubscriptBox["\[Del]", "\[SelectionPlaceholder]"], ".", 
+     "\[Placeholder]"}], "delx" -> RowBox[{
+     SubscriptBox["\[Del]", "\[SelectionPlaceholder]"], "\[Cross]", 
+     "\[Placeholder]"}], "del2" -> RowBox[{
+     SubsuperscriptBox["\[Del]", "\[SelectionPlaceholder]", 2], 
+     "\[Placeholder]"}], "kd" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "KroneckerDeltaSeq"], "algs" -> 
+  TemplateBox[{}, "Algebraics"], "bools" -> TemplateBox[{}, "Booleans"], 
+  "comps" -> TemplateBox[{}, "Complexes"], "ints" -> 
+  TemplateBox[{}, "Integers"], "pris" -> TemplateBox[{}, "Primes"], "rats" -> 
+  TemplateBox[{}, "Rationals"], "reals" -> TemplateBox[{}, "Reals"], "pints" -> 
+  TemplateBox[{}, "PositiveIntegers"], "npints" -> 
+  TemplateBox[{}, "NonPositiveIntegers"], "nnints" -> 
+  TemplateBox[{}, "NonNegativeIntegers"], "nints" -> 
+  TemplateBox[{}, "NegativeIntegers"], "prats" -> 
+  TemplateBox[{}, "PositiveRationals"], "nprats" -> 
+  TemplateBox[{}, "NonPositiveRationals"], "nnrats" -> 
+  TemplateBox[{}, "NonNegativeRationals"], "nrats" -> 
+  TemplateBox[{}, "NegativeRationals"], "preals" -> 
+  TemplateBox[{}, "PositiveReals"], "npreals" -> 
+  TemplateBox[{}, "NonPositiveReals"], "nnreals" -> 
+  TemplateBox[{}, "NonNegativeReals"], "nreals" -> 
+  TemplateBox[{}, "NegativeReals"], "dlim" -> RowBox[{
+     UnderscriptBox["\[Limit]", 
+      RowBox[{"\[SelectionPlaceholder]", 
+        UnderscriptBox["\[Rule]", 
+         TemplateBox[{}, "Integers"]], "\[Infinity]"}]], "\[Placeholder]"}], 
+  "dMlim" -> RowBox[{
+     UnderscriptBox["\[MaxLimit]", 
+      RowBox[{"\[SelectionPlaceholder]", 
+        UnderscriptBox["\[Rule]", 
+         TemplateBox[{}, "Integers"]], "\[Infinity]"}]], "\[Placeholder]"}], 
+  "dmlim" -> RowBox[{
+     UnderscriptBox["\[MinLimit]", 
+      RowBox[{"\[SelectionPlaceholder]", 
+        UnderscriptBox["\[Rule]", 
+         TemplateBox[{}, "Integers"]], "\[Infinity]"}]], "\[Placeholder]"}], 
+  "tue" -> OverscriptBox["\[UndirectedEdge]", "\[Placeholder]"], "tde" -> 
+  OverscriptBox["\[DirectedEdge]", "\[Placeholder]"], "cB" -> 
+  TemplateBox[{}, "CombinatorB"], "cC" -> TemplateBox[{}, "CombinatorC"], 
+  "cI" -> TemplateBox[{}, "CombinatorI"], "cK" -> 
+  TemplateBox[{}, "CombinatorK"], "cS" -> TemplateBox[{}, "CombinatorS"], 
+  "cW" -> TemplateBox[{}, "CombinatorW"], "cY" -> 
+  TemplateBox[{}, "CombinatorY"], "notation" -> RowBox[{"Notation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], " ", 
+       "\[DoubleLongLeftRightArrow]", " ", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "notation>" -> RowBox[{"Notation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], " ", 
+       "\[DoubleLongRightArrow]", " ", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "notation<" -> RowBox[{"Notation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], " ", 
+       "\[DoubleLongLeftArrow]", " ", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "symb" -> RowBox[{"Symbolize", "[", 
+     TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], "]"}], 
+  "infixnotation" -> RowBox[{"InfixNotation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], ",", 
+       "\[Placeholder]"}], "]"}], "addia" -> RowBox[{"AddInputAlias", "[", 
+     RowBox[{"\"\[SelectionPlaceholder]\"", "\[Rule]", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "pattwraper" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "NotationPatternTag"], 
+  "madeboxeswraper" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "NotationMadeBoxesTag"], "cf" -> 
+  SubscriptBox["&", "\[Placeholder]"]|>,
+FrontEndVersion->"14.3 for Microsoft Windows (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fce558c1-2235-4715-8ef5-a88835881479"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 251, 4, 96, "Title",ExpressionUUID->"25be0cfd-3fc1-144d-b227-6ee01f96ece8"],
+Cell[834, 28, 2957, 77, 351, "Input",ExpressionUUID->"2998d024-face-a443-8764-bae37a8722ed"],
+Cell[3794, 107, 4122, 111, 256, "Input",ExpressionUUID->"f9fb6d27-1ddc-4b4d-b039-149a731134f1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7953, 223, 151, 3, 96, "Title",ExpressionUUID->"79d71e16-ad58-174d-998a-124939f5754b"],
+Cell[8107, 228, 2573, 79, 161, "Input",ExpressionUUID->"c1e7d88b-6e93-4447-be83-9b946c8b5e08"],
+Cell[CellGroupData[{
+Cell[10705, 311, 11986, 259, 789, "Input",ExpressionUUID->"bed2e216-ce59-e649-86c4-96c3ea6a86c0"],
+Cell[CellGroupData[{
+Cell[22716, 574, 458, 13, 55, "Print",ExpressionUUID->"4df00641-955e-ab4a-81ca-70caedcb19e3"],
+Cell[23177, 589, 518, 17, 24, "Print",ExpressionUUID->"b7f57d36-9e02-6143-8731-298b5c8a150e"],
+Cell[23698, 608, 478, 10, 22, "Print",ExpressionUUID->"14e55b17-e233-ba48-9d30-1f5271cfaea2"],
+Cell[24179, 620, 375, 9, 22, "Print",ExpressionUUID->"33910422-a106-804c-8f4e-f1f99c830f56"],
+Cell[24557, 631, 518, 17, 24, "Print",ExpressionUUID->"f12fc0d9-8f53-e846-b97e-80222794a533"],
+Cell[25078, 650, 478, 10, 22, "Print",ExpressionUUID->"d186c8d0-3bd0-6841-b787-543552fb9a02"],
+Cell[25559, 662, 375, 9, 22, "Print",ExpressionUUID->"c8ea4590-efab-b346-849a-44348959f9a4"],
+Cell[25937, 673, 518, 17, 24, "Print",ExpressionUUID->"e3851852-7054-f54c-81ce-fad55ad62997"],
+Cell[26458, 692, 478, 10, 22, "Print",ExpressionUUID->"dab6bd27-69d0-394b-8fda-860c5fc51ac6"],
+Cell[26939, 704, 373, 9, 22, "Print",ExpressionUUID->"aba1cb61-dc6f-3d44-9ae6-8b84d1eb239c"],
+Cell[27315, 715, 516, 17, 24, "Print",ExpressionUUID->"fdc920ea-476d-0f48-8559-5a98365a4caa"],
+Cell[27834, 734, 476, 10, 22, "Print",ExpressionUUID->"34def890-9d37-3648-86d9-dd2898295472"],
+Cell[28313, 746, 373, 9, 22, "Print",ExpressionUUID->"04cd041c-2ca1-6543-bb7a-d6cad9eadbfc"],
+Cell[28689, 757, 516, 17, 24, "Print",ExpressionUUID->"21a12966-2078-f54d-80a2-3806a49f8259"],
+Cell[29208, 776, 476, 10, 22, "Print",ExpressionUUID->"c48d2dd3-c06e-4747-905a-9c7fd5f5aebd"],
+Cell[29687, 788, 371, 9, 22, "Print",ExpressionUUID->"aa6e480f-5e13-cc47-9b44-fa5e46a103a1"],
+Cell[30061, 799, 514, 17, 24, "Print",ExpressionUUID->"54dd3448-50c4-c842-9785-c9dd26f0e9b3"],
+Cell[30578, 818, 474, 10, 22, "Print",ExpressionUUID->"c8c40cf8-952c-9c42-9554-3061d96dee99"],
+Cell[31055, 830, 373, 9, 22, "Print",ExpressionUUID->"3d14b1a3-8e76-3f41-b245-15e35d2380c6"],
+Cell[31431, 841, 516, 17, 24, "Print",ExpressionUUID->"22b3f01d-dc6f-c842-96d7-cfd2ecd9c2cd"],
+Cell[31950, 860, 476, 10, 22, "Print",ExpressionUUID->"c3b630db-b3d7-2548-94bf-3440d49f2d27"],
+Cell[32429, 872, 375, 9, 22, "Print",ExpressionUUID->"8a1cc4c9-225a-074c-b2a8-2c7d8ba1f59a"],
+Cell[32807, 883, 518, 17, 24, "Print",ExpressionUUID->"685f4e26-c683-514d-aaa1-d51a3e950f7e"],
+Cell[33328, 902, 478, 10, 22, "Print",ExpressionUUID->"8189e176-1d09-9d4d-b944-5d8a86405063"],
+Cell[33809, 914, 375, 9, 22, "Print",ExpressionUUID->"a49a538b-1640-3f49-b727-f6bb34f3f801"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34245, 930, 168, 3, 70, "Title",ExpressionUUID->"b5c61b6d-2746-0844-ab12-76c3dc851366"],
+Cell[CellGroupData[{
+Cell[34438, 937, 12129, 296, 789, "Input",ExpressionUUID->"bd3ba7f5-57f0-ea46-8354-c24772cb5233"],
+Cell[CellGroupData[{
+Cell[46592, 1237, 232, 5, 22, "Print",ExpressionUUID->"ed5f4408-c565-6e45-9d57-d123046f6f0f"],
+Cell[46827, 1244, 363, 9, 22, "Print",ExpressionUUID->"a5e04408-0d5f-394c-a717-38a9aca01e4b"],
+Cell[47193, 1255, 570, 14, 22, "Print",ExpressionUUID->"f8f215e4-3364-6041-9ee0-823501c92dc4"],
+Cell[47766, 1271, 232, 5, 22, "Print",ExpressionUUID->"a83420f0-732a-5f49-a012-805769f09084"],
+Cell[48001, 1278, 363, 9, 22, "Print",ExpressionUUID->"2549fc9c-3ae6-b24f-9034-bcce9b3e84a3"],
+Cell[48367, 1289, 570, 14, 22, "Print",ExpressionUUID->"d27e52a1-210e-3845-bdd2-6ee305c5b396"],
+Cell[48940, 1305, 232, 5, 22, "Print",ExpressionUUID->"909e047d-9ffa-5e45-a8fa-f55fe8c61e3c"],
+Cell[49175, 1312, 363, 9, 22, "Print",ExpressionUUID->"47dc55dd-07d9-9b4e-93bf-94d3de7c0e91"],
+Cell[49541, 1323, 569, 14, 22, "Print",ExpressionUUID->"e5f01057-db86-4d4f-b039-83a221270664"],
+Cell[50113, 1339, 232, 5, 22, "Print",ExpressionUUID->"3dc4a76f-7827-0d4b-9bba-d7c637d6c6d4"],
+Cell[50348, 1346, 363, 9, 22, "Print",ExpressionUUID->"2deb673d-49cd-7a43-91a4-ecf7395a1aaa"],
+Cell[50714, 1357, 572, 14, 22, "Print",ExpressionUUID->"afbb7fac-0a02-694e-8a23-e995244c8e65"],
+Cell[51289, 1373, 234, 5, 22, "Print",ExpressionUUID->"69ad358d-07b3-a648-855c-e0ba555dee6b"],
+Cell[51526, 1380, 365, 9, 22, "Print",ExpressionUUID->"17f73123-13e5-0c42-978b-5cf5b50ea941"],
+Cell[51894, 1391, 572, 14, 22, "Print",ExpressionUUID->"dc868810-aa67-f643-b4b4-26c269df8038"],
+Cell[52469, 1407, 234, 5, 22, "Print",ExpressionUUID->"97a2404e-1ce4-034e-a4fa-e7ae82223786"],
+Cell[52706, 1414, 365, 9, 22, "Print",ExpressionUUID->"50088b7c-525f-de48-990e-6d818aec0b7e"],
+Cell[53074, 1425, 570, 14, 22, "Print",ExpressionUUID->"53b5b739-e875-db47-b106-c3f04fe44f40"],
+Cell[53647, 1441, 232, 5, 22, "Print",ExpressionUUID->"d36d9ef9-da2a-ed4d-85c1-0bbe13dc3059"],
+Cell[53882, 1448, 363, 9, 22, "Print",ExpressionUUID->"699c86a3-3170-644c-b3fd-257aef965de8"],
+Cell[54248, 1459, 572, 14, 22, "Print",ExpressionUUID->"9e21e02f-19f0-4941-99d4-65bffb10ab3a"],
+Cell[54823, 1475, 234, 5, 22, "Print",ExpressionUUID->"b30f568d-d932-dd44-b609-392ca3a2df28"],
+Cell[55060, 1482, 365, 9, 22, "Print",ExpressionUUID->"69edc5a9-6882-e244-92af-0bd501fb0e80"],
+Cell[55428, 1493, 570, 14, 22, "Print",ExpressionUUID->"ee21bb1c-e96c-594e-86f0-2aa3d0613803"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56059, 1514, 205, 4, 70, "Title",ExpressionUUID->"4f696317-79a2-7e41-a065-402bd0c30e34"],
+Cell[56267, 1520, 3767, 98, 275, "Input",ExpressionUUID->"41ee1747-658e-214d-8877-9467e7137ada"],
+Cell[CellGroupData[{
+Cell[60059, 1622, 4315, 108, 313, "Input",ExpressionUUID->"a16ef64b-6869-534a-93e3-e2eb54241e2b"],
+Cell[CellGroupData[{
+Cell[64399, 1734, 413, 9, 22, "Print",ExpressionUUID->"8007b101-4947-2c4d-9cf3-30954bc66473"],
+Cell[64815, 1745, 588, 14, 22, "Print",ExpressionUUID->"f175407a-bc5e-2e47-bab4-387efbd30fa3"],
+Cell[65406, 1761, 413, 9, 22, "Print",ExpressionUUID->"0b6b8449-3da5-8449-bcda-85aa73435614"],
+Cell[65822, 1772, 588, 14, 22, "Print",ExpressionUUID->"b5f02229-ad48-204a-988b-7fb775d927b2"],
+Cell[66413, 1788, 413, 9, 22, "Print",ExpressionUUID->"33fe7b13-7cd8-da4d-966f-39f7056c6c55"],
+Cell[66829, 1799, 588, 14, 22, "Print",ExpressionUUID->"bf382020-984f-dc46-90e5-3c0c212c5e2c"],
+Cell[67420, 1815, 413, 9, 22, "Print",ExpressionUUID->"782a1aa5-ab82-244a-a1dc-60296dc47907"],
+Cell[67836, 1826, 586, 14, 22, "Print",ExpressionUUID->"3b519b52-9be6-5c45-9bed-95da2887c7be"],
+Cell[68425, 1842, 411, 9, 22, "Print",ExpressionUUID->"82c76c6b-13c3-f04c-b023-4a9ab01ffbcf"],
+Cell[68839, 1853, 586, 14, 22, "Print",ExpressionUUID->"925465e9-7b11-844b-bb55-21537c0d15f2"],
+Cell[69428, 1869, 411, 9, 22, "Print",ExpressionUUID->"82356b8c-c287-5341-b092-5dda92b95111"],
+Cell[69842, 1880, 586, 14, 22, "Print",ExpressionUUID->"c63ea943-8009-d945-bc90-9438a003d636"],
+Cell[70431, 1896, 411, 9, 22, "Print",ExpressionUUID->"96258eee-13ab-5449-b328-0336a4b6aa59"],
+Cell[70845, 1907, 588, 14, 22, "Print",ExpressionUUID->"e4dc3aea-6da4-3a49-b776-9e74af0bb23a"],
+Cell[71436, 1923, 413, 9, 22, "Print",ExpressionUUID->"e502bf43-f6a1-ff42-86d5-3bc250a6cdb4"],
+Cell[71852, 1934, 588, 14, 22, "Print",ExpressionUUID->"abc33f01-371e-3e44-9310-38c54a7dc0de"]
+}, Open  ]]
+}, Open  ]],
+Cell[72467, 1952, 9467, 212, 541, "Input",ExpressionUUID->"cdf649e8-cc68-694b-ad4f-7142f0e9ed1a"],
+Cell[81937, 2166, 3372, 90, 199, "Input",ExpressionUUID->"733b7598-af56-cf43-9b2a-6cdf18726a22"],
+Cell[CellGroupData[{
+Cell[85334, 2260, 453, 11, 47, "Input",ExpressionUUID->"99bbca76-c6f8-2b45-849e-02bc7d675f2b"],
+Cell[CellGroupData[{
+Cell[85812, 2275, 665, 16, 22, "Print",ExpressionUUID->"af299fb8-0dcb-8244-9216-e5ea860a11fe"],
+Cell[86480, 2293, 663, 16, 22, "Print",ExpressionUUID->"9f524fa2-8f83-a54e-853e-44fd982ccb48"],
+Cell[87146, 2311, 663, 16, 22, "Print",ExpressionUUID->"8d958619-3129-ff4e-95d7-b72fb4c76757"],
+Cell[87812, 2329, 663, 16, 22, "Print",ExpressionUUID->"d848e352-23e1-104f-8a01-2baf8ad91013"],
+Cell[88478, 2347, 663, 16, 22, "Print",ExpressionUUID->"42cdc740-cae2-f84e-a6c9-561e5051ba22"],
+Cell[89144, 2365, 663, 16, 22, "Print",ExpressionUUID->"91050179-eea2-ce4e-9643-239ac5734c35"],
+Cell[89810, 2383, 663, 16, 22, "Print",ExpressionUUID->"918b519d-b38f-3e46-8e9b-464fcb2ceed0"],
+Cell[90476, 2401, 663, 16, 22, "Print",ExpressionUUID->"5e9eb5e1-c611-b64d-adbf-238f3f5ac82b"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

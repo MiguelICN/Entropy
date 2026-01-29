@@ -224,6 +224,14 @@ pur::usage "Purity"
 decoherence::usage "Total decoherence of a purity curve"
 
 
+(* ::Subsection::Closed:: *)
+(*Minipc*)
+
+
+arrayt::usage "Evolution of a state"
+newb::usage = "newb[psit] returns the entanglement entropy of a bipartite system."
+
+
 (* ::Section::Closed:: *)
 (*Beginning of Package*)
 
@@ -574,11 +582,11 @@ Module[{UR},
 ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Spins*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Symmetries*)
 
 
@@ -794,7 +802,7 @@ HamiltonianZ[\[Omega]_,\[Epsilon]d_,L_,d_]:=N[(1/2)*(\[Omega]*Total[Pauli/@(3*Id
 LeaSpinChainHamiltonian[Jxy_,Jz_,\[Omega]_,\[Epsilon]d_,L_,d_]:=HamiltonianNN[Jxy,Jz,L]+HamiltonianZ[\[Omega],\[Epsilon]d,L,d]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Entanglement worker (MACHINE PRECISION ONLY)*)
 
 
@@ -874,9 +882,9 @@ buildExpandFullStateFast[evenMap_, oddMap_, l_] :=
    RuntimeOptions -> {"EvaluateSymbolically" -> False}]
  ]
 
-ClearAll[VNentropy]
-VNentropy[0 | 0.] = 0;
-VNentropy[x_] := -x Log[x]
+ClearAll[VNentropy];
+SetAttributes[VNentropy, Listable];
+VNentropy[x_] := If[TrueQ[x > 0], -x Log[x], 0.];
 
 ClearAll[new]
 new[colVec_, l_] := 
@@ -932,6 +940,57 @@ Tr[Chop[rho . rho]]
 
 (*Compute total decoherence via trapezoidal rule*)
 decoherence[purity_,tlist_]:=Module[{pur=Chop[purity]},(1/tlist[[-1]])Total[Table[(pur[[i]]+pur[[i+1]])/2*(tlist[[i+1]]-tlist[[i]]),{i,1,Length[purity]-1}]]]
+
+
+(* ::Subsection:: *)
+(*Minipc*)
+
+
+arrayt[t_,val_,vec_]:=Exp[-I*val*t]*vec;
+
+(* Optimized Worker: SVD approach with Packed Array preservation *)
+ClearAll[newb];
+newb[psit_] := Module[{d=Round[Sqrt[Length[psit]]], sv2}, 
+  sv2 = SingularValueList[ArrayReshape[psit, {d, d}]]^2;
+  sv2 = Pick[sv2, UnitStep[sv2 - 1.*^-15], 1];
+  -sv2 . Log[sv2]
+];
+
+(*ClearAll[revIndex];
+revIndex[i_, l_] := FromDigits[Reverse[IntegerDigits[i, 2, l]], 2];
+
+ClearAll[buildMaps];
+buildMaps[l_] := Module[{visited, evenMap = {}, oddMap = {}, j, iLimit},
+  iLimit = (2^l) - 1;
+  visited = ConstantArray[False, 2^l]; 
+  Do[
+   If[! visited[[i + 1]],
+    j = revIndex[i, l];
+    visited[[i + 1]] = True;
+    visited[[j + 1]] = True;
+    If[i == j,
+     AppendTo[evenMap, {i}],
+     AppendTo[evenMap, {i, j}]; AppendTo[oddMap, {i, j}]
+     ]
+    ],
+   {i, 0, iLimit}];
+  {evenMap, oddMap}
+];
+
+ClearAll[makeExpansionMatrix];
+makeExpansionMatrix[map_, l_, type_] := SparseArray[
+   Flatten[Table[
+     If[Length[pair] == 1,
+      {{pair[[1]] + 1, k} -> 1.},
+      Which[
+       type === "even", {{pair[[1]] + 1, k} -> 1./Sqrt[2], {pair[[2]] + 1, k} -> 1./Sqrt[2]},
+       type === "odd",  {{pair[[1]] + 1, k} -> 1./Sqrt[2], {pair[[2]] + 1, k} -> -1./Sqrt[2]}
+       ]
+      ], {k, Length[map]}, {pair, {map[[k]]}}], 2],
+   {2^l, Length[map]}];
+
+ClearAll[ExpandBlockVector];
+ExpandBlockVector[v_, map_, type_, l_] := makeExpansionMatrix[map, l, type] . v;*)
 
 
 (* ::Section::Closed:: *)
