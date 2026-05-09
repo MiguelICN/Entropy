@@ -1,0 +1,1981 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     84801,       1973]
+NotebookOptionsPosition[     76443,       1810]
+NotebookOutlinePosition[     82377,       1931]
+CellTagsIndexPosition[     82334,       1928]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Setup", "Title",
+ CellChangeTimes->{{3.9829152747049446`*^9, 
+  3.982915275793932*^9}},ExpressionUUID->"c03717d6-c06a-cc4c-96bf-\
+f6cee198cd96"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"1.", " ", "SETUP"}], 
+   "                                                           ", "*)"}], 
+  "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"$baseDir", " ", "=", " ", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"$InputFileName", " ", "=!=", " ", "\"\<\>\""}], " ", "&&", 
+        " ", 
+        RowBox[{"$InputFileName", " ", "=!=", " ", "None"}]}], ",", "\n", 
+       "  ", 
+       RowBox[{"DirectoryName", "[", "$InputFileName", "]"}], ",", "\n", "  ", 
+       RowBox[{"NotebookDirectory", "[", "]"}]}], "\n", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", "$baseDir", "]"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"Get", "[", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"$baseDir", ",", " ", "\"\<QMB_prethermalization_HP.wl\>\""}], 
+       "}"}], "]"}], "]"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"$resultsBase", " ", "=", " ", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"$baseDir", ",", " ", "\"\<results_HP\>\""}], "}"}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"createDirs", "[", 
+      RowBox[{"regime_", ",", " ", "LL_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "base", "}"}], ",", "\n", "  ", 
+       RowBox[{
+        RowBox[{"base", " ", "=", " ", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{"$resultsBase", ",", " ", "regime", ",", " ", 
+            RowBox[{"\"\<L\>\"", " ", "<>", " ", 
+             RowBox[{"ToString", "[", "LL", "]"}]}]}], "}"}], "]"}]}], ";", 
+        "\n", "  ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"DirectoryQ", "[", "base", "]"}]}], ",", "\n", "    ", 
+          RowBox[{"CreateDirectory", "[", 
+           RowBox[{"base", ",", " ", 
+            RowBox[{
+            "CreateIntermediateDirectories", " ", "->", " ", "True"}]}], 
+           "]"}]}], "]"}], ";", "\n", "  ", "base"}]}], "\n", "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"$plotDir", " ", "=", " ", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"$resultsBase", ",", " ", "\"\<plots\>\""}], "}"}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"DirectoryQ", "[", "$plotDir", "]"}]}], ",", "\n", "  ", 
+      RowBox[{"CreateDirectory", "[", 
+       RowBox[{"$plotDir", ",", " ", 
+        RowBox[{"CreateIntermediateDirectories", " ", "->", " ", "True"}]}], 
+       "]"}]}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.9829152903646774`*^9, {3.982915320459797*^9, 3.98291532543799*^9}, {
+   3.98291539982856*^9, 3.9829154242298985`*^9}, {3.9829154797690487`*^9, 
+   3.982915484573574*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"02eac7d9-b6bb-2e45-809f-03398aab263f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Parallel", " ", "kernels"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"LaunchKernels", "[", "14", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ParallelEvaluate", "[", "\n", "  ", 
+     RowBox[{"Get", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"$baseDir", ",", " ", "\"\<QMB_prethermalization_HP.wl\>\""}],
+         "}"}], "]"}], "]"}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.982915428732725*^9, 3.9829154293107433`*^9}, 
+   3.9832571703818207`*^9},
+ CellLabel->"In[8]:=",ExpressionUUID->"4d7c299a-fedf-7d4c-8d6d-e04f70a12432"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Helpers", "Title",
+ CellChangeTimes->{{3.982915353563946*^9, 
+  3.982915354488312*^9}},ExpressionUUID->"911955c9-2cef-2143-ad0e-\
+7055e713688e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"2.", " ", "HELPERS"}], 
+   "                                                         ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", " ", "Hamiltonian"}]}], " ", "setup", " ", "with", " ", 
+     "precision", " ", 
+     RowBox[{"tracking", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"setupForHG$HP", "[", 
+     RowBox[{"hval_", ",", " ", "gval_", ",", " ", "LL_", ",", " ", "wp_"}], 
+     "]"}], " ", ":=", "\n", "  ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "Ha", ",", " ", "Heven", ",", " ", "Hodd", ",", "\n", "    ", 
+        "evenEigvals", ",", " ", "evenEigvecs", ",", " ", "oddEigvals", ",", 
+        " ", "oddEigvecs", ",", "\n", "    ", "evenMap", ",", " ", "oddMap", ",",
+         " ", "Me", ",", " ", "Mo", ",", " ", "p"}], "}"}], ",", "\n", "\n", 
+      "    ", 
+      RowBox[{
+       RowBox[{"Print", "[", "\"\<  Building H...\>\"", "]"}], ";", "\n", 
+       "    ", 
+       RowBox[{"Ha", " ", "=", " ", 
+        RowBox[{"IsingHamiltonianExact", "[", "\n", "      ", 
+         RowBox[{
+          RowBox[{"SetPrecision", "[", 
+           RowBox[{"hval", ",", " ", "wp"}], "]"}], ",", " ", 
+          RowBox[{"SetPrecision", "[", 
+           RowBox[{"gval", ",", " ", "wp"}], "]"}], ",", "\n", "      ", 
+          RowBox[{"SetPrecision", "[", 
+           RowBox[{"1", ",", " ", "wp"}], "]"}], ",", " ", "LL", ",", "\n", 
+          "      ", 
+          RowBox[{"BoundaryConditions", " ", "->", " ", "\"\<Open\>\""}]}], 
+         "]"}]}], ";", "\n", "    ", 
+       RowBox[{"ReportPrecision", "[", 
+        RowBox[{"\"\<Hamiltonian (exact)\>\"", ",", " ", "Ha"}], "]"}], ";", 
+       "\n", "\n", "    ", 
+       RowBox[{"Print", "[", "\"\<  Sector projection...\>\"", "]"}], ";", 
+       "\n", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Heven", ",", " ", "Hodd"}], "}"}], " ", "=", " ", 
+        RowBox[{"SectorHamiltoniansHP", "[", 
+         RowBox[{"Ha", ",", " ", "LL", ",", " ", "wp"}], "]"}]}], ";", "\n", 
+       "    ", 
+       RowBox[{"ReportPrecision", "[", 
+        RowBox[{"\"\<Heven\>\"", ",", " ", "Heven"}], "]"}], ";", "\n", 
+       "    ", 
+       RowBox[{"ReportPrecision", "[", 
+        RowBox[{"\"\<Hodd\>\"", ",", " ", "Hodd"}], "]"}], ";", "\n", "\n", 
+       "    ", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<  Diagonalizing even sector (dim=\>\"", ",", "\n", 
+         "      ", 
+         RowBox[{"Length", "[", "Heven", "]"}], ",", " ", "\"\<)...\>\""}], 
+        "]"}], ";", "\n", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"evenEigvals", ",", " ", "evenEigvecs"}], "}"}], " ", "=", 
+        " ", 
+        RowBox[{"DiagonalizeSectorHP", "[", 
+         RowBox[{"Heven", ",", " ", "wp"}], "]"}]}], ";", "\n", "    ", 
+       RowBox[{"p", " ", "=", " ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<Even eigenvalues\>\"", ",", " ", "evenEigvals"}], 
+         "]"}]}], ";", "\n", "    ", 
+       RowBox[{"ReportPrecision", "[", 
+        RowBox[{"\"\<Even eigenvectors\>\"", ",", " ", "evenEigvecs"}], "]"}],
+        ";", "\n", "\n", "    ", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<  Diagonalizing odd sector (dim=\>\"", ",", "\n", 
+         "      ", 
+         RowBox[{"Length", "[", "Hodd", "]"}], ",", " ", "\"\<)...\>\""}], 
+        "]"}], ";", "\n", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"oddEigvals", ",", " ", "oddEigvecs"}], "}"}], " ", "=", " ", 
+        RowBox[{"DiagonalizeSectorHP", "[", 
+         RowBox[{"Hodd", ",", " ", "wp"}], "]"}]}], ";", "\n", "    ", 
+       RowBox[{"p", " ", "=", " ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<Odd eigenvalues\>\"", ",", " ", "oddEigvals"}], "]"}]}],
+        ";", "\n", "    ", 
+       RowBox[{"ReportPrecision", "[", 
+        RowBox[{"\"\<Odd eigenvectors\>\"", ",", " ", "oddEigvecs"}], "]"}], ";",
+        "\n", "\n", "    ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Orthonormality", " ", "check"}], " ", "*)"}], "\n", "    ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"GE", ",", " ", "errE"}], "}"}], ",", "\n", "      ", 
+         RowBox[{
+          RowBox[{"GE", " ", "=", " ", 
+           RowBox[{"evenEigvecs", " ", ".", " ", 
+            RowBox[{"ConjugateTranspose", "[", "evenEigvecs", "]"}]}]}], ";", 
+          "\n", "      ", 
+          RowBox[{"errE", " ", "=", " ", 
+           RowBox[{"Max", "[", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"GE", " ", "-", " ", 
+              RowBox[{"IdentityMatrix", "[", 
+               RowBox[{"Length", "[", "evenEigvals", "]"}], "]"}]}], "]"}], 
+            "]"}]}], ";", "\n", "      ", 
+          RowBox[{"Print", "[", 
+           
+           RowBox[{"\"\<  Orthonormality error (even): \>\"", ",", "\n", 
+            "        ", 
+            RowBox[{"ScientificForm", "[", 
+             RowBox[{"errE", ",", " ", "3"}], "]"}], ",", "\n", "        ", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"errE", " ", "<", " ", 
+               RowBox[{"10", "^", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"-", "wp"}], " ", "+", " ", "5"}], ")"}]}]}], ",", 
+              " ", "\"\< [OK]\>\"", ",", " ", "\"\< [WARNING]\>\""}], "]"}]}],
+            "]"}], ";"}]}], "\n", "    ", "]"}], ";", "\n", "\n", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"evenMap", ",", " ", "oddMap"}], "}"}], " ", "=", " ", 
+        RowBox[{"buildMaps", "[", "LL", "]"}]}], ";", "\n", "\n", "    ", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"\"\<eVals\>\"", " ", "->", " ", "evenEigvals"}], ",", " ", 
+         RowBox[{"\"\<eVecs\>\"", " ", "->", " ", "evenEigvecs"}], ",", "\n", 
+         "      ", 
+         RowBox[{"\"\<oVals\>\"", " ", "->", " ", "oddEigvals"}], ",", "  ", 
+         RowBox[{"\"\<oVecs\>\"", " ", "->", " ", "oddEigvecs"}], ",", "\n", 
+         "      ", 
+         RowBox[{"\"\<evenMap\>\"", " ", "->", " ", "evenMap"}], ",", " ", 
+         RowBox[{"\"\<oddMap\>\"", " ", "->", " ", "oddMap"}]}], "|>"}]}]}], 
+     "\n", "  ", "]"}]}], ";"}]}]], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"3cd54117-8913-4140-90ae-5c5085e33248"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"--", 
+     RowBox[{"-", " ", "Single"}]}], "-", 
+    RowBox[{
+    "IC", " ", "entropy", " ", "computation", " ", "with", " ", 
+     "parallelized", " ", "time", " ", 
+     RowBox[{"chunks", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"computeEntropyHP", "[", 
+      RowBox[{
+      "setup_Association", ",", " ", "ttlist_", ",", " ", "LL_", ",", " ", 
+       "wp_", ",", " ", 
+       RowBox[{"seed_", ":", " ", "1234"}]}], "]"}], " ", ":=", "\n", "  ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "evenMap", ",", " ", "oddMap", ",", " ", "Me", ",", " ", "Mo", ",", 
+         "\n", "    ", "psi0", ",", " ", "psiE", ",", " ", "psiO", ",", " ", 
+         "ckE", ",", " ", "ckO", ",", "\n", "    ", 
+         RowBox[{"dA", " ", "=", " ", 
+          RowBox[{"2", "^", 
+           RowBox[{"(", 
+            RowBox[{"LL", "/", "2"}], ")"}]}]}], ",", " ", 
+         RowBox[{"dB", " ", "=", " ", 
+          RowBox[{"2", "^", 
+           RowBox[{"(", 
+            RowBox[{"LL", "/", "2"}], ")"}]}]}], ",", "\n", "    ", "Nt", ",",
+          " ", "cSize", ",", " ", "nChunks", ",", " ", "chunkRanges", ",", 
+         " ", "results"}], "}"}], ",", "\n", "\n", "    ", 
+       RowBox[{
+        RowBox[{"evenMap", " ", "=", " ", 
+         RowBox[{"setup", "[", "\"\<evenMap\>\"", "]"}]}], ";", " ", 
+        RowBox[{"oddMap", " ", "=", " ", 
+         RowBox[{"setup", "[", "\"\<oddMap\>\"", "]"}]}], ";", "\n", "    ", 
+        RowBox[{"Me", " ", "=", " ", 
+         RowBox[{"makeExpansionMatrixExact", "[", 
+          RowBox[{"evenMap", ",", " ", "LL", ",", " ", "\"\<even\>\""}], 
+          "]"}]}], ";", "\n", "    ", 
+        RowBox[{"Mo", " ", "=", " ", 
+         RowBox[{"makeExpansionMatrixExact", "[", 
+          RowBox[{"oddMap", ",", " ", "LL", ",", " ", "\"\<odd\>\""}], 
+          "]"}]}], ";", "\n", "\n", "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Generate", " ", "initial", " ", "state", " ", "at", " ", 
+          "controlled", " ", "precision"}], " ", "*)"}], "\n", "    ", 
+        RowBox[{"BlockRandom", "[", 
+         RowBox[{"SeedRandom", "[", "seed", "]"}], "]"}], ";", "\n", "    ", 
+        RowBox[{"psi0", " ", "=", " ", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{
+           RowBox[{"KroneckerProduct", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"HaarStateHP", "[", 
+              RowBox[{"dA", ",", " ", "wp"}], "]"}], ",", " ", 
+             RowBox[{"HaarStateHP", "[", 
+              RowBox[{"dB", ",", " ", "wp"}], "]"}]}], "]"}], ",", " ", "1"}],
+           "]"}]}], ";", "\n", "    ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<Initial state\>\"", ",", " ", "psi0"}], "]"}], ";", 
+        "\n", "\n", "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{"Verify", " ", "S", 
+           RowBox[{"(", 
+            RowBox[{"t", "=", "0"}], ")"}]}], " ", "=", " ", "0"}], " ", 
+         "*)"}], "\n", "    ", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", "s0", "}"}], ",", "\n", "      ", 
+          RowBox[{
+           RowBox[{"s0", " ", "=", " ", 
+            RowBox[{"EntanglementEntropySVDHP", "[", 
+             RowBox[{"psi0", ",", " ", "dA", ",", " ", "dB", ",", " ", "wp"}],
+              "]"}]}], ";", "\n", "      ", 
+           RowBox[{"Print", "[", 
+            RowBox[{"\"\<  S(t=0) = \>\"", ",", " ", 
+             RowBox[{"ScientificForm", "[", 
+              RowBox[{"s0", ",", " ", "3"}], "]"}], ",", "\n", "        ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Abs", "[", "s0", "]"}], " ", "<", " ", 
+                RowBox[{"10", "^", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"-", "wp"}], " ", "+", " ", "5"}], ")"}]}]}], ",", 
+               " ", "\"\< [OK]\>\"", ",", " ", "\"\< [WARNING]\>\""}], 
+              "]"}]}], "]"}], ";"}]}], "\n", "    ", "]"}], ";", "\n", "\n", 
+        "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"Project", " ", "into", " ", "sectors"}], " ", "*)"}], "\n", 
+        "    ", 
+        RowBox[{"psiE", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"ConjugateTranspose", "[", "Me", "]"}], " ", ".", " ", 
+          "psi0"}]}], ";", "\n", "    ", 
+        RowBox[{"psiO", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"ConjugateTranspose", "[", "Mo", "]"}], " ", ".", " ", 
+          "psi0"}]}], ";", "\n", "    ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<Projected even\>\"", ",", " ", "psiE"}], "]"}], ";", 
+        "\n", "    ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<Projected odd\>\"", ",", " ", "psiO"}], "]"}], ";", 
+        "\n", "\n", "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"Norm", " ", "check"}], " ", "*)"}], "\n", "    ", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", "nrm", "}"}], ",", "\n", "      ", 
+          RowBox[{
+           RowBox[{"nrm", " ", "=", " ", 
+            RowBox[{"Re", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Conjugate", "[", "psiE", "]"}], " ", ".", " ", 
+               "psiE"}], " ", "+", " ", 
+              RowBox[{
+               RowBox[{"Conjugate", "[", "psiO", "]"}], " ", ".", " ", 
+               "psiO"}]}], "]"}]}], ";", "\n", "      ", 
+           RowBox[{"Print", "[", 
+            RowBox[{"\"\<  Norm (even+odd) = \>\"", ",", " ", 
+             RowBox[{"NumberForm", "[", 
+              RowBox[{"nrm", ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"wp", ",", " ", 
+                 RowBox[{"wp", " ", "-", " ", "2"}]}], "}"}]}], "]"}], ",", 
+             "\n", "        ", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Abs", "[", 
+                 RowBox[{"nrm", " ", "-", " ", "1"}], "]"}], " ", "<", " ", 
+                RowBox[{"10", "^", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"-", "wp"}], " ", "+", " ", "3"}], ")"}]}]}], ",", 
+               " ", "\"\< [OK]\>\"", ",", " ", "\"\< [WARNING]\>\""}], 
+              "]"}]}], "]"}], ";"}]}], "\n", "    ", "]"}], ";", "\n", "\n", 
+        "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"Overlap", " ", "coefficients", " ", 
+          RowBox[{"(", 
+           RowBox[{"computed", " ", "once"}], ")"}]}], " ", "*)"}], "\n", 
+        "    ", 
+        RowBox[{"ckE", " ", "=", " ", 
+         RowBox[{"ComputeOverlapsHP", "[", 
+          RowBox[{
+           RowBox[{"setup", "[", "\"\<eVecs\>\"", "]"}], ",", " ", "psiE"}], 
+          "]"}]}], ";", "\n", "    ", 
+        RowBox[{"ckO", " ", "=", " ", 
+         RowBox[{"ComputeOverlapsHP", "[", 
+          RowBox[{
+           RowBox[{"setup", "[", "\"\<oVecs\>\"", "]"}], ",", " ", "psiO"}], 
+          "]"}]}], ";", "\n", "    ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<ckE\>\"", ",", " ", "ckE"}], "]"}], ";", "\n", "    ", 
+        RowBox[{"ReportPrecision", "[", 
+         RowBox[{"\"\<ckO\>\"", ",", " ", "ckO"}], "]"}], ";", "\n", "\n", 
+        "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"--", 
+            RowBox[{"-", " ", "Parallel"}]}], " ", "time", " ", 
+           RowBox[{"evolution", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+        "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Chunk", " ", "the", " ", "time", " ", "list", " ", "for", " ", 
+          "parallel", " ", "dispatch"}], " ", "*)"}], "\n", "    ", 
+        RowBox[{"Nt", " ", "=", " ", 
+         RowBox[{"Length", "[", "ttlist", "]"}]}], ";", "\n", "    ", 
+        RowBox[{"cSize", " ", "=", " ", 
+         RowBox[{"Max", "[", 
+          RowBox[{"1", ",", " ", 
+           RowBox[{"Ceiling", "[", 
+            RowBox[{"Nt", " ", "/", " ", 
+             RowBox[{"Length", "[", 
+              RowBox[{"Kernels", "[", "]"}], "]"}]}], "]"}]}], "]"}]}], ";", 
+        "\n", "    ", 
+        RowBox[{"chunkRanges", " ", "=", " ", 
+         RowBox[{"Partition", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", "Nt", "]"}], ",", " ", 
+           RowBox[{"UpTo", "[", "cSize", "]"}]}], "]"}]}], ";", "\n", "    ", 
+        RowBox[{"nChunks", " ", "=", " ", 
+         RowBox[{"Length", "[", "chunkRanges", "]"}]}], ";", "\n", "    ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<  Evolving \>\"", ",", " ", "Nt", ",", 
+          " ", "\"\< time points in \>\"", ",", " ", "nChunks", ",", "\n", 
+          "      ", "\"\< chunks (cSize=\>\"", ",", " ", "cSize", ",", 
+          " ", "\"\<)...\>\""}], "]"}], ";", "\n", "\n", "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{
+          "Inject", " ", "all", " ", "data", " ", "via", " ", "With", " ", 
+           "for", " ", "zero"}], "-", 
+          RowBox[{"overhead", " ", "dispatch"}]}], " ", "*)"}], "\n", "    ", 
+        RowBox[{"results", " ", "=", " ", 
+         RowBox[{"With", "[", "\n", "      ", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"wEVecs", " ", "=", " ", 
+              RowBox[{"setup", "[", "\"\<eVecs\>\"", "]"}]}], ",", " ", 
+             RowBox[{"wEVals", " ", "=", " ", 
+              RowBox[{"setup", "[", "\"\<eVals\>\"", "]"}]}], ",", "\n", 
+             "       ", 
+             RowBox[{"wOVecs", " ", "=", " ", 
+              RowBox[{"setup", "[", "\"\<oVecs\>\"", "]"}]}], ",", " ", 
+             RowBox[{"wOVals", " ", "=", " ", 
+              RowBox[{"setup", "[", "\"\<oVals\>\"", "]"}]}], ",", "\n", 
+             "       ", 
+             RowBox[{"wCkE", " ", "=", " ", "ckE"}], ",", " ", 
+             RowBox[{"wCkO", " ", "=", " ", "ckO"}], ",", "\n", "       ", 
+             RowBox[{"wMe", " ", "=", " ", "Me"}], ",", " ", 
+             RowBox[{"wMo", " ", "=", " ", "Mo"}], ",", "\n", "       ", 
+             RowBox[{"wTlist", " ", "=", " ", "ttlist"}], ",", " ", 
+             RowBox[{"wDA", " ", "=", " ", "dA"}], ",", " ", 
+             RowBox[{"wDB", " ", "=", " ", "dB"}], ",", " ", 
+             RowBox[{"wWP", " ", "=", " ", "wp"}], ",", "\n", "       ", 
+             RowBox[{"wChunks", " ", "=", " ", "chunkRanges"}]}], "}"}], ",", 
+           "\n", "\n", "      ", 
+           RowBox[{"ParallelTable", "[", "\n", "        ", 
+            RowBox[{
+             RowBox[{"Module", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"indices", ",", " ", "entropies"}], "}"}], ",", "\n", 
+               "          ", 
+               RowBox[{
+                RowBox[{"indices", " ", "=", " ", 
+                 RowBox[{"wChunks", "[", 
+                  RowBox[{"[", "ci", "]"}], "]"}]}], ";", "\n", "          ", 
+                RowBox[{"entropies", " ", "=", " ", 
+                 RowBox[{"Table", "[", "\n", "            ", 
+                  RowBox[{
+                   RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "t", ",", " ", "evolE", ",", " ", "evolO", ",", " ", 
+                    "fullState"}], "}"}], ",", "\n", "              ", 
+                    RowBox[{
+                    RowBox[{"t", " ", "=", " ", 
+                    RowBox[{"wTlist", "[", 
+                    RowBox[{"[", "idx", "]"}], "]"}]}], ";", "\n", 
+                    "              ", 
+                    RowBox[{"evolE", " ", "=", " ", 
+                    RowBox[{"EvolveSectorHP", "[", 
+                    RowBox[{
+                    "wEVecs", ",", " ", "wEVals", ",", " ", "wCkE", ",", " ", 
+                    "t"}], "]"}]}], ";", "\n", "              ", 
+                    RowBox[{"evolO", " ", "=", " ", 
+                    RowBox[{"EvolveSectorHP", "[", 
+                    RowBox[{
+                    "wOVecs", ",", " ", "wOVals", ",", " ", "wCkO", ",", " ", 
+                    "t"}], "]"}]}], ";", "\n", "              ", 
+                    RowBox[{"fullState", " ", "=", " ", 
+                    RowBox[{
+                    RowBox[{"wMe", " ", ".", " ", "evolE"}], " ", "+", " ", 
+                    RowBox[{"wMo", " ", ".", " ", "evolO"}]}]}], ";", "\n", 
+                    "              ", 
+                    RowBox[{"EntanglementEntropySVDHP", "[", 
+                    RowBox[{
+                    "fullState", ",", " ", "wDA", ",", " ", "wDB", ",", " ", 
+                    "wWP"}], "]"}]}]}], "\n", "            ", "]"}], ",", 
+                   "\n", "            ", 
+                   RowBox[{"{", 
+                    RowBox[{"idx", ",", " ", "indices"}], "}"}]}], "\n", 
+                  "          ", "]"}]}], ";", "\n", "          ", 
+                "entropies"}]}], "\n", "        ", "]"}], ",", "\n", 
+             "        ", 
+             RowBox[{"{", 
+              RowBox[{"ci", ",", " ", "nChunks"}], "}"}]}], "\n", "      ", 
+            "]"}]}], "\n", "    ", "]"}]}], ";", "\n", "\n", "    ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Flatten", " ", "results", " ", "back", " ", "to", " ", "ordered", " ",
+           "list"}], " ", "*)"}], "\n", "    ", 
+        RowBox[{"Flatten", "[", "results", "]"}]}]}], "\n", "  ", "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", " ", 
+       RowBox[{"Smoothing", " ", "--"}]}]}], "-"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"smoothEntropy", "[", 
+      RowBox[{"s_", ",", " ", "w_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"n", " ", "=", " ", 
+         RowBox[{"Length", "[", "s", "]"}]}], "}"}], ",", "\n", "  ", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"w", " ", "<=", " ", "1"}], " ", "||", " ", 
+           RowBox[{"n", " ", "<=", " ", "w"}]}], ",", " ", 
+          RowBox[{"Return", "[", "s", "]"}]}], "]"}], ";", "\n", "  ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Mean", "[", 
+           RowBox[{"s", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"Max", "[", 
+               RowBox[{"1", ",", " ", 
+                RowBox[{"i", " ", "-", " ", 
+                 RowBox[{"Floor", "[", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{"w", "-", "1"}], ")"}], "/", "2"}], "]"}]}]}], 
+               "]"}], " ", ";;", "\n", "    ", 
+              RowBox[{"Min", "[", 
+               RowBox[{"n", ",", " ", 
+                RowBox[{"i", " ", "+", " ", 
+                 RowBox[{"Floor", "[", 
+                  RowBox[{
+                   RowBox[{"(", 
+                    RowBox[{"w", "-", "1"}], ")"}], "/", "2"}], "]"}]}]}], 
+               "]"}]}], "]"}], "]"}], "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", "n"}], "}"}]}], "]"}]}]}], "\n", "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Color"}]}], " ", 
+      RowBox[{"function", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"cf", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Blend", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", "Blue"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"0.5", ",", " ", "Purple"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", " ", "Red"}], "}"}]}], "}"}], ",", " ", "#"}], 
+       "]"}], " ", "&"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"cfBar", "[", 
+      RowBox[{"logMin_", ",", " ", "logMax_"}], "]"}], " ", ":=", "\n", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"x", ",", " ", 
+       RowBox[{"cf", "[", 
+        RowBox[{"Rescale", "[", 
+         RowBox[{"x", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"logMin", ",", " ", "logMax"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", "1"}], "}"}]}], "]"}], "]"}]}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<HELPERS | Defined.\>\"", "]"}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.9829155191320763`*^9, 3.9829155194300594`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"5b37bd18-66f9-a34a-ac24-9059146da351"],
+
+Cell[BoxData["\<\"HELPERS | Defined.\"\>"], "Print",
+ CellChangeTimes->{3.9829171374142857`*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"5b64ef20-84e4-d348-b0a7-aaf1b459e934"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Title",
+ CellChangeTimes->{{3.9829155383141003`*^9, 
+  3.982915541657837*^9}},ExpressionUUID->"174213db-c2bc-c848-bbed-\
+09232a822287"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "  ", 
+   RowBox[{
+    RowBox[{"GLOBAL", " ", "WORKING", " ", "PRECISION"}], " ", "\[LongDash]", 
+    " ", 
+    RowBox[{"set", " ", "this", " ", "once", " ", "at", " ", "the", " ", 
+     RowBox[{"top", "."}]}]}], "             ", "*)"}], "\n", 
+  RowBox[{"(*", "  ", 
+   RowBox[{
+   "All", " ", "downstream", " ", "computations", " ", "inherit", " ", "this",
+     " ", 
+    RowBox[{"value", "."}]}], "                  ", "*)"}], "\n", 
+  RowBox[{"(*", "  ", 
+   RowBox[{
+    RowBox[{"Rule", " ", "of", " ", 
+     RowBox[{"thumb", ":", " ", 
+      RowBox[{
+       RowBox[{"to", " ", "reach", " ", "time", " ", "t_max", " ", "with"}], 
+       " ", "|", "E_k", "|", 
+       RowBox[{
+        RowBox[{"~", "O"}], 
+        RowBox[{"(", "L", ")"}]}]}]}]}], ","}], "             ", "*)"}], "\n", 
+  RowBox[{"(*", "  ", 
+   RowBox[{
+    RowBox[{"you", " ", "need", " ", "wp"}], " ", ">", " ", 
+    RowBox[{
+     RowBox[{"Log10", 
+      RowBox[{"(", 
+       RowBox[{"|", "E_max", "|", " ", 
+        RowBox[{"*", " ", "t_max"}]}], ")"}]}], " ", "+", " ", 
+     RowBox[{"desired_digits", "."}]}]}], "           ", "*)"}], "\n", 
+  RowBox[{"(*", "  ", 
+   RowBox[{
+    RowBox[{"E", ".", "g", "."}], ",", " ", 
+    RowBox[{"t_max", "=", 
+     RowBox[{"10", "^", "12"}]}], ",", " ", 
+    RowBox[{"|", "E", "|", 
+     RowBox[{"~", "10"}]}], ",", " ", 
+    RowBox[{"desired", "=", 
+     RowBox[{
+      RowBox[{"8", " ", "digits"}], " ", "=", 
+      RowBox[{">", " ", "wp", " ", ">", " ", "21."}]}]}]}], "         ", 
+   "*)"}]}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"2272346e-431a-e049-b075-204e341a4ffc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$WorkingPrecision", " ", "=", " ", "30"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<SETUP | wp=\>\"", ",", " ", "$WorkingPrecision", ",", "\n", 
+    "  ", "\"\<, Kernels=\>\"", ",", " ", 
+    RowBox[{"Length", "[", 
+     RowBox[{"Kernels", "[", "]"}], "]"}], ",", "\n", "  ", "\"\<, Dir=\>\"", 
+    ",", " ", "$baseDir"}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.982915431720186*^9, 3.982915435293726*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"900b0c36-7c46-7448-9e7d-fa0b03f93f4a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"SETUP | wp=\"\>", "\[InvisibleSpace]", "30", 
+   "\[InvisibleSpace]", "\<\", Kernels=\"\>", "\[InvisibleSpace]", "14", 
+   "\[InvisibleSpace]", "\<\", Dir=\"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Higher precision\\\\\"\>"}],
+  SequenceForm[
+  "SETUP | wp=", 30, ", Kernels=", 14, ", Dir=", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Higher precision\\"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9829154945277004`*^9, 3.9829171405119553`*^9, 
+  3.9832571874045467`*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"77b71126-688c-1a4f-9356-983ca8de96ee"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"3.", " ", "PARAMETERS"}], 
+   "                                                      ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"wp", " ", "=", " ", "$WorkingPrecision"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"Llist", " ", "=", " ", 
+     RowBox[{"{", "8", "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Nic", "   ", "=", " ", "1"}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"single", " ", "IC"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"seed", "  ", "=", " ", "1234"}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Time", " ", "grid", " ", "at", " ", "working", " ", "precision"}], " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"tlist", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"SetPrecision", "[", 
+        RowBox[{
+         RowBox[{"10", "^", "\[Tau]"}], ",", " ", "wp"}], "]"}], ",", "\n", 
+       "  ", 
+       RowBox[{"{", 
+        RowBox[{"\[Tau]", ",", " ", 
+         RowBox[{"-", "1"}], ",", " ", "10", ",", " ", 
+         RowBox[{"1", "/", "1000"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Nt", " ", "=", " ", 
+     RowBox[{"Length", "[", "tlist", "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"SRN", ":", " ", 
+      RowBox[{"fix", " ", "g"}]}], ",", " ", 
+     RowBox[{"scan", " ", "h"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"gSRNlist", " ", "=", " ", 
+     RowBox[{"SetPrecision", "[", 
+      RowBox[{
+       RowBox[{"{", "1", "}"}], ",", " ", "wp"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"hSRN", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"SetPrecision", "[", 
+        RowBox[{
+         RowBox[{"10", "^", "x"}], ",", " ", "wp"}], "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", " ", 
+         RowBox[{"-", "6"}], ",", " ", 
+         RowBox[{"-", "1"}], ",", " ", 
+         RowBox[{"1", "/", "4"}]}], "}"}]}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"LRN", ":", " ", 
+      RowBox[{"fix", " ", "h"}]}], ",", " ", 
+     RowBox[{"scan", " ", "g"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"hLRNlist", " ", "=", " ", 
+     RowBox[{"SetPrecision", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"1", "/", "10"}], ",", 
+         RowBox[{"3", "/", "10"}], ",", "1"}], "}"}], ",", " ", "wp"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"gLRN", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"SetPrecision", "[", 
+        RowBox[{
+         RowBox[{"10", "^", "x"}], ",", " ", "wp"}], "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", " ", 
+         RowBox[{"-", "6"}], ",", " ", 
+         RowBox[{"-", "1"}], ",", " ", 
+         RowBox[{"1", "/", "4"}]}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"maWindow", " ", "=", " ", "200"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<PARAMETERS | wp=\>\"", ",", " ", "wp", ",", 
+      " ", "\"\<, Llist=\>\"", ",", " ", "Llist", ",", " ", "\"\<, Nt=\>\"", ",",
+       " ", "Nt"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<  SRN: \>\"", ",", " ", 
+      RowBox[{"Length", "[", "gSRNlist", "]"}], ",", " ", "\"\< g x \>\"", ",",
+       " ", 
+      RowBox[{"Length", "[", "hSRN", "]"}], ",", " ", "\"\< h\>\""}], "]"}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<  LRN: \>\"", ",", " ", 
+      RowBox[{"Length", "[", "hLRNlist", "]"}], ",", " ", "\"\< h x \>\"", ",",
+       " ", 
+      RowBox[{"Length", "[", "gLRN", "]"}], ",", " ", "\"\< g\>\""}], "]"}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.982915556935421*^9, 3.982915623360668*^9}, {
+   3.982917144881359*^9, 3.9829171530478573`*^9}, 3.9829186779052315`*^9, {
+   3.9832571970617085`*^9, 3.9832572193481827`*^9}, {3.983257278924837*^9, 
+   3.983257308134386*^9}},ExpressionUUID->"f7480054-dcd2-ed4a-8625-\
+4677baba4edc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"PARAMETERS | wp=\"\>", "\[InvisibleSpace]", "30", 
+   "\[InvisibleSpace]", "\<\", Llist=\"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "8", "}"}], "\[InvisibleSpace]", "\<\", Nt=\"\>", "\[InvisibleSpace]",
+    "11001"}],
+  SequenceForm["PARAMETERS | wp=", 30, ", Llist=", {8}, ", Nt=", 11001],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.982915564354496*^9, 3.982915573098871*^9}, 
+   3.9829156323408356`*^9, {3.9829171423090515`*^9, 3.9829171537909184`*^9}, 
+   3.9829186791164265`*^9, {3.983257201796076*^9, 3.983257219754156*^9}},
+ CellLabel->
+  "During evaluation of \
+In[42]:=",ExpressionUUID->"68656d18-0897-e746-9334-fc4b9fb9748d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  SRN: \"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\" g x \"\>", "\[InvisibleSpace]", "21", 
+   "\[InvisibleSpace]", "\<\" h\"\>"}],
+  SequenceForm["  SRN: ", 1, " g x ", 21, " h"],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.982915564354496*^9, 3.982915573098871*^9}, 
+   3.9829156323408356`*^9, {3.9829171423090515`*^9, 3.9829171537909184`*^9}, 
+   3.9829186791164265`*^9, {3.983257201796076*^9, 3.983257219754156*^9}},
+ CellLabel->
+  "During evaluation of \
+In[42]:=",ExpressionUUID->"0d8d0d1f-2c56-224e-8e65-3a13643a08c5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  LRN: \"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\" h x \"\>", "\[InvisibleSpace]", "21", 
+   "\[InvisibleSpace]", "\<\" g\"\>"}],
+  SequenceForm["  LRN: ", 1, " h x ", 21, " g"],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.982915564354496*^9, 3.982915573098871*^9}, 
+   3.9829156323408356`*^9, {3.9829171423090515`*^9, 3.9829171537909184`*^9}, 
+   3.9829186791164265`*^9, {3.983257201796076*^9, 3.983257219754156*^9}},
+ CellLabel->
+  "During evaluation of \
+In[42]:=",ExpressionUUID->"59891d06-4781-3c4a-8c0f-562d000a4986"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Method", "Title",
+ CellChangeTimes->{{3.9829156490026875`*^9, 
+  3.9829156496404705`*^9}},ExpressionUUID->"771b19fd-8456-9140-92ef-\
+ab90ce20582e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"4.", " ", "MAIN", " ", "LOOP"}], 
+   "                                                       ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Do", "[", "\[IndentingNewLine]", "\n", "  ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Print", "[", \
+"\"\<\\n###################################################\>\"", "]"}], ";", 
+      "\n", "  ", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<###  L = \>\"", ",", " ", "LL", ",", 
+        " ", "\"\<  (wp = \>\"", ",", " ", "wp", ",", " ", "\"\<)  ###\>\""}],
+        "]"}], ";", "\n", "  ", 
+      RowBox[{
+      "Print", "[", \
+"\"\<###################################################\>\"", "]"}], ";", 
+      "\n", "\n", "  ", 
+      RowBox[{"Spage", " ", "=", " ", 
+       RowBox[{"PageEntropy", "[", 
+        RowBox[{
+         RowBox[{"LL", "/", "2"}], ",", " ", 
+         RowBox[{"LL", "/", "2"}]}], "]"}]}], ";", "\n", "  ", 
+      RowBox[{
+       RowBox[{"$SRNspage", "[", "LL", "]"}], " ", "=", " ", "Spage"}], ";", 
+      "\n", "  ", 
+      RowBox[{
+       RowBox[{"$LRNspage", "[", "LL", "]"}], " ", "=", " ", "Spage"}], ";", 
+      "\n", "\n", "  ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"--", 
+         RowBox[{"-", " ", "4"}]}], 
+        RowBox[{"a", ":", " ", 
+         RowBox[{
+          RowBox[{"SRN", " ", "for", " ", "this", " ", 
+           RowBox[{"L", " ", "--"}]}], "-"}]}]}], " ", "*)"}], "\n", "  ", 
+      RowBox[{"Do", "[", "\n", "    ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Print", "[", 
+          
+          RowBox[{"\"\<\\n========== SRN | L=\>\"", ",", " ", "LL", ",", 
+           " ", "\"\<, g=\>\"", ",", " ", "gFixed", ",", 
+           " ", "\"\< ==========\>\""}], "]"}], ";", "\n", "    ", 
+         RowBox[{"dataDir", " ", "=", " ", 
+          RowBox[{"createDirs", "[", 
+           RowBox[{"\"\<SRN\>\"", ",", " ", "LL"}], "]"}]}], ";", "\n", 
+         "    ", 
+         RowBox[{"resultsSRN", " ", "=", " ", 
+          RowBox[{"Association", "[", "]"}]}], ";", "\n", "\n", "    ", 
+         RowBox[{"Do", "[", "\n", "      ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"hval", " ", "=", " ", 
+             RowBox[{"hSRN", "[", 
+              RowBox[{"[", "ih", "]"}], "]"}]}], ";", "\n", "      ", 
+            RowBox[{"Print", "[", 
+             
+             RowBox[{"\"\<\\n  h=\>\"", ",", " ", "hval", ",", 
+              " ", "\"\< (\>\"", ",", " ", "ih", ",", " ", "\"\</\>\"", ",", 
+              " ", 
+              RowBox[{"Length", "[", "hSRN", "]"}], ",", " ", "\"\<)\>\""}], 
+             "]"}], ";", "\n", "      ", 
+            RowBox[{"t0", " ", "=", " ", 
+             RowBox[{"AbsoluteTime", "[", "]"}]}], ";", "\n", "\n", "      ", 
+            RowBox[{
+            "Print", "[", "\"\<  --- Hamiltonian & diagonalization ---\>\"", 
+             "]"}], ";", "\n", "      ", 
+            RowBox[{"setup", " ", "=", " ", 
+             RowBox[{"setupForHG$HP", "[", 
+              RowBox[{
+              "hval", ",", " ", "gFixed", ",", " ", "LL", ",", " ", "wp"}], 
+              "]"}]}], ";", "\n", "\n", "      ", 
+            RowBox[{"Print", "[", "\"\<  --- Time evolution ---\>\"", "]"}], ";",
+             "\n", "      ", 
+            RowBox[{"entropyList", " ", "=", " ", 
+             RowBox[{"computeEntropyHP", "[", 
+              RowBox[{
+              "setup", ",", " ", "tlist", ",", " ", "LL", ",", " ", "wp", ",",
+                " ", "seed"}], "]"}]}], ";", "\n", "      ", 
+            RowBox[{"ReportPrecision", "[", 
+             RowBox[{"\"\<Entropy list\>\"", ",", " ", "entropyList"}], "]"}],
+             ";", "\n", "\n", "      ", 
+            RowBox[{"(*", " ", 
+             RowBox[{"Spot", "-", 
+              RowBox[{"check", ":", " ", 
+               RowBox[{
+               "precision", " ", "of", " ", "last", " ", "entropy", " ", 
+                "value"}]}]}], " ", "*)"}], "\n", "      ", 
+            RowBox[{"Print", "[", 
+             RowBox[{"\"\<  S(t_max) = \>\"", ",", " ", 
+              RowBox[{"entropyList", "[", 
+               RowBox[{"[", 
+                RowBox[{"-", "1"}], "]"}], "]"}], ",", "\n", 
+              "        ", "\"\<, prec = \>\"", ",", " ", 
+              RowBox[{"Precision", "[", 
+               RowBox[{"entropyList", "[", 
+                RowBox[{"[", 
+                 RowBox[{"-", "1"}], "]"}], "]"}], "]"}]}], "]"}], ";", "\n", 
+            "\n", "      ", 
+            RowBox[{
+             RowBox[{"resultsSRN", "[", "hval", "]"}], " ", "=", " ", 
+             RowBox[{"<|", 
+              RowBox[{"\"\<meanEntropy\>\"", " ", "->", " ", 
+               RowBox[{"N", "[", "entropyList", "]"}]}], "|>"}]}], ";", "\n", 
+            "\n", "      ", 
+            RowBox[{"Export", "[", 
+             RowBox[{
+              RowBox[{"FileNameJoin", "[", 
+               RowBox[{"{", 
+                RowBox[{"dataDir", ",", "\n", "        ", 
+                 RowBox[{"\"\<meanEntropy_h\>\"", " ", "<>", " ", 
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"AccountingForm", "[", 
+                    RowBox[{
+                    RowBox[{"N", "[", "hval", "]"}], ",", " ", "8"}], "]"}], 
+                   "]"}], " ", "<>", "\n", "        ", "\"\<.m\>\""}]}], 
+                "}"}], "]"}], ",", " ", 
+              RowBox[{"N", "[", "entropyList", "]"}]}], "]"}], ";", "\n", 
+            "\n", "      ", 
+            RowBox[{"Print", "[", 
+             RowBox[{"\"\<  Total: \>\"", ",", " ", 
+              RowBox[{"Round", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"AbsoluteTime", "[", "]"}], " ", "-", " ", "t0"}], ",",
+                 " ", "0.1"}], "]"}], ",", " ", "\"\< s\>\""}], "]"}], ";"}], 
+           "\n", "      ", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"ih", ",", " ", 
+             RowBox[{"Length", "[", "hSRN", "]"}]}], "}"}]}], "\n", "    ", 
+          "]"}], ";", "\n", "\n", "    ", 
+         RowBox[{"Export", "[", 
+          RowBox[{
+           RowBox[{"FileNameJoin", "[", 
+            RowBox[{"{", 
+             RowBox[{"dataDir", ",", "\n", "      ", 
+              RowBox[{"\"\<allResults_g\>\"", " ", "<>", " ", 
+               RowBox[{"ToString", "[", 
+                RowBox[{"AccountingForm", "[", 
+                 RowBox[{
+                  RowBox[{"N", "[", "gFixed", "]"}], ",", " ", "8"}], "]"}], 
+                "]"}], " ", "<>", "\n", "      ", "\"\<.m\>\""}]}], "}"}], 
+            "]"}], ",", " ", "resultsSRN"}], "]"}], ";", "\n", "    ", 
+         RowBox[{
+          RowBox[{"$SRNdata", "[", 
+           RowBox[{"{", 
+            RowBox[{"LL", ",", " ", "gFixed"}], "}"}], "]"}], " ", "=", " ", 
+          "resultsSRN"}], ";"}], "\n", "\n", "    ", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"gFixed", ",", " ", "gSRNlist"}], "}"}]}], "\n", "  ", "]"}],
+       ";", "\[IndentingNewLine]", "\n", "  ", 
+      RowBox[{"Print", "[", 
+       RowBox[{"\"\<\\n--- SRN complete for L=\>\"", ",", " ", "LL", ",", 
+        " ", "\"\< ---\>\""}], "]"}], ";"}], "\n", "\n", "  ", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"LL", ",", " ", "Llist"}], "}"}]}], "\n", "]"}], "*)"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.98291566125173*^9, 
+  3.982915731355171*^9}},ExpressionUUID->"090c2bcf-d67e-bb41-94bf-\
+98147e9971cc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Do", "[", "\[IndentingNewLine]", "\n", "  ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "Print", "[", \
+"\"\<\\n###################################################\>\"", "]"}], ";", 
+     "\n", "  ", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<###  L = \>\"", ",", " ", "LL", ",", 
+       " ", "\"\<  (wp = \>\"", ",", " ", "wp", ",", " ", "\"\<)  ###\>\""}], 
+      "]"}], ";", "\n", "  ", 
+     RowBox[{
+     "Print", "[", "\"\<###################################################\>\
+\"", "]"}], ";", "\n", "\n", "  ", 
+     RowBox[{"Spage", " ", "=", " ", 
+      RowBox[{"PageEntropy", "[", 
+       RowBox[{
+        RowBox[{"LL", "/", "2"}], ",", " ", 
+        RowBox[{"LL", "/", "2"}]}], "]"}]}], ";", "\n", "  ", 
+     RowBox[{
+      RowBox[{"$LRNspage", "[", "LL", "]"}], " ", "=", " ", "Spage"}], ";", 
+     "\n", "\[IndentingNewLine]", "  ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{"--", 
+        RowBox[{"-", " ", "4"}]}], 
+       RowBox[{"b", ":", " ", 
+        RowBox[{
+         RowBox[{"LRN", " ", "for", " ", "this", " ", 
+          RowBox[{"L", " ", "--"}]}], "-"}]}]}], " ", "*)"}], 
+     "\[IndentingNewLine]", "\n", "  ", 
+     RowBox[{"Do", "[", "\n", "    ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<\\n========== LRN | L=\>\"", ",", " ", "LL", ",", 
+          " ", "\"\<, h=\>\"", ",", " ", "hFixed", ",", 
+          " ", "\"\< ==========\>\""}], "]"}], ";", "\n", "    ", 
+        RowBox[{"dataDir", " ", "=", " ", 
+         RowBox[{"createDirs", "[", 
+          RowBox[{"\"\<LRN\>\"", ",", " ", "LL"}], "]"}]}], ";", "\n", "    ", 
+        RowBox[{"resultsLRN", " ", "=", " ", 
+         RowBox[{"Association", "[", "]"}]}], ";", "\n", "\n", "    ", 
+        RowBox[{"Do", "[", "\n", "      ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"gval", " ", "=", " ", 
+            RowBox[{"gLRN", "[", 
+             RowBox[{"[", "ig", "]"}], "]"}]}], ";", "\n", "      ", 
+           RowBox[{"Print", "[", 
+            
+            RowBox[{"\"\<\\n  g=\>\"", ",", " ", "gval", ",", 
+             " ", "\"\< (\>\"", ",", " ", "ig", ",", " ", "\"\</\>\"", ",", 
+             " ", 
+             RowBox[{"Length", "[", "gLRN", "]"}], ",", " ", "\"\<)\>\""}], 
+            "]"}], ";", "\n", "      ", 
+           RowBox[{"t0", " ", "=", " ", 
+            RowBox[{"AbsoluteTime", "[", "]"}]}], ";", "\n", "\n", "      ", 
+           RowBox[{
+           "Print", "[", "\"\<  --- Hamiltonian & diagonalization ---\>\"", 
+            "]"}], ";", "\n", "      ", 
+           RowBox[{"setup", " ", "=", " ", 
+            RowBox[{"setupForHG$HP", "[", 
+             RowBox[{
+             "hFixed", ",", " ", "gval", ",", " ", "LL", ",", " ", "wp"}], 
+             "]"}]}], ";", "\n", "\n", "      ", 
+           RowBox[{"Print", "[", "\"\<  --- Time evolution ---\>\"", "]"}], ";",
+            "\n", "      ", 
+           RowBox[{"entropyList", " ", "=", " ", 
+            RowBox[{"computeEntropyHP", "[", 
+             RowBox[{
+             "setup", ",", " ", "tlist", ",", " ", "LL", ",", " ", "wp", ",", 
+              " ", "seed"}], "]"}]}], ";", "\n", "      ", 
+           RowBox[{"ReportPrecision", "[", 
+            RowBox[{"\"\<Entropy list\>\"", ",", " ", "entropyList"}], "]"}], 
+           ";", "\n", "\n", "      ", 
+           RowBox[{
+            RowBox[{"resultsLRN", "[", "gval", "]"}], " ", "=", " ", 
+            RowBox[{"<|", 
+             RowBox[{"\"\<meanEntropy\>\"", " ", "->", " ", 
+              RowBox[{"N", "[", "entropyList", "]"}]}], "|>"}]}], ";", "\n", 
+           "\n", "      ", 
+           RowBox[{"Export", "[", 
+            RowBox[{
+             RowBox[{"FileNameJoin", "[", 
+              RowBox[{"{", 
+               RowBox[{"dataDir", ",", "\n", "        ", 
+                RowBox[{"\"\<meanEntropy_g\>\"", " ", "<>", " ", 
+                 RowBox[{"ToString", "[", 
+                  RowBox[{"AccountingForm", "[", 
+                   RowBox[{
+                    RowBox[{"N", "[", "gval", "]"}], ",", " ", "8"}], "]"}], 
+                  "]"}], " ", "<>", "\n", "        ", "\"\<.m\>\""}]}], "}"}],
+               "]"}], ",", " ", 
+             RowBox[{"N", "[", "entropyList", "]"}]}], "]"}], ";", "\n", "\n",
+            "      ", 
+           RowBox[{"Print", "[", 
+            RowBox[{"\"\<  Total: \>\"", ",", " ", 
+             RowBox[{"Round", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"AbsoluteTime", "[", "]"}], " ", "-", " ", "t0"}], ",",
+                " ", "0.1"}], "]"}], ",", " ", "\"\< s\>\""}], "]"}], ";"}], 
+          "\n", "      ", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"ig", ",", " ", 
+            RowBox[{"Length", "[", "gLRN", "]"}]}], "}"}]}], "\n", "    ", 
+         "]"}], ";", "\n", "\n", "    ", 
+        RowBox[{"Export", "[", 
+         RowBox[{
+          RowBox[{"FileNameJoin", "[", 
+           RowBox[{"{", 
+            RowBox[{"dataDir", ",", "\n", "      ", 
+             RowBox[{"\"\<allResults_h\>\"", " ", "<>", " ", 
+              RowBox[{"ToString", "[", 
+               RowBox[{"AccountingForm", "[", 
+                RowBox[{
+                 RowBox[{"N", "[", "hFixed", "]"}], ",", " ", "8"}], "]"}], 
+               "]"}], " ", "<>", "\n", "      ", "\"\<.m\>\""}]}], "}"}], 
+           "]"}], ",", " ", "resultsLRN"}], "]"}], ";", "\n", "    ", 
+        RowBox[{
+         RowBox[{"$LRNdata", "[", 
+          RowBox[{"{", 
+           RowBox[{"LL", ",", " ", "hFixed"}], "}"}], "]"}], " ", "=", " ", 
+         "resultsLRN"}], ";"}], "\n", "\n", "    ", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"hFixed", ",", " ", "hLRNlist"}], "}"}]}], "\n", "  ", "]"}], 
+     ";", "\n", "  ", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<\\n--- LRN complete for L=\>\"", ",", " ", "LL", ",", 
+       " ", "\"\< ---\>\""}], "]"}], ";", "\n", "  ", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<=== L=\>\"", ",", " ", "LL", ",", 
+       " ", "\"\< FULLY DONE ===\>\""}], "]"}], ";"}], "\n", "\n", "  ", ",", 
+    " ", 
+    RowBox[{"{", 
+     RowBox[{"LL", ",", " ", "Llist"}], "}"}]}], "\n", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.982915736560316*^9, 3.9829157570688496`*^9}},
+ CellLabel->"In[65]:=",ExpressionUUID->"e799bb5d-7d63-574d-aa62-f51cf92c1fa8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Plotting", "Title",
+ CellChangeTimes->{{3.9829183642777367`*^9, 
+  3.982918366531801*^9}},ExpressionUUID->"fa190a5c-6d68-0c44-83c9-\
+037162493957"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"5.", " ", "PLOTTING"}], 
+   "                                                        ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "==="}], 
+    "="}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"--", 
+     RowBox[{"-", " ", "5"}]}], 
+    RowBox[{"a", ":", " ", 
+     RowBox[{
+      RowBox[{"SRN", " ", "entropy", " ", 
+       RowBox[{"plots", " ", "--"}]}], "-"}]}]}], " ", "*)"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Do", "[", "\n", "  ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "res", ",", " ", "paramList", ",", " ", "nH", ",", " ", "hMin", ",",
+            " ", "hMax", ",", " ", "logMin", ",", " ", "logMax", ",", "\n", 
+           "    ", "curves", ",", " ", "colors", ",", " ", "Sp", ",", " ", 
+           "plotTitle", ",", " ", "plt"}], "}"}], ",", "\n", "\n", "    ", 
+         RowBox[{
+          RowBox[{"res", " ", "=", " ", 
+           RowBox[{"$SRNdata", "[", 
+            RowBox[{"{", 
+             RowBox[{"LL", ",", " ", "gFixed"}], "}"}], "]"}]}], ";", "\n", 
+          "    ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"AssociationQ", "[", "res", "]"}]}], ",", " ", 
+            RowBox[{"Continue", "[", "]"}]}], "]"}], ";", "\n", "\n", "    ", 
+          RowBox[{"paramList", " ", "=", " ", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"Keys", "[", "res", "]"}], "]"}]}], ";", "\n", "    ", 
+          RowBox[{"nH", " ", "=", " ", 
+           RowBox[{"Length", "[", "paramList", "]"}]}], ";", "\n", "    ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"nH", " ", "==", " ", "0"}], ",", " ", 
+            RowBox[{"Continue", "[", "]"}]}], "]"}], ";", "\n", "\n", "    ", 
+          RowBox[{"hMin", " ", "=", " ", 
+           RowBox[{"Min", "[", 
+            RowBox[{"N", "[", "paramList", "]"}], "]"}]}], ";", " ", 
+          RowBox[{"hMax", " ", "=", " ", 
+           RowBox[{"Max", "[", 
+            RowBox[{"N", "[", "paramList", "]"}], "]"}]}], ";", "\n", "    ", 
+          RowBox[{"logMin", " ", "=", " ", 
+           RowBox[{"Log10", "[", "hMin", "]"}]}], ";", " ", 
+          RowBox[{"logMax", " ", "=", " ", 
+           RowBox[{"Log10", "[", "hMax", "]"}]}], ";", "\n", "    ", 
+          RowBox[{"Sp", " ", "=", " ", 
+           RowBox[{"$SRNspage", "[", "LL", "]"}]}], ";", "\n", "\n", "    ", 
+          RowBox[{"curves", " ", "=", " ", 
+           RowBox[{"Table", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"Transpose", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"N", "[", "tlist", "]"}], ",", "\n", "        ", 
+                RowBox[{"smoothEntropy", "[", "\n", "          ", 
+                 RowBox[{
+                  RowBox[{"N", "[", 
+                   RowBox[{
+                    RowBox[{"res", "[", 
+                    RowBox[{"paramList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], 
+                    "[", "\"\<meanEntropy\>\"", "]"}], "]"}], ",", " ", 
+                  "maWindow"}], "]"}]}], "}"}], "]"}], ",", "\n", "      ", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "nH"}], "}"}]}], "]"}]}], ";", "\n", 
+          "\n", "    ", 
+          RowBox[{"colors", " ", "=", " ", 
+           RowBox[{"Table", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"cf", "[", 
+              RowBox[{"Rescale", "[", 
+               RowBox[{
+                RowBox[{"Log10", "[", 
+                 RowBox[{"N", "[", 
+                  RowBox[{"paramList", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"logMin", ",", " ", "logMax"}], "}"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", " ", "1"}], "}"}]}], "]"}], "]"}], ",", 
+             "\n", "      ", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "nH"}], "}"}]}], "]"}]}], ";", "\n", 
+          "\n", "    ", 
+          RowBox[{"plotTitle", " ", "=", " ", 
+           RowBox[{"\"\<HP (wp=\>\"", " ", "<>", " ", 
+            RowBox[{"ToString", "[", "wp", "]"}], " ", "<>", 
+            " ", "\"\<), L=\>\"", " ", "<>", "\n", "      ", 
+            RowBox[{"ToString", "[", "LL", "]"}], " ", "<>", 
+            " ", "\"\<, g=\>\"", " ", "<>", "\n", "      ", 
+            RowBox[{"ToString", "[", 
+             RowBox[{"NumberForm", "[", 
+              RowBox[{
+               RowBox[{"N", "[", "gFixed", "]"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"6", ",", " ", "5"}], "}"}]}], "]"}], "]"}], " ", "<>",
+             " ", "\"\< (SRN)\>\""}]}], ";", "\n", "\n", "    ", 
+          RowBox[{"plt", " ", "=", " ", 
+           RowBox[{"Legended", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"ListLogLinearPlot", "[", 
+              RowBox[{"curves", ",", "\n", "        ", 
+               RowBox[{"PlotRange", " ", "->", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"N", "[", 
+                    RowBox[{"tlist", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", " ", 
+                    RowBox[{"N", "[", 
+                    RowBox[{"tlist", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"-", "1"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+                  "\n", "          ", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", " ", 
+                    RowBox[{"Sp", " ", "+", " ", "0.3"}]}], "}"}]}], "}"}]}], 
+               ",", "\n", "        ", 
+               RowBox[{"PlotStyle", " ", "->", " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Directive", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"AbsoluteThickness", "[", "1.2", "]"}]}], "]"}], 
+                   " ", "&"}], " ", "/@", "\n", "          ", "colors"}], 
+                 ")"}]}], ",", "\n", "        ", 
+               RowBox[{"Frame", " ", "->", " ", "True"}], ",", "\n", 
+               "        ", 
+               RowBox[{"FrameLabel", " ", "->", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<Time (t)\>\"", ",", " ", "14"}], "]"}], ",", 
+                  "\n", "          ", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<Entropy S(t)\>\"", ",", " ", "14"}], "]"}]}], 
+                 "}"}]}], ",", "\n", "        ", 
+               RowBox[{"FrameTicksStyle", " ", "->", " ", "12"}], ",", "\n", 
+               "        ", 
+               RowBox[{"PlotLabel", " ", "->", " ", 
+                RowBox[{"Style", "[", 
+                 RowBox[{"plotTitle", ",", " ", "12", ",", " ", "Bold"}], 
+                 "]"}]}], ",", "\n", "        ", 
+               RowBox[{"ImageSize", " ", "->", " ", "700"}], ",", " ", 
+               RowBox[{"AspectRatio", " ", "->", " ", "0.55"}], ",", "\n", 
+               "        ", 
+               RowBox[{"Epilog", " ", "->", " ", 
+                RowBox[{"{", "\n", "          ", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"Black", ",", " ", "Dashed", ",", " ", 
+                    RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", "\n", 
+                    "            ", 
+                    RowBox[{"InfiniteLine", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", " ", "Sp"}], "}"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", " ", "0"}], "}"}]}], "]"}]}], "}"}], ",",
+                   "\n", "          ", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Darker", "[", "Green", "]"}], ",", " ", "Dashed",
+                     ",", " ", 
+                    RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", "\n", 
+                    "            ", 
+                    RowBox[{"InfiniteLine", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", " ", 
+                    RowBox[{"Log", "[", "2", "]"}]}], "}"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", " ", "0"}], "}"}]}], "]"}]}], "}"}]}], 
+                 "}"}]}]}], "\n", "      ", "]"}], ",", "\n", "      ", 
+             RowBox[{"BarLegend", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"cfBar", "[", 
+                  RowBox[{"logMin", ",", " ", "logMax"}], "]"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"logMin", ",", " ", "logMax"}], "}"}]}], "}"}], ",",
+                "\n", "        ", 
+               RowBox[{"LegendLabel", " ", "->", " ", 
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Field (h)\>\"", ",", " ", "12"}], "]"}]}], ",", 
+               "\n", "        ", 
+               RowBox[{"LabelStyle", " ", "->", " ", "11"}], ",", "\n", 
+               "        ", 
+               RowBox[{"\"\<Ticks\>\"", " ", "->", " ", 
+                RowBox[{"Table", "[", "\n", "          ", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"v", ",", " ", 
+                    RowBox[{"Superscript", "[", 
+                    RowBox[{"\"\<10\>\"", ",", " ", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"Round", "[", "v", "]"}], "]"}]}], "]"}]}], "}"}],
+                   ",", "\n", "          ", 
+                  RowBox[{"{", 
+                   RowBox[{"v", ",", " ", 
+                    RowBox[{"Ceiling", "[", "logMin", "]"}], ",", " ", 
+                    RowBox[{"Floor", "[", "logMax", "]"}]}], "}"}]}], 
+                 "]"}]}]}], "]"}]}], "\n", "    ", "]"}]}], ";", "\n", "\n", 
+          "    ", 
+          RowBox[{"Export", "[", 
+           RowBox[{
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{"$plotDir", ",", "\n", "      ", 
+               RowBox[{"\"\<HP_Entropy_L\>\"", " ", "<>", " ", 
+                RowBox[{"ToString", "[", "LL", "]"}], " ", "<>", "\n", 
+                "      ", "\"\<_g\>\"", " ", "<>", " ", 
+                RowBox[{"ToString", "[", 
+                 RowBox[{"NumberForm", "[", 
+                  RowBox[{
+                   RowBox[{"N", "[", "gFixed", "]"}], ",", " ", 
+                   RowBox[{"{", 
+                    RowBox[{"6", ",", " ", "5"}], "}"}]}], "]"}], "]"}], " ", 
+                "<>", "\n", "      ", "\"\<_SRN.png\>\""}]}], "}"}], "]"}], ",",
+             " ", "plt", ",", " ", 
+            RowBox[{"ImageResolution", " ", "->", " ", "300"}]}], "]"}], 
+          ";"}]}], "\n", "  ", "]"}], ";"}], "\n", "  ", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"LL", ",", " ", "Llist"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"gFixed", ",", " ", "gSRNlist"}], "}"}]}], "\n", "]"}], ";"}], 
+   "\n", "*)"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"--", 
+     RowBox[{"-", " ", "5"}]}], 
+    RowBox[{"b", ":", " ", 
+     RowBox[{
+      RowBox[{"LRN", " ", "entropy", " ", 
+       RowBox[{"plots", " ", "--"}]}], "-"}]}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Do", "[", "\n", "  ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "res", ",", " ", "paramList", ",", " ", "nG", ",", " ", "gMin", ",",
+            " ", "gMax", ",", " ", "logMin", ",", " ", "logMax", ",", "\n", 
+           "    ", "curves", ",", " ", "colors", ",", " ", "Sp", ",", " ", 
+           "plotTitle", ",", " ", "plt"}], "}"}], ",", "\n", "\n", "    ", 
+         RowBox[{
+          RowBox[{"res", " ", "=", " ", 
+           RowBox[{"$LRNdata", "[", 
+            RowBox[{"{", 
+             RowBox[{"LL", ",", " ", "hFixed"}], "}"}], "]"}]}], ";", "\n", 
+          "    ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"AssociationQ", "[", "res", "]"}]}], ",", " ", 
+            RowBox[{"Continue", "[", "]"}]}], "]"}], ";", "\n", "\n", "    ", 
+          RowBox[{"paramList", " ", "=", " ", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"Keys", "[", "res", "]"}], "]"}]}], ";", "\n", "    ", 
+          RowBox[{"nG", " ", "=", " ", 
+           RowBox[{"Length", "[", "paramList", "]"}]}], ";", "\n", "    ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"nG", " ", "==", " ", "0"}], ",", " ", 
+            RowBox[{"Continue", "[", "]"}]}], "]"}], ";", "\n", "\n", "    ", 
+          RowBox[{"gMin", " ", "=", " ", 
+           RowBox[{"Min", "[", 
+            RowBox[{"N", "[", "paramList", "]"}], "]"}]}], ";", " ", 
+          RowBox[{"gMax", " ", "=", " ", 
+           RowBox[{"Max", "[", 
+            RowBox[{"N", "[", "paramList", "]"}], "]"}]}], ";", "\n", "    ", 
+          RowBox[{"logMin", " ", "=", " ", 
+           RowBox[{"Log10", "[", "gMin", "]"}]}], ";", " ", 
+          RowBox[{"logMax", " ", "=", " ", 
+           RowBox[{"Log10", "[", "gMax", "]"}]}], ";", "\n", "    ", 
+          RowBox[{"Sp", " ", "=", " ", 
+           RowBox[{"$LRNspage", "[", "LL", "]"}]}], ";", "\n", "\n", "    ", 
+          RowBox[{"curves", " ", "=", " ", 
+           RowBox[{"Table", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"Transpose", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"N", "[", "tlist", "]"}], ",", "\n", "        ", 
+                RowBox[{"smoothEntropy", "[", "\n", "          ", 
+                 RowBox[{
+                  RowBox[{"N", "[", 
+                   RowBox[{
+                    RowBox[{"res", "[", 
+                    RowBox[{"paramList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], 
+                    "[", "\"\<meanEntropy\>\"", "]"}], "]"}], ",", " ", 
+                  "maWindow"}], "]"}]}], "}"}], "]"}], ",", "\n", "      ", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "nG"}], "}"}]}], "]"}]}], ";", "\n", 
+          "\n", "    ", 
+          RowBox[{"colors", " ", "=", " ", 
+           RowBox[{"Table", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"cf", "[", 
+              RowBox[{"Rescale", "[", 
+               RowBox[{
+                RowBox[{"Log10", "[", 
+                 RowBox[{"N", "[", 
+                  RowBox[{"paramList", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"logMin", ",", " ", "logMax"}], "}"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", " ", "1"}], "}"}]}], "]"}], "]"}], ",", 
+             "\n", "      ", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", " ", "nG"}], "}"}]}], "]"}]}], ";", "\n", 
+          "\n", "    ", 
+          RowBox[{"plotTitle", " ", "=", " ", 
+           RowBox[{"\"\<HP (wp=\>\"", " ", "<>", " ", 
+            RowBox[{"ToString", "[", "wp", "]"}], " ", "<>", 
+            " ", "\"\<), L=\>\"", " ", "<>", "\n", "      ", 
+            RowBox[{"ToString", "[", "LL", "]"}], " ", "<>", 
+            " ", "\"\<, h=\>\"", " ", "<>", "\n", "      ", 
+            RowBox[{"ToString", "[", 
+             RowBox[{"NumberForm", "[", 
+              RowBox[{
+               RowBox[{"N", "[", "hFixed", "]"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"6", ",", " ", "5"}], "}"}]}], "]"}], "]"}], " ", "<>",
+             " ", "\"\< (LRN)\>\""}]}], ";", "\n", "\n", "    ", 
+          RowBox[{"plt", " ", "=", " ", 
+           RowBox[{"Legended", "[", "\n", "      ", 
+            RowBox[{
+             RowBox[{"ListLogLinearPlot", "[", 
+              RowBox[{"curves", ",", "\n", "        ", 
+               RowBox[{"PlotRange", " ", "->", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"N", "[", 
+                    RowBox[{"tlist", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", " ", 
+                    RowBox[{"N", "[", 
+                    RowBox[{"tlist", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"-", "1"}], "]"}], "]"}], "]"}]}], "}"}], ",", 
+                  "\n", "          ", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", " ", 
+                    RowBox[{"Sp", " ", "+", " ", "0.3"}]}], "}"}]}], "}"}]}], 
+               ",", "\n", "        ", 
+               RowBox[{"PlotStyle", " ", "->", " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Directive", "[", 
+                    RowBox[{"#", ",", " ", 
+                    RowBox[{"AbsoluteThickness", "[", "1.2", "]"}]}], "]"}], 
+                   " ", "&"}], " ", "/@", "\n", "          ", "colors"}], 
+                 ")"}]}], ",", "\n", "        ", 
+               RowBox[{"Frame", " ", "->", " ", "True"}], ",", "\n", 
+               "        ", 
+               RowBox[{"FrameLabel", " ", "->", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<Time (t)\>\"", ",", " ", "14"}], "]"}], ",", 
+                  "\n", "          ", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<Entropy S(t)\>\"", ",", " ", "14"}], "]"}]}], 
+                 "}"}]}], ",", "\n", "        ", 
+               RowBox[{"FrameTicksStyle", " ", "->", " ", "12"}], ",", "\n", 
+               "        ", 
+               RowBox[{"PlotLabel", " ", "->", " ", 
+                RowBox[{"Style", "[", 
+                 RowBox[{"plotTitle", ",", " ", "12", ",", " ", "Bold"}], 
+                 "]"}]}], ",", "\n", "        ", 
+               RowBox[{"ImageSize", " ", "->", " ", "700"}], ",", " ", 
+               RowBox[{"AspectRatio", " ", "->", " ", "0.55"}], ",", "\n", 
+               "        ", 
+               RowBox[{"Epilog", " ", "->", " ", 
+                RowBox[{"{", "\n", "          ", 
+                 RowBox[{"{", 
+                  RowBox[{"Black", ",", " ", "Dashed", ",", " ", 
+                   RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", "\n", 
+                   "            ", 
+                   RowBox[{"InfiniteLine", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", " ", "Sp"}], "}"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", " ", "0"}], "}"}]}], "]"}]}], "}"}], 
+                 "}"}]}]}], "\n", "      ", "]"}], ",", "\n", "      ", 
+             RowBox[{"BarLegend", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"cfBar", "[", 
+                  RowBox[{"logMin", ",", " ", "logMax"}], "]"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"logMin", ",", " ", "logMax"}], "}"}]}], "}"}], ",",
+                "\n", "        ", 
+               RowBox[{"LegendLabel", " ", "->", " ", 
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Field (g)\>\"", ",", " ", "12"}], "]"}]}], ",", 
+               "\n", "        ", 
+               RowBox[{"LabelStyle", " ", "->", " ", "11"}], ",", "\n", 
+               "        ", 
+               RowBox[{"\"\<Ticks\>\"", " ", "->", " ", 
+                RowBox[{"Table", "[", "\n", "          ", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"v", ",", " ", 
+                    RowBox[{"Superscript", "[", 
+                    RowBox[{"\"\<10\>\"", ",", " ", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"Round", "[", "v", "]"}], "]"}]}], "]"}]}], "}"}],
+                   ",", "\n", "          ", 
+                  RowBox[{"{", 
+                   RowBox[{"v", ",", " ", 
+                    RowBox[{"Ceiling", "[", "logMin", "]"}], ",", " ", 
+                    RowBox[{"Floor", "[", "logMax", "]"}]}], "}"}]}], 
+                 "]"}]}]}], "]"}]}], "\n", "    ", "]"}]}], ";", "\n", "\n", 
+          "    ", 
+          RowBox[{"Export", "[", 
+           RowBox[{
+            RowBox[{"FileNameJoin", "[", 
+             RowBox[{"{", 
+              RowBox[{"$plotDir", ",", "\n", "      ", 
+               RowBox[{"\"\<HP_Entropy_L\>\"", " ", "<>", " ", 
+                RowBox[{"ToString", "[", "LL", "]"}], " ", "<>", "\n", 
+                "      ", "\"\<_h\>\"", " ", "<>", " ", 
+                RowBox[{"ToString", "[", 
+                 RowBox[{"NumberForm", "[", 
+                  RowBox[{
+                   RowBox[{"N", "[", "hFixed", "]"}], ",", " ", 
+                   RowBox[{"{", 
+                    RowBox[{"6", ",", " ", "5"}], "}"}]}], "]"}], "]"}], " ", 
+                "<>", "\n", "      ", "\"\<_LRN.png\>\""}]}], "}"}], "]"}], ",",
+             " ", "plt", ",", " ", 
+            RowBox[{"ImageResolution", " ", "->", " ", "300"}]}], "]"}], 
+          ";"}]}], "\n", "  ", "]"}], ";"}], "\n", "  ", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"LL", ",", " ", "Llist"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"hFixed", ",", " ", "hLRNlist"}], "}"}]}], "\n", "]"}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<\\n=== HP WORKFLOW COMPLETE ===\>\"", "]"}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Results: \>\"", ",", " ", "$resultsBase"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Plots:   \>\"", ",", " ", "$plotDir"}], "]"}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.982918379819584*^9, 3.9829183828506336`*^9}},
+ CellLabel->"In[66]:=",ExpressionUUID->"8ded6646-3610-fa44-9752-2bdab2126504"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"\\n=== HP WORKFLOW COMPLETE ===\"\>"], "Print",
+ CellChangeTimes->{3.982919886502844*^9},
+ CellLabel->
+  "During evaluation of \
+In[66]:=",ExpressionUUID->"70cfafc9-6cde-e847-826d-c70d24d5af08"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Results: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Higher \
+precision\\\\results_HP\"\>"}],
+  SequenceForm[
+  "Results: ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Higher precision\\results_HP"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.982919886502844*^9},
+ CellLabel->
+  "During evaluation of \
+In[66]:=",ExpressionUUID->"fb707a3d-117a-c542-a90d-a2e2885bf93e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Plots:   \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Higher \
+precision\\\\results_HP\\\\plots\"\>"}],
+  SequenceForm[
+  "Plots:   ", 
+   "C:\\Users\\Miguel\\Github\\Entropy\\Higher precision\\results_HP\\plots"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.982919886518471*^9},
+ CellLabel->
+  "During evaluation of \
+In[66]:=",ExpressionUUID->"62a12365-92bb-a64e-add4-f84b6f72c852"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+},
+WindowSize->{1645.7142857142856`, 858},
+WindowMargins->{{
+  Automatic, -5.14285714285711}, {-5.14285714285711, Automatic}},
+TaggingRules-><|"TryRealOnly" -> False, "SSOActivationInProgress" -> False|>,
+CellContext->Notebook,
+InputAliases-><|"intt" -> RowBox[{"\[Integral]", 
+     RowBox[{"\[SelectionPlaceholder]", 
+       RowBox[{"\[DifferentialD]", "\[Placeholder]"}]}]}], "dintt" -> RowBox[{
+     SubsuperscriptBox[
+     "\[Integral]", "\[SelectionPlaceholder]", "\[Placeholder]"], 
+     RowBox[{"\[Placeholder]", 
+       RowBox[{"\[DifferentialD]", "\[Placeholder]"}]}]}], "rintt" -> RowBox[{
+     UnderscriptBox["\[Integral]", 
+      RowBox[{"\[SelectionPlaceholder]", "\[Element]", "\[Placeholder]"}]], 
+     "\[Placeholder]"}], "sumt" -> RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"\[SelectionPlaceholder]", "=", "\[Placeholder]"}], 
+      "\[Placeholder]"], "\[Placeholder]"}], "prodt" -> RowBox[{
+     UnderoverscriptBox["\[Product]", 
+      RowBox[{"\[SelectionPlaceholder]", "=", "\[Placeholder]"}], 
+      "\[Placeholder]"], "\[Placeholder]"}], "dt" -> RowBox[{
+     SubscriptBox["\[PartialD]", "\[SelectionPlaceholder]"], 
+     "\[Placeholder]"}], "cbrt" -> 
+  RadicalBox[
+   "\[SelectionPlaceholder]", "3", SurdForm -> True, MultilineFunction -> 
+    None], "surd" -> 
+  RadicalBox[
+   "\[SelectionPlaceholder]", "\[Placeholder]", SurdForm -> True, 
+    MultilineFunction -> None], "ket" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "Ket"], "bra" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "Bra"], "braket" -> 
+  TemplateBox[{"\[SelectionPlaceholder]", "\[Placeholder]"}, "BraKet"], 
+  "delay" -> TemplateBox[{"\[SelectionPlaceholder]"}, "SystemsModelDelay"], 
+  "grad" -> RowBox[{
+     SubscriptBox["\[Del]", "\[SelectionPlaceholder]"], "\[Placeholder]"}], 
+  "del." -> RowBox[{
+     SubscriptBox["\[Del]", "\[SelectionPlaceholder]"], ".", 
+     "\[Placeholder]"}], "delx" -> RowBox[{
+     SubscriptBox["\[Del]", "\[SelectionPlaceholder]"], "\[Cross]", 
+     "\[Placeholder]"}], "del2" -> RowBox[{
+     SubsuperscriptBox["\[Del]", "\[SelectionPlaceholder]", 2], 
+     "\[Placeholder]"}], "kd" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "KroneckerDeltaSeq"], "algs" -> 
+  TemplateBox[{}, "Algebraics"], "bools" -> TemplateBox[{}, "Booleans"], 
+  "comps" -> TemplateBox[{}, "Complexes"], "ints" -> 
+  TemplateBox[{}, "Integers"], "pris" -> TemplateBox[{}, "Primes"], "rats" -> 
+  TemplateBox[{}, "Rationals"], "reals" -> TemplateBox[{}, "Reals"], "pints" -> 
+  TemplateBox[{}, "PositiveIntegers"], "npints" -> 
+  TemplateBox[{}, "NonPositiveIntegers"], "nnints" -> 
+  TemplateBox[{}, "NonNegativeIntegers"], "nints" -> 
+  TemplateBox[{}, "NegativeIntegers"], "prats" -> 
+  TemplateBox[{}, "PositiveRationals"], "nprats" -> 
+  TemplateBox[{}, "NonPositiveRationals"], "nnrats" -> 
+  TemplateBox[{}, "NonNegativeRationals"], "nrats" -> 
+  TemplateBox[{}, "NegativeRationals"], "preals" -> 
+  TemplateBox[{}, "PositiveReals"], "npreals" -> 
+  TemplateBox[{}, "NonPositiveReals"], "nnreals" -> 
+  TemplateBox[{}, "NonNegativeReals"], "nreals" -> 
+  TemplateBox[{}, "NegativeReals"], "dlim" -> RowBox[{
+     UnderscriptBox["\[Limit]", 
+      RowBox[{"\[SelectionPlaceholder]", 
+        UnderscriptBox["\[Rule]", 
+         TemplateBox[{}, "Integers"]], "\[Infinity]"}]], "\[Placeholder]"}], 
+  "dMlim" -> RowBox[{
+     UnderscriptBox["\[MaxLimit]", 
+      RowBox[{"\[SelectionPlaceholder]", 
+        UnderscriptBox["\[Rule]", 
+         TemplateBox[{}, "Integers"]], "\[Infinity]"}]], "\[Placeholder]"}], 
+  "dmlim" -> RowBox[{
+     UnderscriptBox["\[MinLimit]", 
+      RowBox[{"\[SelectionPlaceholder]", 
+        UnderscriptBox["\[Rule]", 
+         TemplateBox[{}, "Integers"]], "\[Infinity]"}]], "\[Placeholder]"}], 
+  "tue" -> OverscriptBox["\[UndirectedEdge]", "\[Placeholder]"], "tde" -> 
+  OverscriptBox["\[DirectedEdge]", "\[Placeholder]"], "cB" -> 
+  TemplateBox[{}, "CombinatorB"], "cC" -> TemplateBox[{}, "CombinatorC"], 
+  "cI" -> TemplateBox[{}, "CombinatorI"], "cK" -> 
+  TemplateBox[{}, "CombinatorK"], "cS" -> TemplateBox[{}, "CombinatorS"], 
+  "cW" -> TemplateBox[{}, "CombinatorW"], "cY" -> 
+  TemplateBox[{}, "CombinatorY"], "notation" -> RowBox[{"Notation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], " ", 
+       "\[DoubleLongLeftRightArrow]", " ", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "notation>" -> RowBox[{"Notation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], " ", 
+       "\[DoubleLongRightArrow]", " ", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "notation<" -> RowBox[{"Notation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], " ", 
+       "\[DoubleLongLeftArrow]", " ", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "symb" -> RowBox[{"Symbolize", "[", 
+     TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], "]"}], 
+  "infixnotation" -> RowBox[{"InfixNotation", "[", 
+     RowBox[{
+       TemplateBox[{"\[SelectionPlaceholder]"}, "NotationTemplateTag"], ",", 
+       "\[Placeholder]"}], "]"}], "addia" -> RowBox[{"AddInputAlias", "[", 
+     RowBox[{"\"\[SelectionPlaceholder]\"", "\[Rule]", 
+       TemplateBox[{"\[Placeholder]"}, "NotationTemplateTag"]}], "]"}], 
+  "pattwraper" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "NotationPatternTag"], 
+  "madeboxeswraper" -> 
+  TemplateBox[{"\[SelectionPlaceholder]"}, "NotationMadeBoxesTag"], "cf" -> 
+  SubscriptBox["&", "\[Placeholder]"]|>,
+FrontEndVersion->"14.3 for Microsoft Windows (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fce558c1-2235-4715-8ef5-a88835881479"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 150, 3, 96, "Title",ExpressionUUID->"c03717d6-c06a-cc4c-96bf-f6cee198cd96"],
+Cell[733, 27, 3390, 88, 408, "Input",ExpressionUUID->"02eac7d9-b6bb-2e45-809f-03398aab263f"],
+Cell[4126, 117, 646, 16, 85, "Input",ExpressionUUID->"4d7c299a-fedf-7d4c-8d6d-e04f70a12432"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4809, 138, 150, 3, 70, "Title",ExpressionUUID->"911955c9-2cef-2143-ad0e-7055e713688e"],
+Cell[4962, 143, 6845, 153, 941, "Input",ExpressionUUID->"3cd54117-8913-4140-90ae-5c5085e33248"],
+Cell[CellGroupData[{
+Cell[11832, 300, 16510, 375, 1854, "Input",ExpressionUUID->"5b37bd18-66f9-a34a-ac24-9059146da351"],
+Cell[28345, 677, 201, 4, 22, "Print",ExpressionUUID->"5b64ef20-84e4-d348-b0a7-aaf1b459e934"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[28595, 687, 155, 3, 70, "Title",ExpressionUUID->"174213db-c2bc-c848-bbed-09232a822287"],
+Cell[28753, 692, 1642, 44, 123, "Input",ExpressionUUID->"2272346e-431a-e049-b075-204e341a4ffc"],
+Cell[CellGroupData[{
+Cell[30420, 740, 569, 11, 85, "Input",ExpressionUUID->"900b0c36-7c46-7448-9e7d-fa0b03f93f4a"],
+Cell[30992, 753, 675, 15, 22, "Print",ExpressionUUID->"77b71126-688c-1a4f-9356-983ca8de96ee"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31704, 773, 4546, 122, 541, "Input",ExpressionUUID->"f7480054-dcd2-ed4a-8625-4677baba4edc"],
+Cell[CellGroupData[{
+Cell[36275, 899, 693, 13, 22, "Print",ExpressionUUID->"68656d18-0897-e746-9334-fc4b9fb9748d"],
+Cell[36971, 914, 600, 12, 22, "Print",ExpressionUUID->"0d8d0d1f-2c56-224e-8e65-3a13643a08c5"],
+Cell[37574, 928, 600, 12, 22, "Print",ExpressionUUID->"59891d06-4781-3c4a-8c0f-562d000a4986"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38235, 947, 153, 3, 96, "Title",ExpressionUUID->"771b19fd-8456-9140-92ef-ab90ce20582e"],
+Cell[38391, 952, 7812, 176, 1112, "Input",ExpressionUUID->"090c2bcf-d67e-bb41-94bf-98147e9971cc"],
+Cell[46206, 1130, 6310, 140, 960, "Input",ExpressionUUID->"e799bb5d-7d63-574d-aa62-f51cf92c1fa8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52553, 1275, 153, 3, 96, "Title",ExpressionUUID->"fa190a5c-6d68-0c44-83c9-037162493957"],
+Cell[CellGroupData[{
+Cell[52731, 1282, 22485, 485, 2558, "Input",ExpressionUUID->"8ded6646-3610-fa44-9752-2bdab2126504"],
+Cell[CellGroupData[{
+Cell[75241, 1771, 212, 4, 39, "Print",ExpressionUUID->"70cfafc9-6cde-e847-826d-c70d24d5af08"],
+Cell[75456, 1777, 464, 13, 22, "Print",ExpressionUUID->"fb707a3d-117a-c542-a90d-a2e2885bf93e"],
+Cell[75923, 1792, 480, 13, 22, "Print",ExpressionUUID->"62a12365-92bb-a64e-add4-f84b6f72c852"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    194038,       4774]
-NotebookOptionsPosition[    162454,       4366]
-NotebookOutlinePosition[    168413,       4490]
-CellTagsIndexPosition[    168370,       4487]
+NotebookDataLength[     87312,       2174]
+NotebookOptionsPosition[     76327,       1984]
+NotebookOutlinePosition[     82276,       2108]
+CellTagsIndexPosition[     82233,       2105]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -40,7 +40,8 @@ Cell[BoxData[
      RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
    RowBox[{
     RowBox[{"projectDir", "=", 
-     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\n", "\n", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{"parallel", " ", "kernels"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{"(*", 
@@ -59,7 +60,7 @@ Cell[BoxData[
      RowBox[{
      "load", " ", "your", " ", "library", " ", "from", " ", "the", " ", 
       "same", " ", "folder", " ", "as", " ", "the", " ", "notebook"}], ",", 
-     RowBox[{"on", " ", "ALL", " ", "kernels"}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"on", " ", "ALL", " ", "kernels"}]}], "*)"}], "\n", 
    RowBox[{
     RowBox[{"libFile", "=", 
      RowBox[{"FileNameJoin", "[", 
@@ -75,8 +76,8 @@ Cell[BoxData[
        RowBox[{"Print", "[", 
         RowBox[{"\"\<Missing library file: \>\"", ",", "libFile"}], "]"}], ";",
         "\[IndentingNewLine]", 
-       RowBox[{"Abort", "[", "]"}], ";"}]}], "]"}], ";"}], 
-   "\[IndentingNewLine]", "\n", 
+       RowBox[{"Abort", "[", "]"}], ";"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{
@@ -121,14 +122,14 @@ Cell[BoxData[{
       RowBox[{"CreateDirectory", "[", 
        RowBox[{"dir", ",", 
         RowBox[{"CreateIntermediateDirectories", "->", "True"}]}], "]"}]}], 
-     "]"}]}], ";"}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\n", 
   RowBox[{"(*", 
    RowBox[{"helper", ":", 
     RowBox[{"parity", " ", "maps", " ", 
      RowBox[{"(", 
       RowBox[{
       "uses", " ", "revIndex", " ", "from", " ", "your", " ", "library"}], 
-      ")"}]}]}], "*)"}]}], "\n", 
+      ")"}]}]}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -274,7 +275,7 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"Lvalues", "=", 
      RowBox[{"{", 
-      RowBox[{"6", ",", "8", ",", "10", ",", "12"}], "}"}]}], ";"}], "\n", 
+      RowBox[{"6", ",", "8"}], "}"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"J", "=", "1"}], ";"}], "\n", 
    RowBox[{
@@ -309,8 +310,8 @@ Cell[BoxData[
    3.9786810720926323`*^9}, {3.9786815087191944`*^9, 3.9786815088126583`*^9}, 
    3.978682400687258*^9, {3.9786836668928356`*^9, 3.9786836669712296`*^9}, {
    3.978767943691286*^9, 3.978767960508976*^9}, {3.978783722762335*^9, 
-   3.9787837657802067`*^9}, {3.9791188410378017`*^9, 3.9791188431454315`*^9}},
- 
+   3.9787837657802067`*^9}, {3.9791188410378017`*^9, 
+   3.9791188431454315`*^9}, {3.9849352140339775`*^9, 3.984935215207344*^9}},
  CellLabel->"In[12]:=",ExpressionUUID->"c1e7d88b-6e93-4447-be83-9b946c8b5e08"],
 
 Cell[BoxData[
@@ -563,7 +564,7 @@ Cell[BoxData[
  CellChangeTimes->{{3.9786732509933224`*^9, 3.9786732530558033`*^9}, {
   3.978679632556837*^9, 3.978679633353489*^9}, {3.9786824352385273`*^9, 
   3.978682440958025*^9}, {3.9787837686401863`*^9, 3.9787837844090557`*^9}},
- CellLabel->"In[39]:=",ExpressionUUID->"bed2e216-ce59-e649-86c4-96c3ea6a86c0"],
+ CellLabel->"In[17]:=",ExpressionUUID->"bed2e216-ce59-e649-86c4-96c3ea6a86c0"],
 
 Cell[CellGroupData[{
 
@@ -574,13 +575,352 @@ Cell[BoxData[
     RowBox[{"simulateEntropy", "[", "L", "]"}], ",", 
     RowBox[{"{", 
      RowBox[{"L", ",", "Lvalues"}], "}"}]}], "]"}], ";"}]], "Input",
- CellLabel->"In[40]:=",ExpressionUUID->"3bd39698-59fb-2447-893d-ac7c4794a2f8"],
+ CellLabel->"In[18]:=",ExpressionUUID->"3bd39698-59fb-2447-893d-ac7c4794a2f8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ StyleBox["\<\"\\nStarting computation for L = 6\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 0, 1],
+  FrontFaceColor->RGBColor[0, 0, 1],
+  BackFaceColor->RGBColor[0, 0, 1],
+  GraphicsColor->RGBColor[0, 0, 1],
+  FontSize->18,
+  FontWeight->Bold,
+  FontColor->RGBColor[0, 0, 1]]], "Print",
+ CellChangeTimes->{3.984935222260378*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"b2f88d74-80ca-5948-b612-6d324c95d9eb"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-1.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9849352223163376`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"501d9aa8-65e0-dd4b-96ff-6fc95bc3c068"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935222332329*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"abb09be1-5353-4447-b268-bdbe735388f3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-1.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935245217987*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"e2f35caa-aac1-ba4c-92f6-218d32af6c4a"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-1.0\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.984935245217987*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"4b3b1062-8073-184f-837c-7b57ea6dd4a5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935245217987*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"14f318a9-1e25-2d4e-b391-4d2918a43eaa"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-1.0_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9849352679435596`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"9cbbf223-c2a8-af4d-9799-359bbbd1abb1"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-0.9\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9849352679435596`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"e4f384ee-7a23-3a45-a37e-2c622f6b22d3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9849352679435596`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"e5875082-4435-6549-80e4-d4086ca9aa94"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.9_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-0.9_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935290478098*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"a2dd93fd-0cdb-f24b-ada4-d6457f07090a"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-0.9\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9849352904937096`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"9ab08f5a-e30d-3d47-b478-91ee83b0eec7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9849352904937096`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"21bd6fb0-08a2-2944-8d6c-2d25c3f30d62"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.9_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-0.9_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935312828228*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"6a72dd73-c760-514c-8670-03395d2fd553"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-0.8\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.984935312828228*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"d086ac56-8ac3-404d-bf74-038751841f67"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935312828228*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"75ab6aaf-1a35-5b4b-9fc3-0b82783f41bc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.8_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-0.8_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9849353357235737`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"5775a376-f18d-3048-99af-88edca0b10dd"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-0.8\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.9849353357235737`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"b7b89847-322c-cc4e-89fe-60884efe9ca0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9849353357235737`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"e2684314-d41e-e748-849b-fde0bccb2163"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Saved: \"\>", 
+   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.8_LowField.mx\"\>"}],
+  SequenceForm["    Saved: ", "Entropy_L6_g-0.8_LowField.mx"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935358698679*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"77e7aab8-3ec9-d042-9084-4f1407cf9837"],
+
+Cell[BoxData[
+ StyleBox["\<\"  Running g = 10^-0.7\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FrontFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  BackFaceColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  GraphicsColor->RGBColor[0, 
+    Rational[2, 3], 0],
+  FontSize->14,
+  FontColor->RGBColor[0, 
+    Rational[2, 3], 0]]], "Print",
+ CellChangeTimes->{3.984935358698679*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"a4cb1a1f-e6ea-504e-be0e-1acf71260fb9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Processing \"\>", "\[InvisibleSpace]", "\<\"LowField\"\>", 
+   "\[InvisibleSpace]", "\<\" (\"\>", "\[InvisibleSpace]", "51", 
+   "\[InvisibleSpace]", "\<\" values)...\"\>"}],
+  SequenceForm["    Processing ", "LowField", " (", 51, " values)..."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.984935358698679*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"dc2176ff-bc62-7c40-817a-4faf0f367c70"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "LinkRead", "time", 
+   "\"Operation \\!\\(\\*RowBox[{\\\"LinkRead\\\"}]\\) timed out after \\!\\(\
+\\*RowBox[{\\\"3.`\\\"}]\\) seconds.\"", 2, 18, 1, 31424028032355023153, 
+   "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.984935382818905*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"26ee3cf1-a82a-4f44-bd22-8c8110b24338"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "KernelObject", "rdead", 
+   "\"Discarding \\!\\(\\*RowBox[{\\\"\\\\\\\"kernel 3 (Local (14))\\\\\\\"\\\
+\"}]\\).\"", 2, 18, 2, 31424028032355023153, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9849353828982677`*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"c525e51d-1599-d449-b90a-cb0922a6e043"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "LaunchKernels", "clone", 
+   "\"\\!\\(\\*RowBox[{\\\"\\\\\\\"dead kernel 3 (Local \
+(14))\\\\\\\"\\\"}]\\) resurrected as \\!\\(\\*RowBox[{\\\"\\\\\\\"kernel 15 \
+(Local (14))\\\\\\\"\\\"}]\\).\"", 2, 18, 3, 31424028032355023153, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.98493538503117*^9},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"9ec08e79-12c8-8942-98b8-fc1407f2986c"],
 
 Cell[BoxData["$Aborted"], "Output",
- CellChangeTimes->{3.9787846030225906`*^9},
- CellLabel->"Out[40]=",ExpressionUUID->"e29b982b-af7f-ab46-bde4-401a327c3c4b"]
+ CellChangeTimes->{3.9787846030225906`*^9, 3.9849353850468006`*^9},
+ CellLabel->"Out[18]=",ExpressionUUID->"4d9d5f7b-b5d9-0a4f-b6de-d691ca4c86ad"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -869,8 +1209,6 @@ Cell[BoxData[
         ";"}]}], "]"}]}], ";"}]}]}]], "Input",
  CellLabel->"In[17]:=",ExpressionUUID->"748a92dd-36c4-5f45-b1b8-bd5680b3b53d"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"entropyMX", "=", 
@@ -894,1643 +1232,7 @@ Cell[BoxData[{
  CellChangeTimes->{{3.978681383751295*^9, 3.978681387500677*^9}, {
   3.9786815197218*^9, 3.9786815200189705`*^9}, {3.9786831161699276`*^9, 
   3.978683117123045*^9}},
- CellLabel->"In[20]:=",ExpressionUUID->"bd3ba7f5-57f0-ea46-8354-c24772cb5233"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791214379569683`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"544b8790-dbe5-bb4e-9251-d3bde06847c6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791214379569683`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"5ce101a9-f09e-b74d-aa31-f5a5ca75b34f"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121461324442*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b6d07804-c2d5-3a45-91bc-f060f36800fb"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791214613552055`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"139313d9-3cff-b04f-bdf4-1f71cc021f68"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791214613572273`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"eba0c384-3cef-464d-adad-f35530d5153b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791214839938736`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"316221ba-b700-4047-9369-a7b5aa554ab3"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121484037264*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"9c3545fa-581b-9649-a148-54eecb1751c6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.1_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791214840382614`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"3882323c-0205-bc40-90a5-5abe561d4118"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.1_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.1_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791215070211945`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ff7c39e6-94ae-3748-96fc-4fc63c8e70c9"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791215070471992`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b2adbdaa-84c2-7b40-8706-f92a0f2f794d"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.2_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121507049202*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"d9426392-194b-cd44-9a0b-98684b2e3a85"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.2_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.2_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791215301687164`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"42ce05f8-718e-6b49-8fae-161c0478dffc"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791215301767616`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"773f3fc7-302f-934a-979a-df166283e6b3"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.3_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791215301767616`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"fb0089f0-59f3-a845-9532-d24ea79b461b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.3_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.3_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121552791479*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"730640be-4f0e-a445-9f7f-e02a95af6590"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791215528065815`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"a931e20f-b424-6a4c-ab36-6becbd2851a1"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.4_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121552811596*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"91db05e7-2487-5847-a016-ae067ed37490"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.4_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.4_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121575596525*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"e77f14ca-86fd-e544-8264-6a07da5fa084"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791215756015797`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"d48f0725-bf39-ce41-bc56-9ed5475b114c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.5_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791215756015797`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"e60ee424-9d39-1e48-a5bf-fdb344c7e186"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.5_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.5_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791215978926888`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b3ff231c-6059-5f41-adee-f07c1d6f3778"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791215979087696`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ebf251cb-c798-3648-b927-f7bb61916a5b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.6_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121597911783*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b7ed125d-e841-fc4c-ac6b-ca2dda01b6a7"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.6_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.6_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121620851284*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c113c270-7c86-184f-ad3a-f5449f151c43"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121620851284*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"9edc09cb-d116-c74f-a494-0abd6dbf4680"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.7_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121620851284*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c8292f9e-331c-bc46-9dde-175ae9b765b6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.7_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.7_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791216436786137`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"5f68a18e-1abf-6c46-89ec-8ce029df84d0"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121643681629*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c89690c1-7b35-a040-80f5-5f62e3c3ef2f"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.8_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121643681629*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"9cda9a17-1d90-1b4b-8474-3585e3988756"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.8_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.8_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791216661562767`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c2b3f1b4-d69d-1b4f-85e5-ede90accb550"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791216661713696`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b6a09e3f-0971-404b-b577-78b801add28d"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.9_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791216661713696`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"115e00af-b550-b34f-886d-5618ab4898eb"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-0.9_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-0.9_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791216887526264`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c2bfb68f-08c0-b44c-8609-a79d88df2f63"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791216887526264`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"853997d9-9e07-2245-b27e-fd1eba84d8b9"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-1.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L10_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791216887526264`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"061e6937-7cf7-f441-ae65-189f705d8f04"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L10\\\\Entropy_L10_g-1.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L10\\Entropy_L10_g-1.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121711221533*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"483df631-60f0-4646-9aa8-65b527658016"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121711226572*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b4d87e95-86c3-6543-9cf3-048be06fec8b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791217112311096`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"41626654-1c81-1142-b5dd-7f3cb4660160"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121735101925*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b20e73fe-bb3b-2148-8229-8bb4d7850b7d"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121735105974*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"99cfec9c-7cae-1046-a627-6323390bc924"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791217351069794`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"1e2334a7-f38a-4347-8c41-067aa14195c6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791217897526493`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"5aafc416-9f53-9649-8a5d-fa13ce8c00f2"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791217897556553`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"3d044a60-646f-5e4b-8569-cb2a77972545"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.1_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791217897576637`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"7ad7d5b9-255e-d24b-8da0-a23232728211"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.1_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.1_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791218147599163`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"913a57da-d493-6548-8856-320a29046cbe"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121814777355*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"a372ea16-cc8a-9a40-9f0c-a908d55e4797"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.2_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791218147783623`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"025be904-df15-2048-a132-26ffbb5092ce"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.2_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.2_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121839830719*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"eac0e67b-5c62-4941-8b43-ce1df0b46ee7"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121839834942*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"23986342-86c4-8347-8c13-deba8ee6a009"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.3_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121839835943*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"f1c00ca2-1858-794a-9a35-1cd6f73bdec3"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.3_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.3_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791218687667084`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"94a6d4d7-c542-7e41-bbbc-0d62656b546c"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121868772257*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"75e9aab9-33b3-eb4c-a7ea-372cea21ec85"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.4_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912186877627*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"1a07e0a4-f626-aa48-b61a-bc6bf7e8fdd8"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.4_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.4_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121892134878*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b8f5c2bd-d6e1-064c-9085-65aa0646f89b"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791218921378784`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"bda88117-4dd3-c148-bbf8-1f4cd3f04458"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.5_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912189213888*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"dc64d423-e3a9-e541-935b-c18f7d228d5e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.5_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.5_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121916543188*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"a16d422a-7a53-2744-a99a-00d80403e7f8"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121916546324*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"00d9df87-e0b1-4b45-87ae-af9c38714063"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.6_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791219165473175`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"39b6710e-093b-e441-ba22-ccb34a34c3d5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.6_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.6_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121939865637*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"2b05f9c6-abc1-074c-ad8e-c1f898365df1"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791219398676376`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"cca6e09d-0e4a-5045-8fc9-4002c20ac48d"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.7_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791219398696346`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"bab92808-e31c-2e4c-b203-35d489b6bdc5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.7_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.7_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791219637706203`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"eb4721be-5e76-174d-a620-496f76b8073b"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979121963772682*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"2c60b536-ae3a-1946-b248-b655d23d1259"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.8_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791219637748985`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"0900fab1-7e75-5b4c-aeb3-d143f986ad63"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.8_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.8_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979121988034067*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b748015c-bd14-1347-baee-99f677a18b26"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791219880485992`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"676ff689-9421-e943-86da-6d07a9ccb17d"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.9_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791219880496006`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"01ad7a44-7caf-af44-939c-8e8c6ae99497"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-0.9_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-0.9_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122012363909*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b21961bc-e8c2-a149-8358-9916cbf2bd59"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122012366913*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"dad2a05b-9dc9-5d40-b596-70df8ede6c7c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-1.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L12_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122012367918*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"3e4ffc5b-8200-4449-a94e-015fa9fe8dab"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L12\\\\Entropy_L12_g-1.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L12\\Entropy_L12_g-1.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122036286268*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"10e416cb-34b2-3c40-b309-1fc60800dfad"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791220362892704`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"43842bcd-1938-134a-a34f-372fba6477fe"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122036290802*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"32432da3-9ac8-584f-956f-32271cd9ca29"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122060884325*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"36d4e523-e844-6b4f-ade1-6a04c40f1366"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122060888447*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"e5582b71-93df-f241-ba1e-38f17488c638"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791220608894424`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"8bfdb09f-8060-a344-85df-ecbaecbbfa7c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791220852950993`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"2851b05e-a49e-8a40-88dc-d3ce4d164965"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.97912208529862*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"62dd311e-ca5b-1a4d-ae38-6f4f1590714f"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.1_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912208529862*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"01ddb2a7-be11-7b4b-885a-2cd69eb23454"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.1_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.1_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122110109232*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"7b9fd749-5dc1-a24b-8d88-392d7a11ed9a"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791221101147766`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"0273448d-276f-944d-9b0b-85a6385d0824"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.2_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122110116783*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"6e3eef29-1016-474a-ae9a-95a6862ed3ba"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.2_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.2_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791221359713917`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"0cbe3fdd-1b21-354c-bd4f-d0c0f3e9aef6"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122135989956*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"94ac3a36-eac3-3445-8e5b-f25a3bd6c989"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.3_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122135994995*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"684dedab-d1cb-544f-9d13-9872514b3350"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.3_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.3_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122160504883*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"fc7ca350-323f-8246-ab44-67946c28a6ab"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122160508892*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"690f9cf2-51c5-8f4f-b15f-ca11acb267d3"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.4_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791221605104103`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"5aabbe31-5e07-a64f-b0e2-96f2c326b467"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.4_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.4_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122187306175*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"295bd4e3-a544-1640-9662-6489d77f9e09"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791221873091774`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"2e757313-2f1a-8c48-815f-1825c144ce82"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.5_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122187310684*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"14289d6d-8d9a-9649-8c74-d3aef30c46f2"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.5_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.5_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791222124447727`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c954f4e6-678f-da43-82f5-700d37f3549e"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.97912221244878*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"4966448a-7c14-d24c-955d-05c0cd444ff6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.6_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791222124502907`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"cb223513-8672-0440-a69a-4a1e808bac32"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.6_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.6_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791222402540703`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"8df336f0-6322-a448-9a75-66ac97ebea99"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791222402570724`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"8e4d7484-3647-124c-b167-3b1ef303fbc2"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.7_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122240258072*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"42d1a17c-06df-e449-bbb9-b69b54ff8616"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.7_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.7_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791222640597496`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ff9d3d83-9023-8b43-a360-785258e66c10"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791222640627766`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"80e20efb-7f5e-094e-94d9-1820ccc25286"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.8_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122264063774*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"1f52a4c7-7892-3d47-a74a-028532803c12"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.8_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.8_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122287584999*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"d348126a-6906-b34c-b4db-cf8833f334d4"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791222876000423`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ea8e4026-08d6-a64e-a9d9-14a224179813"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.9_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791222876020775`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"979e3814-2dde-f048-a5cb-8a60e93671d2"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-0.9_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-0.9_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791223119077187`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"430b25cd-2f18-654e-8207-1d32bed91a60"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791223119112415`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"d4c930c7-9b22-8345-b42d-1702e2c5911f"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L6_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791223119132576`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"a6f69ca0-e3ee-3145-89a1-40288bb7a9e1"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L6\\\\Entropy_L6_g-1.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L6\\Entropy_L6_g-1.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791223360995026`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ee4b8de0-1980-e846-956c-86fbc9dcf2d5"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791223361035175`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"523a3867-2532-604b-9573-07c6de5e9f09"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791223361055164`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"0a561c1c-1f7a-f14a-92dc-d44b30d5bfa4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122360334831*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"0d1758cb-6c8e-e241-9878-080e0bd9f6ff"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122360338339*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"2794c6c9-099f-e747-b568-09a7ac53daad"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g0.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122360339855*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"901bc0e4-c973-4646-81bb-90455817af7e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g0.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g0.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791223837973595`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"71d82c88-e978-a249-b451-b8bcc383065d"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791223837998753`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"62f4a67f-1e44-df40-91d8-ccdad69d5592"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.1_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122383801916*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b012c526-8aa9-a74f-bbc8-b7faac833894"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.1_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.1_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122407402235*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"3b06604a-7a9b-974a-b3b9-0e0f65a6fded"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122407404236*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"8fec69a2-7e1d-4a44-a866-24101b3d782b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.2_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224074062347`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"221980a3-f069-d148-a457-62006c7d9ffc"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.2_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.2_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224313781013`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"b2b2f223-1a01-a140-ac4b-8d4aebcb7513"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122431393358*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"1cb76f33-9648-b449-980e-7970409241d5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.3_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224313943615`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ca92c73f-d187-4744-af5c-4450f73d4486"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.3_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.3_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224550056*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"dccac226-7111-604a-b394-0600aa732f24"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122455008211*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"174cb10f-194f-9d40-8861-5ed2567bd0ff"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.4_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224550097313`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"cfb966e0-7f4e-ab46-aaa8-4f13e494df39"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.4_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.4_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224787083015`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"e3ff4276-0bef-f943-9122-7985027a940c"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791224787118473`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"425dd2e7-f761-6547-a21e-83e577f1db0e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.5_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791224787128506`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"f0c7e834-1992-ee4c-b3b5-dd06726ebc27"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.5_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.5_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225020135746`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c16c5060-1042-0148-af11-f2f5c3699d9c"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122502016552*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"812a24d4-68b0-7c47-8a6a-09647b6ce3ea"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.6_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225020175495`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"3fd90382-cfc5-cb45-ac41-7b968e1b53f1"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.6_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.6_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225252981815`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"09940fab-2930-b243-8caf-76b768a1985b"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791225253006916`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"8a10f2a7-de64-754a-a08f-5c7b3d5cfdd3"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.7_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122525301695*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"ce2e1360-2114-7745-8e9c-c11ac1234a02"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.7_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.7_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122548894039*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"27a2ef7d-0d89-9a49-aa05-f8d1ede4666a"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122548896557*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"5c967b73-cc77-d047-b8a8-f88688e93ffc"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.8_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225488975735`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"151ac59a-f474-3042-8608-6e6a0f7d3d3e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.8_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.8_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225725042095`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"39ceaf50-5d91-5c46-a79b-15d0d8b63093"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.9791225725194263`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"50c4d536-6ece-2845-8a2a-cbfa63948143"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.9_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225725204353`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"219bce9a-9cd2-e042-b358-7560e94481b5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-0.9_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-0.9_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225959775906`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"c04e2313-c42e-304a-8fb6-a574618f67f6"],
-
-Cell[BoxData["\<\"-------------------------------------------------\"\>"], \
-"Print",
- CellChangeTimes->{3.979122595980118*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"7769acf4-19b8-0849-abb4-e4384fd29d96"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Reading: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-1.0_LowField\"\>"}],
-  SequenceForm["Reading: ", "Entropy_L8_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791225959821606`*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"5357c786-2d07-d643-824e-adda2de08a79"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   -> Saved Plot: \"\>", 
-   "\[InvisibleSpace]", \
-"\<\"C:\\\\Users\\\\Miguel\\\\Github\\\\Entropy\\\\Prethermalization\\\\Low \
-Field calculations\\\\Data\\\\L8\\\\Entropy_L8_g-1.0_LowField.png\"\>"}],
-  SequenceForm[
-  "   -> Saved Plot: ", 
-   "C:\\Users\\Miguel\\Github\\Entropy\\Prethermalization\\Low Field \
-calculations\\Data\\L8\\Entropy_L8_g-1.0_LowField.png"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912261910116*^9},
- CellLabel->
-  "During evaluation of \
-In[20]:=",ExpressionUUID->"2720cf24-c062-f94a-8925-bd8a5ddb38b1"]
-}, Open  ]]
-}, Open  ]]
+ CellLabel->"In[20]:=",ExpressionUUID->"bd3ba7f5-57f0-ea46-8354-c24772cb5233"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -2943,1091 +1645,7 @@ this calculation.\"", 2, 37, 4, 31385930369349392476, "Local"},
  CellChangeTimes->{3.9791226197031384`*^9},
  CellLabel->
   "During evaluation of \
-In[37]:=",ExpressionUUID->"8fab719a-10e9-ad4f-8b52-cb851aad1c33"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226206207237`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"39d0ed22-cec6-c244-b78f-a0bfc5bbaf7a"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226207913094`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"a18de3b0-0c47-4e49-b384-e601658815f4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.1_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226217102413`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"6aa8ff95-2e9f-6d44-8b85-d7f37bf7d5eb"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912262198184*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"1b9de081-9da7-7841-92f3-d1436975ca79"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.2_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122622903446*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"c6b3c379-8767-ac42-9dba-e08ce8d637c6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226231562424`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4d5c5849-443b-604c-b23a-d79410471d02"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.3_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226240434246`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"d82e785e-bef7-1c4c-b17f-ea1615767335"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122624308796*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"7e233e1a-9137-174a-9165-0dad0412f56c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.4_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122625187826*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"37d161ef-d3a9-7044-8213-5f1affff4ea6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226254420185`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4db9615f-d3e4-c146-be98-c2ce9147f9b2"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.5_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226263324394`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4616ab27-7c33-9f4a-afb1-9532328169a4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226265828857`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"e49af916-7f30-9141-bdb2-789e572daa38"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.6_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122627463478*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"cc086535-bcd2-df47-a908-fc4f4a40f37b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226277089844`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"41341fdf-3f63-dd4a-a8ff-2eb04f388841"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.7_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226285808964`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"acbc39eb-e62c-064b-97d5-fe783b7e70e7"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122628828846*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"105b2cc5-2e82-1642-b7f5-37b86b94bd20"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.8_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226296960735`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"37ca3036-47e3-c342-9e83-6d4246a67dc1"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226299265575`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"d00b4508-5156-274c-9d7a-ca9d9bb67d4c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-0.9_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122630772707*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"f156e38d-c0fe-1a42-ae28-4b3762e90ad9"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122631005394*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"53b418a6-62a5-9a45-a9b7-68c3cca65ef2"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L10_g-1.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L10_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122631846279*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4e17882c-663b-7a4c-acea-86ae5d23e98f"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "10", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 10, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226320677414`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"6fc10581-92d3-d94e-9946-626bf90307de"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226328998814`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"896fa5bf-b3db-484c-9a50-0a1f957a39ba"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912263320302*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"a2b582b0-093f-9442-a28e-7ecbff08a900"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226341177483`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"fae72f1f-3467-5540-ab7a-533edb99442e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226345011253`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"55c1f7e4-f658-1746-8966-d1d9bbaf3151"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.1_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226352550926`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"c4da0c01-e92d-d24c-a70a-0919cd426186"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122635634474*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"ec730d90-b11e-464d-9c98-c37215bcfb32"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.2_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912263656678*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"ad4a9e28-ffde-7f46-96f9-4b887f5c0f2e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122636917841*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"8353860f-0fff-f94b-a438-4d060eb1c942"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.3_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226378353863`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"b52f6f6c-22ea-c645-adde-93cf28096cdb"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122638186697*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"11653c6f-7ca6-804e-a8c2-3405c77d24b1"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.4_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122639104761*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"38df8d61-8440-2b4f-ab7d-152a3aa68a18"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226394379425`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"31f0b4fc-33c1-e74a-b5d3-34ab1e6d28da"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.5_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226402993526`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"038e2d26-6370-7246-826d-af3ce340f488"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122640654608*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"0fe9ce6d-8754-394e-be53-51c039eb71e6"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.6_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122641575281*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"7aa65999-9e7e-c948-88fa-a03b0e3c6cf9"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226418947983`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"61f7a763-3c8d-3a4a-8b8b-4226b8c081f4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.7_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122642779646*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"5fd0682c-b5cd-7847-b2d6-e985825b4a86"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226430996017`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"f5b11d55-31a2-d84b-97bd-9b8def821354"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.8_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226439769897`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"6f2383da-4da6-2f49-9b8a-6b52ce960642"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226443057747`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"1344c298-c739-2547-a7fa-644cf4f924c4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-0.9_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122645195793*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"26acbf62-5306-5940-bc44-3c3e3daa4eab"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226455151596`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"60374f62-bb2d-f341-be2d-33585f77b13e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L12_g-1.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L12_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226464163322`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"17544d2f-957b-fd46-9db0-90224db0f509"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "12", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 12, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226467319374`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"8adf650b-202a-6840-b3a3-a222097d4ddb"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226476029015`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"865e8b38-09d6-ee4e-819e-28344ef3030f"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226478279877`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"d88e1ef1-33b9-ad4d-84c5-fc7d6ff732bf"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226487536297`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"43fbadbd-a8b0-9847-8fc0-026c3574515d"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226489466114`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"bfa0f6ee-fec5-0c4a-a37f-07ee8daf2bb5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.1_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226498575897`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"d388b7ab-4c63-1643-b38e-962a1b94de6e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122650051447*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"5b6a61db-4102-3940-a0ab-da89e22fa4a5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.2_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226509601154`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"12310461-1a53-c546-a81e-58ed13d5ee67"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122651147539*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"629a48e3-5ed9-0c46-a881-2b4f292e53e5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.3_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122652075163*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4b067e48-0a1a-5443-82d3-5eae04309b84"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226522820415`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"fe5de7dd-3ddc-3e4f-97e5-a2b193ccfb88"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.4_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122653190178*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"6606934f-75e9-0e4f-b65e-f3978b148546"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912265337982*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"997b9abc-1985-e843-bcb0-43c8a8d46155"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.5_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122654266176*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"d99b8451-53d5-ef47-b8f9-6a00f4163170"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912265446653*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"dbacce13-da8e-5347-ad21-ffc95d8bb221"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.6_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226553444443`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"5d930f9b-3455-ba47-86c6-c88499e087db"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122655546198*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4bfd2d1d-9366-464b-90b5-5d12245fd493"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.7_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.97912265641078*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"6930c022-dfb2-564a-a919-44ab49a6b38c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226566026115`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"06fce00c-712e-8e48-9fca-69f61961e26b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.8_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226574703617`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"0f2e2216-1a93-fe46-be7b-89129c275bc5"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226576719875`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"909834a9-88c6-f145-9d22-bb8472e517cb"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-0.9_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226585241375`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"953bfd0b-6e6b-c340-895d-62f400eac827"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226587197323`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"71811de7-a16f-8643-8f1e-5b036b007e3e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L6_g-1.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L6_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122659563244*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"cc0fe991-f2b6-2148-8585-530156a22d03"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "6", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 6, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226597553177`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"0dbbd3f3-733c-1c45-841c-70d4f6e769fa"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226605730934`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4f5b1fbd-7501-9f44-a4e8-4c2224478d35"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226607680874`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"54d1035a-4054-4f44-9cd6-f1501efb2a60"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g0.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g0.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226616736317`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"89014482-d266-3c49-b400-1199cf45e9b7"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226618763123`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4ce70eb6-d673-5b4c-b565-c6192524011e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.1_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.1_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226627970924`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"9ae06df3-ddf9-5c4d-a737-2bbe41272458"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226629969215`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"423c960b-d39f-ef40-b992-86d7672f7774"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.2_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.2_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226638954296`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"4a7bafb1-0869-874d-8d30-f985ab10fa78"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226641023483`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"99c97343-a0c6-be47-95bd-a60febe8b76d"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.3_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.3_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122665012327*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"5da7d478-c7ae-1f42-ae89-02a7c44c7875"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122665211378*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"b25d32e3-0a58-c243-b492-5063f9efef30"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.4_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.4_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122666121212*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"e34e473b-b473-154a-a8c5-8fe12d5b21e4"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226663187714`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"352ae304-f22e-3a4c-8935-a03bc18b8e1b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.5_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.5_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122667219145*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"366ce74a-f937-4844-9a83-df075cd3c244"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226674195786`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"31eaa8bb-86a4-8a49-b559-d77f0f86a0b8"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.6_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.6_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226683076153`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"5f17ca56-c363-7a48-8a6d-c5c9c264f6f8"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226685066147`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"f2840cd7-4c7a-9d47-a3cb-bd2e945ab70c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.7_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.7_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122669395893*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"ec1fa6fd-37c5-4a4a-b15d-f10e0878b444"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226695954285`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"6b7c659b-cdc3-2c4b-a4af-7b98cb8b207c"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.8_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.8_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122670473057*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"8192c081-8373-2146-ae82-910768a44c9b"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122670685425*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"54f75615-83cb-0f4f-b16b-135a279bc657"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-0.9_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-0.9_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122671565254*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"bce7c499-b056-9d49-9495-da3466b24b6e"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226717633705`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"359741f2-6109-b145-822f-c5b3d21662d0"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Processing crossings: \"\>", 
-   "\[InvisibleSpace]", "\<\"Entropy_L8_g-1.0_LowField\"\>"}],
-  SequenceForm["Processing crossings: ", "Entropy_L8_g-1.0_LowField"],
-  Editable->False]], "Print",
- CellChangeTimes->{3.9791226726109543`*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"563aeff1-0fa5-be42-aaf6-57f01970c233"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"   L = \"\>", "\[InvisibleSpace]", "8", 
-   "\[InvisibleSpace]", "\<\"  threshold = \"\>", "\[InvisibleSpace]", 
-   "0.6931471805599453`"}],
-  SequenceForm["   L = ", 8, "  threshold = ", 0.6931471805599453],
-  Editable->False]], "Print",
- CellChangeTimes->{3.979122672802412*^9},
- CellLabel->
-  "During evaluation of \
-In[37]:=",ExpressionUUID->"f4d17734-8aa5-994f-8230-9136b4086a16"]
-}, Open  ]]
+In[37]:=",ExpressionUUID->"8fab719a-10e9-ad4f-8b52-cb851aad1c33"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -4362,12 +1980,12 @@ calculations\\Data"],
   "During evaluation of \
 In[42]:=",ExpressionUUID->"d6304f15-2b34-c44b-8b3d-1a4ea4b4c1fe"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 },
-WindowSize->{1645.7142857142856`, 858},
+WindowSize->{1152, 579.6},
 WindowMargins->{{
-  Automatic, -5.14285714285711}, {-5.14285714285711, Automatic}},
-LightDark->"Dark",
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+LightDark->"Light",
 TaggingRules-><|"TryRealOnly" -> False, "SSOActivationInProgress" -> False|>,
 CellContext->Notebook,
 InputAliases-><|"intt" -> RowBox[{"\[Integral]", 
@@ -4491,291 +2109,73 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 251, 4, 96, "Title",ExpressionUUID->"25be0cfd-3fc1-144d-b227-6ee01f96ece8"],
-Cell[834, 28, 3013, 79, 351, "Input",ExpressionUUID->"2998d024-face-a443-8764-bae37a8722ed"],
-Cell[3850, 109, 4122, 111, 256, "Input",ExpressionUUID->"f9fb6d27-1ddc-4b4d-b039-149a731134f1"]
+Cell[834, 28, 3017, 80, 351, "Input",ExpressionUUID->"2998d024-face-a443-8764-bae37a8722ed"],
+Cell[3854, 110, 4122, 111, 256, "Input",ExpressionUUID->"f9fb6d27-1ddc-4b4d-b039-149a731134f1"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[8009, 225, 151, 3, 70, "Title",ExpressionUUID->"79d71e16-ad58-174d-998a-124939f5754b"],
-Cell[8163, 230, 2910, 83, 142, "Input",ExpressionUUID->"c1e7d88b-6e93-4447-be83-9b946c8b5e08"],
-Cell[11076, 315, 11619, 250, 751, "Input",ExpressionUUID->"bed2e216-ce59-e649-86c4-96c3ea6a86c0"],
+Cell[8013, 226, 151, 3, 70, "Title",ExpressionUUID->"79d71e16-ad58-174d-998a-124939f5754b"],
+Cell[8167, 231, 2938, 83, 142, "Input",ExpressionUUID->"c1e7d88b-6e93-4447-be83-9b946c8b5e08"],
+Cell[11108, 316, 11619, 250, 789, "Input",ExpressionUUID->"bed2e216-ce59-e649-86c4-96c3ea6a86c0"],
 Cell[CellGroupData[{
-Cell[22720, 569, 277, 7, 28, "Input",ExpressionUUID->"3bd39698-59fb-2447-893d-ac7c4794a2f8"],
-Cell[23000, 578, 158, 2, 32, "Output",ExpressionUUID->"e29b982b-af7f-ab46-bde4-401a327c3c4b"]
-}, Open  ]]
-}, Closed]],
+Cell[22752, 570, 277, 7, 28, "Input",ExpressionUUID->"3bd39698-59fb-2447-893d-ac7c4794a2f8"],
 Cell[CellGroupData[{
-Cell[23207, 586, 168, 3, 70, "Title",ExpressionUUID->"b5c61b6d-2746-0844-ab12-76c3dc851366"],
-Cell[23378, 591, 11478, 278, 751, "Input",ExpressionUUID->"748a92dd-36c4-5f45-b1b8-bd5680b3b53d"],
-Cell[CellGroupData[{
-Cell[34881, 873, 883, 23, 47, "Input",ExpressionUUID->"bd3ba7f5-57f0-ea46-8354-c24772cb5233"],
-Cell[CellGroupData[{
-Cell[35789, 900, 234, 5, 22, "Print",ExpressionUUID->"544b8790-dbe5-bb4e-9251-d3bde06847c6"],
-Cell[36026, 907, 367, 9, 22, "Print",ExpressionUUID->"5ce101a9-f09e-b74d-aa31-f5a5ca75b34f"],
-Cell[36396, 918, 602, 14, 22, "Print",ExpressionUUID->"b6d07804-c2d5-3a45-91bc-f060f36800fb"],
-Cell[37001, 934, 234, 5, 22, "Print",ExpressionUUID->"139313d9-3cff-b04f-bdf4-1f71cc021f68"],
-Cell[37238, 941, 365, 9, 22, "Print",ExpressionUUID->"eba0c384-3cef-464d-adad-f35530d5153b"],
-Cell[37606, 952, 602, 14, 22, "Print",ExpressionUUID->"316221ba-b700-4047-9369-a7b5aa554ab3"],
-Cell[38211, 968, 232, 5, 22, "Print",ExpressionUUID->"9c3545fa-581b-9649-a148-54eecb1751c6"],
-Cell[38446, 975, 367, 9, 22, "Print",ExpressionUUID->"3882323c-0205-bc40-90a5-5abe561d4118"],
-Cell[38816, 986, 604, 14, 22, "Print",ExpressionUUID->"ff7c39e6-94ae-3748-96fc-4fc63c8e70c9"],
-Cell[39423, 1002, 234, 5, 22, "Print",ExpressionUUID->"b2adbdaa-84c2-7b40-8706-f92a0f2f794d"],
-Cell[39660, 1009, 365, 9, 22, "Print",ExpressionUUID->"d9426392-194b-cd44-9a0b-98684b2e3a85"],
-Cell[40028, 1020, 604, 14, 70, "Print",ExpressionUUID->"42ce05f8-718e-6b49-8fae-161c0478dffc"],
-Cell[40635, 1036, 234, 5, 70, "Print",ExpressionUUID->"773f3fc7-302f-934a-979a-df166283e6b3"],
-Cell[40872, 1043, 367, 9, 70, "Print",ExpressionUUID->"fb0089f0-59f3-a845-9532-d24ea79b461b"],
-Cell[41242, 1054, 602, 14, 70, "Print",ExpressionUUID->"730640be-4f0e-a445-9f7f-e02a95af6590"],
-Cell[41847, 1070, 234, 5, 70, "Print",ExpressionUUID->"a931e20f-b424-6a4c-ab36-6becbd2851a1"],
-Cell[42084, 1077, 365, 9, 70, "Print",ExpressionUUID->"91db05e7-2487-5847-a016-ae067ed37490"],
-Cell[42452, 1088, 602, 14, 70, "Print",ExpressionUUID->"e77f14ca-86fd-e544-8264-6a07da5fa084"],
-Cell[43057, 1104, 234, 5, 70, "Print",ExpressionUUID->"d48f0725-bf39-ce41-bc56-9ed5475b114c"],
-Cell[43294, 1111, 367, 9, 70, "Print",ExpressionUUID->"e60ee424-9d39-1e48-a5bf-fdb344c7e186"],
-Cell[43664, 1122, 604, 14, 70, "Print",ExpressionUUID->"b3ff231c-6059-5f41-adee-f07c1d6f3778"],
-Cell[44271, 1138, 234, 5, 70, "Print",ExpressionUUID->"ebf251cb-c798-3648-b927-f7bb61916a5b"],
-Cell[44508, 1145, 365, 9, 70, "Print",ExpressionUUID->"b7ed125d-e841-fc4c-ac6b-ca2dda01b6a7"],
-Cell[44876, 1156, 602, 14, 70, "Print",ExpressionUUID->"c113c270-7c86-184f-ad3a-f5449f151c43"],
-Cell[45481, 1172, 232, 5, 70, "Print",ExpressionUUID->"9edc09cb-d116-c74f-a494-0abd6dbf4680"],
-Cell[45716, 1179, 365, 9, 70, "Print",ExpressionUUID->"c8292f9e-331c-bc46-9dde-175ae9b765b6"],
-Cell[46084, 1190, 604, 14, 70, "Print",ExpressionUUID->"5f68a18e-1abf-6c46-89ec-8ce029df84d0"],
-Cell[46691, 1206, 232, 5, 70, "Print",ExpressionUUID->"c89690c1-7b35-a040-80f5-5f62e3c3ef2f"],
-Cell[46926, 1213, 365, 9, 70, "Print",ExpressionUUID->"9cda9a17-1d90-1b4b-8474-3585e3988756"],
-Cell[47294, 1224, 604, 14, 70, "Print",ExpressionUUID->"c2b3f1b4-d69d-1b4f-85e5-ede90accb550"],
-Cell[47901, 1240, 234, 5, 70, "Print",ExpressionUUID->"b6a09e3f-0971-404b-b577-78b801add28d"],
-Cell[48138, 1247, 367, 9, 70, "Print",ExpressionUUID->"115e00af-b550-b34f-886d-5618ab4898eb"],
-Cell[48508, 1258, 604, 14, 70, "Print",ExpressionUUID->"c2bfb68f-08c0-b44c-8609-a79d88df2f63"],
-Cell[49115, 1274, 234, 5, 70, "Print",ExpressionUUID->"853997d9-9e07-2245-b27e-fd1eba84d8b9"],
-Cell[49352, 1281, 367, 9, 70, "Print",ExpressionUUID->"061e6937-7cf7-f441-ae65-189f705d8f04"],
-Cell[49722, 1292, 602, 14, 70, "Print",ExpressionUUID->"483df631-60f0-4646-9aa8-65b527658016"],
-Cell[50327, 1308, 232, 5, 70, "Print",ExpressionUUID->"b4d87e95-86c3-6543-9cf3-048be06fec8b"],
-Cell[50562, 1315, 367, 9, 70, "Print",ExpressionUUID->"41626654-1c81-1142-b5dd-7f3cb4660160"],
-Cell[50932, 1326, 602, 14, 70, "Print",ExpressionUUID->"b20e73fe-bb3b-2148-8229-8bb4d7850b7d"],
-Cell[51537, 1342, 232, 5, 70, "Print",ExpressionUUID->"99cfec9c-7cae-1046-a627-6323390bc924"],
-Cell[51772, 1349, 365, 9, 70, "Print",ExpressionUUID->"1e2334a7-f38a-4347-8c41-067aa14195c6"],
-Cell[52140, 1360, 602, 14, 70, "Print",ExpressionUUID->"5aafc416-9f53-9649-8a5d-fa13ce8c00f2"],
-Cell[52745, 1376, 234, 5, 70, "Print",ExpressionUUID->"3d044a60-646f-5e4b-8569-cb2a77972545"],
-Cell[52982, 1383, 367, 9, 70, "Print",ExpressionUUID->"7ad7d5b9-255e-d24b-8da0-a23232728211"],
-Cell[53352, 1394, 604, 14, 70, "Print",ExpressionUUID->"913a57da-d493-6548-8856-320a29046cbe"],
-Cell[53959, 1410, 232, 5, 70, "Print",ExpressionUUID->"a372ea16-cc8a-9a40-9f0c-a908d55e4797"],
-Cell[54194, 1417, 367, 9, 70, "Print",ExpressionUUID->"025be904-df15-2048-a132-26ffbb5092ce"],
-Cell[54564, 1428, 602, 14, 70, "Print",ExpressionUUID->"eac0e67b-5c62-4941-8b43-ce1df0b46ee7"],
-Cell[55169, 1444, 232, 5, 70, "Print",ExpressionUUID->"23986342-86c4-8347-8c13-deba8ee6a009"],
-Cell[55404, 1451, 365, 9, 70, "Print",ExpressionUUID->"f1c00ca2-1858-794a-9a35-1cd6f73bdec3"],
-Cell[55772, 1462, 604, 14, 70, "Print",ExpressionUUID->"94a6d4d7-c542-7e41-bbbc-0d62656b546c"],
-Cell[56379, 1478, 232, 5, 70, "Print",ExpressionUUID->"75e9aab9-33b3-eb4c-a7ea-372cea21ec85"],
-Cell[56614, 1485, 364, 9, 70, "Print",ExpressionUUID->"1a07e0a4-f626-aa48-b61a-bc6bf7e8fdd8"],
-Cell[56981, 1496, 602, 14, 70, "Print",ExpressionUUID->"b8f5c2bd-d6e1-064c-9085-65aa0646f89b"],
-Cell[57586, 1512, 234, 5, 70, "Print",ExpressionUUID->"bda88117-4dd3-c148-bbf8-1f4cd3f04458"],
-Cell[57823, 1519, 364, 9, 70, "Print",ExpressionUUID->"dc64d423-e3a9-e541-935b-c18f7d228d5e"],
-Cell[58190, 1530, 602, 14, 70, "Print",ExpressionUUID->"a16d422a-7a53-2744-a99a-00d80403e7f8"],
-Cell[58795, 1546, 232, 5, 70, "Print",ExpressionUUID->"00d9df87-e0b1-4b45-87ae-af9c38714063"],
-Cell[59030, 1553, 367, 9, 70, "Print",ExpressionUUID->"39b6710e-093b-e441-ba22-ccb34a34c3d5"],
-Cell[59400, 1564, 602, 14, 70, "Print",ExpressionUUID->"2b05f9c6-abc1-074c-ad8e-c1f898365df1"],
-Cell[60005, 1580, 234, 5, 70, "Print",ExpressionUUID->"cca6e09d-0e4a-5045-8fc9-4002c20ac48d"],
-Cell[60242, 1587, 367, 9, 70, "Print",ExpressionUUID->"bab92808-e31c-2e4c-b203-35d489b6bdc5"],
-Cell[60612, 1598, 604, 14, 70, "Print",ExpressionUUID->"eb4721be-5e76-174d-a620-496f76b8073b"],
-Cell[61219, 1614, 232, 5, 70, "Print",ExpressionUUID->"2c60b536-ae3a-1946-b248-b655d23d1259"],
-Cell[61454, 1621, 367, 9, 70, "Print",ExpressionUUID->"0900fab1-7e75-5b4c-aeb3-d143f986ad63"],
-Cell[61824, 1632, 602, 14, 70, "Print",ExpressionUUID->"b748015c-bd14-1347-baee-99f677a18b26"],
-Cell[62429, 1648, 234, 5, 70, "Print",ExpressionUUID->"676ff689-9421-e943-86da-6d07a9ccb17d"],
-Cell[62666, 1655, 367, 9, 70, "Print",ExpressionUUID->"01ad7a44-7caf-af44-939c-8e8c6ae99497"],
-Cell[63036, 1666, 602, 14, 70, "Print",ExpressionUUID->"b21961bc-e8c2-a149-8358-9916cbf2bd59"],
-Cell[63641, 1682, 232, 5, 70, "Print",ExpressionUUID->"dad2a05b-9dc9-5d40-b596-70df8ede6c7c"],
-Cell[63876, 1689, 365, 9, 70, "Print",ExpressionUUID->"3e4ffc5b-8200-4449-a94e-015fa9fe8dab"],
-Cell[64244, 1700, 602, 14, 70, "Print",ExpressionUUID->"10e416cb-34b2-3c40-b309-1fc60800dfad"],
-Cell[64849, 1716, 234, 5, 70, "Print",ExpressionUUID->"43842bcd-1938-134a-a34f-372fba6477fe"],
-Cell[65086, 1723, 363, 9, 70, "Print",ExpressionUUID->"32432da3-9ac8-584f-956f-32271cd9ca29"],
-Cell[65452, 1734, 598, 14, 70, "Print",ExpressionUUID->"36d4e523-e844-6b4f-ade1-6a04c40f1366"],
-Cell[66053, 1750, 232, 5, 70, "Print",ExpressionUUID->"e5582b71-93df-f241-ba1e-38f17488c638"],
-Cell[66288, 1757, 363, 9, 70, "Print",ExpressionUUID->"8bfdb09f-8060-a344-85df-ecbaecbbfa7c"],
-Cell[66654, 1768, 598, 14, 70, "Print",ExpressionUUID->"2851b05e-a49e-8a40-88dc-d3ce4d164965"],
-Cell[67255, 1784, 231, 5, 70, "Print",ExpressionUUID->"62dd311e-ca5b-1a4d-ae38-6f4f1590714f"],
-Cell[67489, 1791, 362, 9, 70, "Print",ExpressionUUID->"01ddb2a7-be11-7b4b-885a-2cd69eb23454"],
-Cell[67854, 1802, 598, 14, 70, "Print",ExpressionUUID->"7b9fd749-5dc1-a24b-8d88-392d7a11ed9a"],
-Cell[68455, 1818, 234, 5, 70, "Print",ExpressionUUID->"0273448d-276f-944d-9b0b-85a6385d0824"],
-Cell[68692, 1825, 363, 9, 70, "Print",ExpressionUUID->"6e3eef29-1016-474a-ae9a-95a6862ed3ba"],
-Cell[69058, 1836, 600, 14, 70, "Print",ExpressionUUID->"0cbe3fdd-1b21-354c-bd4f-d0c0f3e9aef6"],
-Cell[69661, 1852, 232, 5, 70, "Print",ExpressionUUID->"94ac3a36-eac3-3445-8e5b-f25a3bd6c989"],
-Cell[69896, 1859, 363, 9, 70, "Print",ExpressionUUID->"684dedab-d1cb-544f-9d13-9872514b3350"],
-Cell[70262, 1870, 598, 14, 70, "Print",ExpressionUUID->"fc7ca350-323f-8246-ab44-67946c28a6ab"],
-Cell[70863, 1886, 232, 5, 70, "Print",ExpressionUUID->"690f9cf2-51c5-8f4f-b15f-ca11acb267d3"],
-Cell[71098, 1893, 365, 9, 70, "Print",ExpressionUUID->"5aabbe31-5e07-a64f-b0e2-96f2c326b467"],
-Cell[71466, 1904, 598, 14, 70, "Print",ExpressionUUID->"295bd4e3-a544-1640-9662-6489d77f9e09"],
-Cell[72067, 1920, 234, 5, 70, "Print",ExpressionUUID->"2e757313-2f1a-8c48-815f-1825c144ce82"],
-Cell[72304, 1927, 363, 9, 70, "Print",ExpressionUUID->"14289d6d-8d9a-9649-8c74-d3aef30c46f2"],
-Cell[72670, 1938, 600, 14, 70, "Print",ExpressionUUID->"c954f4e6-678f-da43-82f5-700d37f3549e"],
-Cell[73273, 1954, 231, 5, 70, "Print",ExpressionUUID->"4966448a-7c14-d24c-955d-05c0cd444ff6"],
-Cell[73507, 1961, 365, 9, 70, "Print",ExpressionUUID->"cb223513-8672-0440-a69a-4a1e808bac32"],
-Cell[73875, 1972, 600, 14, 70, "Print",ExpressionUUID->"8df336f0-6322-a448-9a75-66ac97ebea99"],
-Cell[74478, 1988, 234, 5, 70, "Print",ExpressionUUID->"8e4d7484-3647-124c-b167-3b1ef303fbc2"],
-Cell[74715, 1995, 363, 9, 70, "Print",ExpressionUUID->"42d1a17c-06df-e449-bbb9-b69b54ff8616"],
-Cell[75081, 2006, 600, 14, 70, "Print",ExpressionUUID->"ff9d3d83-9023-8b43-a360-785258e66c10"],
-Cell[75684, 2022, 234, 5, 70, "Print",ExpressionUUID->"80e20efb-7f5e-094e-94d9-1820ccc25286"],
-Cell[75921, 2029, 363, 9, 70, "Print",ExpressionUUID->"1f52a4c7-7892-3d47-a74a-028532803c12"],
-Cell[76287, 2040, 598, 14, 70, "Print",ExpressionUUID->"d348126a-6906-b34c-b4db-cf8833f334d4"],
-Cell[76888, 2056, 234, 5, 70, "Print",ExpressionUUID->"ea8e4026-08d6-a64e-a9d9-14a224179813"],
-Cell[77125, 2063, 365, 9, 70, "Print",ExpressionUUID->"979e3814-2dde-f048-a5cb-8a60e93671d2"],
-Cell[77493, 2074, 600, 14, 70, "Print",ExpressionUUID->"430b25cd-2f18-654e-8207-1d32bed91a60"],
-Cell[78096, 2090, 234, 5, 70, "Print",ExpressionUUID->"d4c930c7-9b22-8345-b42d-1702e2c5911f"],
-Cell[78333, 2097, 365, 9, 70, "Print",ExpressionUUID->"a6f69ca0-e3ee-3145-89a1-40288bb7a9e1"],
-Cell[78701, 2108, 600, 14, 70, "Print",ExpressionUUID->"ee4b8de0-1980-e846-956c-86fbc9dcf2d5"],
-Cell[79304, 2124, 234, 5, 70, "Print",ExpressionUUID->"523a3867-2532-604b-9573-07c6de5e9f09"],
-Cell[79541, 2131, 365, 9, 70, "Print",ExpressionUUID->"0a561c1c-1f7a-f14a-92dc-d44b30d5bfa4"],
-Cell[79909, 2142, 598, 14, 70, "Print",ExpressionUUID->"0d1758cb-6c8e-e241-9878-080e0bd9f6ff"],
-Cell[80510, 2158, 232, 5, 70, "Print",ExpressionUUID->"2794c6c9-099f-e747-b568-09a7ac53daad"],
-Cell[80745, 2165, 361, 9, 70, "Print",ExpressionUUID->"901bc0e4-c973-4646-81bb-90455817af7e"],
-Cell[81109, 2176, 598, 14, 70, "Print",ExpressionUUID->"71d82c88-e978-a249-b451-b8bcc383065d"],
-Cell[81710, 2192, 234, 5, 70, "Print",ExpressionUUID->"62f4a67f-1e44-df40-91d8-ccdad69d5592"],
-Cell[81947, 2199, 363, 9, 70, "Print",ExpressionUUID->"b012c526-8aa9-a74f-bbc8-b7faac833894"],
-Cell[82313, 2210, 598, 14, 70, "Print",ExpressionUUID->"3b06604a-7a9b-974a-b3b9-0e0f65a6fded"],
-Cell[82914, 2226, 232, 5, 70, "Print",ExpressionUUID->"8fec69a2-7e1d-4a44-a866-24101b3d782b"],
-Cell[83149, 2233, 365, 9, 70, "Print",ExpressionUUID->"221980a3-f069-d148-a457-62006c7d9ffc"],
-Cell[83517, 2244, 600, 14, 70, "Print",ExpressionUUID->"b2b2f223-1a01-a140-ac4b-8d4aebcb7513"],
-Cell[84120, 2260, 232, 5, 70, "Print",ExpressionUUID->"1cb76f33-9648-b449-980e-7970409241d5"],
-Cell[84355, 2267, 365, 9, 70, "Print",ExpressionUUID->"ca92c73f-d187-4744-af5c-4450f73d4486"],
-Cell[84723, 2278, 596, 14, 70, "Print",ExpressionUUID->"dccac226-7111-604a-b394-0600aa732f24"],
-Cell[85322, 2294, 232, 5, 70, "Print",ExpressionUUID->"174cb10f-194f-9d40-8861-5ed2567bd0ff"],
-Cell[85557, 2301, 365, 9, 70, "Print",ExpressionUUID->"cfb966e0-7f4e-ab46-aaa8-4f13e494df39"],
-Cell[85925, 2312, 600, 14, 70, "Print",ExpressionUUID->"e3ff4276-0bef-f943-9122-7985027a940c"],
-Cell[86528, 2328, 234, 5, 70, "Print",ExpressionUUID->"425dd2e7-f761-6547-a21e-83e577f1db0e"],
-Cell[86765, 2335, 365, 9, 70, "Print",ExpressionUUID->"f0c7e834-1992-ee4c-b3b5-dd06726ebc27"],
-Cell[87133, 2346, 600, 14, 70, "Print",ExpressionUUID->"c16c5060-1042-0148-af11-f2f5c3699d9c"],
-Cell[87736, 2362, 232, 5, 70, "Print",ExpressionUUID->"812a24d4-68b0-7c47-8a6a-09647b6ce3ea"],
-Cell[87971, 2369, 365, 9, 70, "Print",ExpressionUUID->"3fd90382-cfc5-cb45-ac41-7b968e1b53f1"],
-Cell[88339, 2380, 600, 14, 70, "Print",ExpressionUUID->"09940fab-2930-b243-8caf-76b768a1985b"],
-Cell[88942, 2396, 234, 5, 70, "Print",ExpressionUUID->"8a10f2a7-de64-754a-a08f-5c7b3d5cfdd3"],
-Cell[89179, 2403, 363, 9, 70, "Print",ExpressionUUID->"ce2e1360-2114-7745-8e9c-c11ac1234a02"],
-Cell[89545, 2414, 598, 14, 70, "Print",ExpressionUUID->"27a2ef7d-0d89-9a49-aa05-f8d1ede4666a"],
-Cell[90146, 2430, 232, 5, 70, "Print",ExpressionUUID->"5c967b73-cc77-d047-b8a8-f88688e93ffc"],
-Cell[90381, 2437, 365, 9, 70, "Print",ExpressionUUID->"151ac59a-f474-3042-8608-6e6a0f7d3d3e"],
-Cell[90749, 2448, 600, 14, 70, "Print",ExpressionUUID->"39ceaf50-5d91-5c46-a79b-15d0d8b63093"],
-Cell[91352, 2464, 234, 5, 70, "Print",ExpressionUUID->"50c4d536-6ece-2845-8a2a-cbfa63948143"],
-Cell[91589, 2471, 365, 9, 70, "Print",ExpressionUUID->"219bce9a-9cd2-e042-b358-7560e94481b5"],
-Cell[91957, 2482, 600, 14, 70, "Print",ExpressionUUID->"c04e2313-c42e-304a-8fb6-a574618f67f6"],
-Cell[92560, 2498, 232, 5, 70, "Print",ExpressionUUID->"7769acf4-19b8-0849-abb4-e4384fd29d96"],
-Cell[92795, 2505, 365, 9, 70, "Print",ExpressionUUID->"5357c786-2d07-d643-824e-adda2de08a79"],
-Cell[93163, 2516, 597, 14, 70, "Print",ExpressionUUID->"2720cf24-c062-f94a-8925-bd8a5ddb38b1"]
-}, Open  ]]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[93821, 2537, 205, 4, 70, "Title",ExpressionUUID->"4f696317-79a2-7e41-a065-402bd0c30e34"],
-Cell[94029, 2543, 8249, 202, 580, "Input",ExpressionUUID->"41ee1747-658e-214d-8877-9467e7137ada"],
-Cell[102281, 2747, 740, 19, 47, "Input",ExpressionUUID->"6b6269f8-7103-4e41-98cd-d86396c913f0"],
-Cell[103024, 2768, 1127, 31, 104, "Input",ExpressionUUID->"a8565df3-e891-ce4b-a0e5-6bd17851f450"],
-Cell[104154, 2801, 1424, 40, 104, "Input",ExpressionUUID->"4eca21d8-fa1f-f34d-9ca6-604c4e0e38de"],
-Cell[105581, 2843, 443, 10, 28, "Input",ExpressionUUID->"a3af9aa5-d21b-9f48-8855-8157033e73ae"],
-Cell[CellGroupData[{
-Cell[106049, 2857, 256, 4, 28, "Input",ExpressionUUID->"c929a817-707a-e440-8ce9-c3f4b4c0a699"],
-Cell[CellGroupData[{
-Cell[106330, 2865, 390, 9, 70, "Print",ExpressionUUID->"a8abd177-65f3-314a-9e70-b060c4fb0a76"],
-Cell[106723, 2876, 436, 10, 70, "Print",ExpressionUUID->"0f6ecdfc-e7ab-2d49-869d-346b6de02948"]
+Cell[23054, 581, 458, 13, 55, "Print",ExpressionUUID->"b2f88d74-80ca-5948-b612-6d324c95d9eb"],
+Cell[23515, 596, 518, 17, 24, "Print",ExpressionUUID->"501d9aa8-65e0-dd4b-96ff-6fc95bc3c068"],
+Cell[24036, 615, 476, 10, 22, "Print",ExpressionUUID->"abb09be1-5353-4447-b268-bdbe735388f3"],
+Cell[24515, 627, 373, 9, 22, "Print",ExpressionUUID->"e2f35caa-aac1-ba4c-92f6-218d32af6c4a"],
+Cell[24891, 638, 516, 17, 24, "Print",ExpressionUUID->"4b3b1062-8073-184f-837c-7b57ea6dd4a5"],
+Cell[25410, 657, 476, 10, 22, "Print",ExpressionUUID->"14f318a9-1e25-2d4e-b391-4d2918a43eaa"],
+Cell[25889, 669, 375, 9, 22, "Print",ExpressionUUID->"9cbbf223-c2a8-af4d-9799-359bbbd1abb1"],
+Cell[26267, 680, 518, 17, 24, "Print",ExpressionUUID->"e4f384ee-7a23-3a45-a37e-2c622f6b22d3"],
+Cell[26788, 699, 478, 10, 22, "Print",ExpressionUUID->"e5875082-4435-6549-80e4-d4086ca9aa94"],
+Cell[27269, 711, 373, 9, 22, "Print",ExpressionUUID->"a2dd93fd-0cdb-f24b-ada4-d6457f07090a"],
+Cell[27645, 722, 518, 17, 24, "Print",ExpressionUUID->"9ab08f5a-e30d-3d47-b478-91ee83b0eec7"],
+Cell[28166, 741, 478, 10, 22, "Print",ExpressionUUID->"21bd6fb0-08a2-2944-8d6c-2d25c3f30d62"],
+Cell[28647, 753, 373, 9, 22, "Print",ExpressionUUID->"6a72dd73-c760-514c-8670-03395d2fd553"],
+Cell[29023, 764, 516, 17, 24, "Print",ExpressionUUID->"d086ac56-8ac3-404d-bf74-038751841f67"],
+Cell[29542, 783, 476, 10, 22, "Print",ExpressionUUID->"75ab6aaf-1a35-5b4b-9fc3-0b82783f41bc"],
+Cell[30021, 795, 375, 9, 22, "Print",ExpressionUUID->"5775a376-f18d-3048-99af-88edca0b10dd"],
+Cell[30399, 806, 518, 17, 24, "Print",ExpressionUUID->"b7b89847-322c-cc4e-89fe-60884efe9ca0"],
+Cell[30920, 825, 478, 10, 22, "Print",ExpressionUUID->"e2684314-d41e-e748-849b-fde0bccb2163"],
+Cell[31401, 837, 373, 9, 22, "Print",ExpressionUUID->"77e7aab8-3ec9-d042-9084-4f1407cf9837"],
+Cell[31777, 848, 516, 17, 24, "Print",ExpressionUUID->"a4cb1a1f-e6ea-504e-be0e-1acf71260fb9"],
+Cell[32296, 867, 476, 10, 22, "Print",ExpressionUUID->"dc2176ff-bc62-7c40-817a-4faf0f367c70"]
 }, Open  ]],
-Cell[107174, 2889, 583, 13, 70, "Message",ExpressionUUID->"b011ef26-1a2d-cc46-9c09-67283fcc6865"],
-Cell[107760, 2904, 583, 13, 70, "Message",ExpressionUUID->"754a3c9e-3cce-5c4f-b647-e64a5f6f1d30"],
-Cell[108346, 2919, 581, 13, 70, "Message",ExpressionUUID->"6b225d92-7626-454f-b197-5e2204090926"],
-Cell[108930, 2934, 472, 11, 70, "Message",ExpressionUUID->"8fab719a-10e9-ad4f-8b52-cb851aad1c33"],
-Cell[CellGroupData[{
-Cell[109427, 2949, 391, 9, 70, "Print",ExpressionUUID->"39d0ed22-cec6-c244-b78f-a0bfc5bbaf7a"],
-Cell[109821, 2960, 438, 10, 70, "Print",ExpressionUUID->"a18de3b0-0c47-4e49-b384-e601658815f4"],
-Cell[110262, 2972, 393, 9, 70, "Print",ExpressionUUID->"6aa8ff95-2e9f-6d44-8b85-d7f37bf7d5eb"],
-Cell[110658, 2983, 435, 10, 70, "Print",ExpressionUUID->"1b9de081-9da7-7841-92f3-d1436975ca79"],
-Cell[111096, 2995, 391, 9, 70, "Print",ExpressionUUID->"c6b3c379-8767-ac42-9dba-e08ce8d637c6"],
-Cell[111490, 3006, 438, 10, 70, "Print",ExpressionUUID->"4d5c5849-443b-604c-b23a-d79410471d02"],
-Cell[111931, 3018, 393, 9, 70, "Print",ExpressionUUID->"d82e785e-bef7-1c4c-b17f-ea1615767335"],
-Cell[112327, 3029, 436, 10, 70, "Print",ExpressionUUID->"7e233e1a-9137-174a-9165-0dad0412f56c"],
-Cell[112766, 3041, 391, 9, 70, "Print",ExpressionUUID->"37d161ef-d3a9-7044-8213-5f1affff4ea6"],
-Cell[113160, 3052, 438, 10, 70, "Print",ExpressionUUID->"4db9615f-d3e4-c146-be98-c2ce9147f9b2"],
-Cell[113601, 3064, 393, 9, 70, "Print",ExpressionUUID->"4616ab27-7c33-9f4a-afb1-9532328169a4"],
-Cell[113997, 3075, 438, 10, 70, "Print",ExpressionUUID->"e49af916-7f30-9141-bdb2-789e572daa38"],
-Cell[114438, 3087, 391, 9, 70, "Print",ExpressionUUID->"cc086535-bcd2-df47-a908-fc4f4a40f37b"],
-Cell[114832, 3098, 438, 10, 70, "Print",ExpressionUUID->"41341fdf-3f63-dd4a-a8ff-2eb04f388841"],
-Cell[115273, 3110, 393, 9, 70, "Print",ExpressionUUID->"acbc39eb-e62c-064b-97d5-fe783b7e70e7"],
-Cell[115669, 3121, 436, 10, 70, "Print",ExpressionUUID->"105b2cc5-2e82-1642-b7f5-37b86b94bd20"],
-Cell[116108, 3133, 393, 9, 70, "Print",ExpressionUUID->"37ca3036-47e3-c342-9e83-6d4246a67dc1"],
-Cell[116504, 3144, 438, 10, 70, "Print",ExpressionUUID->"d00b4508-5156-274c-9d7a-ca9d9bb67d4c"],
-Cell[116945, 3156, 391, 9, 70, "Print",ExpressionUUID->"f156e38d-c0fe-1a42-ae28-4b3762e90ad9"],
-Cell[117339, 3167, 436, 10, 70, "Print",ExpressionUUID->"53b418a6-62a5-9a45-a9b7-68c3cca65ef2"],
-Cell[117778, 3179, 391, 9, 70, "Print",ExpressionUUID->"4e17882c-663b-7a4c-acea-86ae5d23e98f"],
-Cell[118172, 3190, 438, 10, 70, "Print",ExpressionUUID->"6fc10581-92d3-d94e-9946-626bf90307de"],
-Cell[118613, 3202, 393, 9, 70, "Print",ExpressionUUID->"896fa5bf-b3db-484c-9a50-0a1f957a39ba"],
-Cell[119009, 3213, 435, 10, 70, "Print",ExpressionUUID->"a2b582b0-093f-9442-a28e-7ecbff08a900"],
-Cell[119447, 3225, 391, 9, 70, "Print",ExpressionUUID->"fae72f1f-3467-5540-ab7a-533edb99442e"],
-Cell[119841, 3236, 438, 10, 70, "Print",ExpressionUUID->"55c1f7e4-f658-1746-8966-d1d9bbaf3151"],
-Cell[120282, 3248, 393, 9, 70, "Print",ExpressionUUID->"c4da0c01-e92d-d24c-a70a-0919cd426186"],
-Cell[120678, 3259, 436, 10, 70, "Print",ExpressionUUID->"ec730d90-b11e-464d-9c98-c37215bcfb32"],
-Cell[121117, 3271, 390, 9, 70, "Print",ExpressionUUID->"ad4a9e28-ffde-7f46-96f9-4b887f5c0f2e"],
-Cell[121510, 3282, 436, 10, 70, "Print",ExpressionUUID->"8353860f-0fff-f94b-a438-4d060eb1c942"],
-Cell[121949, 3294, 393, 9, 70, "Print",ExpressionUUID->"b52f6f6c-22ea-c645-adde-93cf28096cdb"],
-Cell[122345, 3305, 436, 10, 70, "Print",ExpressionUUID->"11653c6f-7ca6-804e-a8c2-3405c77d24b1"],
-Cell[122784, 3317, 391, 9, 70, "Print",ExpressionUUID->"38df8d61-8440-2b4f-ab7d-152a3aa68a18"],
-Cell[123178, 3328, 438, 10, 70, "Print",ExpressionUUID->"31f0b4fc-33c1-e74a-b5d3-34ab1e6d28da"],
-Cell[123619, 3340, 393, 9, 70, "Print",ExpressionUUID->"038e2d26-6370-7246-826d-af3ce340f488"],
-Cell[124015, 3351, 436, 10, 70, "Print",ExpressionUUID->"0fe9ce6d-8754-394e-be53-51c039eb71e6"],
-Cell[124454, 3363, 391, 9, 70, "Print",ExpressionUUID->"7aa65999-9e7e-c948-88fa-a03b0e3c6cf9"],
-Cell[124848, 3374, 438, 10, 70, "Print",ExpressionUUID->"61f7a763-3c8d-3a4a-8b8b-4226b8c081f4"],
-Cell[125289, 3386, 391, 9, 70, "Print",ExpressionUUID->"5fd0682c-b5cd-7847-b2d6-e985825b4a86"],
-Cell[125683, 3397, 438, 10, 70, "Print",ExpressionUUID->"f5b11d55-31a2-d84b-97bd-9b8def821354"],
-Cell[126124, 3409, 393, 9, 70, "Print",ExpressionUUID->"6f2383da-4da6-2f49-9b8a-6b52ce960642"],
-Cell[126520, 3420, 438, 10, 70, "Print",ExpressionUUID->"1344c298-c739-2547-a7fa-644cf4f924c4"],
-Cell[126961, 3432, 391, 9, 70, "Print",ExpressionUUID->"26acbf62-5306-5940-bc44-3c3e3daa4eab"],
-Cell[127355, 3443, 438, 10, 70, "Print",ExpressionUUID->"60374f62-bb2d-f341-be2d-33585f77b13e"],
-Cell[127796, 3455, 393, 9, 70, "Print",ExpressionUUID->"17544d2f-957b-fd46-9db0-90224db0f509"],
-Cell[128192, 3466, 438, 10, 70, "Print",ExpressionUUID->"8adf650b-202a-6840-b3a3-a222097d4ddb"],
-Cell[128633, 3478, 391, 9, 70, "Print",ExpressionUUID->"865e8b38-09d6-ee4e-819e-28344ef3030f"],
-Cell[129027, 3489, 436, 10, 70, "Print",ExpressionUUID->"d88e1ef1-33b9-ad4d-84c5-fc7d6ff732bf"],
-Cell[129466, 3501, 389, 9, 70, "Print",ExpressionUUID->"43fbadbd-a8b0-9847-8fc0-026c3574515d"],
-Cell[129858, 3512, 436, 10, 70, "Print",ExpressionUUID->"bfa0f6ee-fec5-0c4a-a37f-07ee8daf2bb5"],
-Cell[130297, 3524, 391, 9, 70, "Print",ExpressionUUID->"d388b7ab-4c63-1643-b38e-962a1b94de6e"],
-Cell[130691, 3535, 434, 10, 70, "Print",ExpressionUUID->"5b6a61db-4102-3940-a0ab-da89e22fa4a5"],
-Cell[131128, 3547, 391, 9, 70, "Print",ExpressionUUID->"12310461-1a53-c546-a81e-58ed13d5ee67"],
-Cell[131522, 3558, 434, 10, 70, "Print",ExpressionUUID->"629a48e3-5ed9-0c46-a881-2b4f292e53e5"],
-Cell[131959, 3570, 389, 9, 70, "Print",ExpressionUUID->"4b067e48-0a1a-5443-82d3-5eae04309b84"],
-Cell[132351, 3581, 436, 10, 70, "Print",ExpressionUUID->"fe5de7dd-3ddc-3e4f-97e5-a2b193ccfb88"],
-Cell[132790, 3593, 389, 9, 70, "Print",ExpressionUUID->"6606934f-75e9-0e4f-b65e-f3978b148546"],
-Cell[133182, 3604, 433, 10, 70, "Print",ExpressionUUID->"997b9abc-1985-e843-bcb0-43c8a8d46155"],
-Cell[133618, 3616, 389, 9, 70, "Print",ExpressionUUID->"d99b8451-53d5-ef47-b8f9-6a00f4163170"],
-Cell[134010, 3627, 433, 10, 70, "Print",ExpressionUUID->"dbacce13-da8e-5347-ad21-ffc95d8bb221"],
-Cell[134446, 3639, 391, 9, 70, "Print",ExpressionUUID->"5d930f9b-3455-ba47-86c6-c88499e087db"],
-Cell[134840, 3650, 434, 10, 70, "Print",ExpressionUUID->"4bfd2d1d-9366-464b-90b5-5d12245fd493"],
-Cell[135277, 3662, 388, 9, 70, "Print",ExpressionUUID->"6930c022-dfb2-564a-a919-44ab49a6b38c"],
-Cell[135668, 3673, 436, 10, 70, "Print",ExpressionUUID->"06fce00c-712e-8e48-9fca-69f61961e26b"],
-Cell[136107, 3685, 391, 9, 70, "Print",ExpressionUUID->"0f2e2216-1a93-fe46-be7b-89129c275bc5"],
-Cell[136501, 3696, 436, 10, 70, "Print",ExpressionUUID->"909834a9-88c6-f145-9d22-bb8472e517cb"],
-Cell[136940, 3708, 391, 9, 70, "Print",ExpressionUUID->"953bfd0b-6e6b-c340-895d-62f400eac827"],
-Cell[137334, 3719, 436, 10, 70, "Print",ExpressionUUID->"71811de7-a16f-8643-8f1e-5b036b007e3e"],
-Cell[137773, 3731, 389, 9, 70, "Print",ExpressionUUID->"cc0fe991-f2b6-2148-8585-530156a22d03"],
-Cell[138165, 3742, 436, 10, 70, "Print",ExpressionUUID->"0dbbd3f3-733c-1c45-841c-70d4f6e769fa"],
-Cell[138604, 3754, 391, 9, 70, "Print",ExpressionUUID->"4f5b1fbd-7501-9f44-a4e8-4c2224478d35"],
-Cell[138998, 3765, 436, 10, 70, "Print",ExpressionUUID->"54d1035a-4054-4f44-9cd6-f1501efb2a60"],
-Cell[139437, 3777, 389, 9, 70, "Print",ExpressionUUID->"89014482-d266-3c49-b400-1199cf45e9b7"],
-Cell[139829, 3788, 436, 10, 70, "Print",ExpressionUUID->"4ce70eb6-d673-5b4c-b565-c6192524011e"],
-Cell[140268, 3800, 391, 9, 70, "Print",ExpressionUUID->"9ae06df3-ddf9-5c4d-a737-2bbe41272458"],
-Cell[140662, 3811, 436, 10, 70, "Print",ExpressionUUID->"423c960b-d39f-ef40-b992-86d7672f7774"],
-Cell[141101, 3823, 391, 9, 70, "Print",ExpressionUUID->"4a7bafb1-0869-874d-8d30-f985ab10fa78"],
-Cell[141495, 3834, 436, 10, 70, "Print",ExpressionUUID->"99c97343-a0c6-be47-95bd-a60febe8b76d"],
-Cell[141934, 3846, 389, 9, 70, "Print",ExpressionUUID->"5da7d478-c7ae-1f42-ae89-02a7c44c7875"],
-Cell[142326, 3857, 434, 10, 70, "Print",ExpressionUUID->"b25d32e3-0a58-c243-b492-5063f9efef30"],
-Cell[142763, 3869, 389, 9, 70, "Print",ExpressionUUID->"e34e473b-b473-154a-a8c5-8fe12d5b21e4"],
-Cell[143155, 3880, 436, 10, 70, "Print",ExpressionUUID->"352ae304-f22e-3a4c-8935-a03bc18b8e1b"],
-Cell[143594, 3892, 389, 9, 70, "Print",ExpressionUUID->"366ce74a-f937-4844-9a83-df075cd3c244"],
-Cell[143986, 3903, 436, 10, 70, "Print",ExpressionUUID->"31eaa8bb-86a4-8a49-b559-d77f0f86a0b8"],
-Cell[144425, 3915, 391, 9, 70, "Print",ExpressionUUID->"5f17ca56-c363-7a48-8a6d-c5c9c264f6f8"],
-Cell[144819, 3926, 436, 10, 70, "Print",ExpressionUUID->"f2840cd7-4c7a-9d47-a3cb-bd2e945ab70c"],
-Cell[145258, 3938, 389, 9, 70, "Print",ExpressionUUID->"ec1fa6fd-37c5-4a4a-b15d-f10e0878b444"],
-Cell[145650, 3949, 436, 10, 70, "Print",ExpressionUUID->"6b7c659b-cdc3-2c4b-a4af-7b98cb8b207c"],
-Cell[146089, 3961, 389, 9, 70, "Print",ExpressionUUID->"8192c081-8373-2146-ae82-910768a44c9b"],
-Cell[146481, 3972, 434, 10, 70, "Print",ExpressionUUID->"54f75615-83cb-0f4f-b16b-135a279bc657"],
-Cell[146918, 3984, 389, 9, 70, "Print",ExpressionUUID->"bce7c499-b056-9d49-9495-da3466b24b6e"],
-Cell[147310, 3995, 436, 10, 70, "Print",ExpressionUUID->"359741f2-6109-b145-822f-c5b3d21662d0"],
-Cell[147749, 4007, 391, 9, 70, "Print",ExpressionUUID->"563aeff1-0fa5-be42-aaf6-57f01970c233"],
-Cell[148143, 4018, 434, 10, 70, "Print",ExpressionUUID->"f4d17734-8aa5-994f-8230-9136b4086a16"]
+Cell[32787, 880, 418, 11, 26, "Message",ExpressionUUID->"26ee3cf1-a82a-4f44-bd22-8c8110b24338"],
+Cell[33208, 893, 393, 10, 26, "Message",ExpressionUUID->"c525e51d-1599-d449-b90a-cb0922a6e043"],
+Cell[33604, 905, 471, 11, 26, "Message",ExpressionUUID->"9ec08e79-12c8-8942-98b8-fc1407f2986c"],
+Cell[34078, 918, 182, 2, 32, "Output",ExpressionUUID->"4d9d5f7b-b5d9-0a4f-b6de-d691ca4c86ad"]
 }, Open  ]]
 }, Open  ]],
-Cell[148604, 4032, 12759, 299, 751, "Input",ExpressionUUID->"cdf649e8-cc68-694b-ad4f-7142f0e9ed1a"],
 Cell[CellGroupData[{
-Cell[161388, 4335, 453, 11, 47, "Input",ExpressionUUID->"99bbca76-c6f8-2b45-849e-02bc7d675f2b"],
-Cell[161844, 4348, 582, 14, 70, "Print",ExpressionUUID->"d6304f15-2b34-c44b-8b3d-1a4ea4b4c1fe"]
+Cell[34309, 926, 168, 3, 96, "Title",ExpressionUUID->"b5c61b6d-2746-0844-ab12-76c3dc851366"],
+Cell[34480, 931, 11478, 278, 751, "Input",ExpressionUUID->"748a92dd-36c4-5f45-b1b8-bd5680b3b53d"],
+Cell[45961, 1211, 883, 23, 47, "Input",ExpressionUUID->"bd3ba7f5-57f0-ea46-8354-c24772cb5233"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[46881, 1239, 205, 4, 70, "Title",ExpressionUUID->"4f696317-79a2-7e41-a065-402bd0c30e34"],
+Cell[47089, 1245, 8249, 202, 656, "Input",ExpressionUUID->"41ee1747-658e-214d-8877-9467e7137ada"],
+Cell[55341, 1449, 740, 19, 47, "Input",ExpressionUUID->"6b6269f8-7103-4e41-98cd-d86396c913f0"],
+Cell[56084, 1470, 1127, 31, 104, "Input",ExpressionUUID->"a8565df3-e891-ce4b-a0e5-6bd17851f450"],
+Cell[57214, 1503, 1424, 40, 104, "Input",ExpressionUUID->"4eca21d8-fa1f-f34d-9ca6-604c4e0e38de"],
+Cell[58641, 1545, 443, 10, 28, "Input",ExpressionUUID->"a3af9aa5-d21b-9f48-8855-8157033e73ae"],
+Cell[CellGroupData[{
+Cell[59109, 1559, 256, 4, 28, "Input",ExpressionUUID->"c929a817-707a-e440-8ce9-c3f4b4c0a699"],
+Cell[CellGroupData[{
+Cell[59390, 1567, 390, 9, 22, "Print",ExpressionUUID->"a8abd177-65f3-314a-9e70-b060c4fb0a76"],
+Cell[59783, 1578, 436, 10, 22, "Print",ExpressionUUID->"0f6ecdfc-e7ab-2d49-869d-346b6de02948"]
+}, Open  ]],
+Cell[60234, 1591, 583, 13, 44, "Message",ExpressionUUID->"b011ef26-1a2d-cc46-9c09-67283fcc6865"],
+Cell[60820, 1606, 583, 13, 44, "Message",ExpressionUUID->"754a3c9e-3cce-5c4f-b647-e64a5f6f1d30"],
+Cell[61406, 1621, 581, 13, 44, "Message",ExpressionUUID->"6b225d92-7626-454f-b197-5e2204090926"],
+Cell[61990, 1636, 472, 11, 26, "Message",ExpressionUUID->"8fab719a-10e9-ad4f-8b52-cb851aad1c33"]
+}, Open  ]],
+Cell[62477, 1650, 12759, 299, 808, "Input",ExpressionUUID->"cdf649e8-cc68-694b-ad4f-7142f0e9ed1a"],
+Cell[CellGroupData[{
+Cell[75261, 1953, 453, 11, 47, "Input",ExpressionUUID->"99bbca76-c6f8-2b45-849e-02bc7d675f2b"],
+Cell[75717, 1966, 582, 14, 22, "Print",ExpressionUUID->"d6304f15-2b34-c44b-8b3d-1a4ea4b4c1fe"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 }
 ]
 *)
