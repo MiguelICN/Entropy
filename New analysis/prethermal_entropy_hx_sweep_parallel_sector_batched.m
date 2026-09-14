@@ -373,7 +373,7 @@ hz = 1.;
 
 
 (* hx = 10^alpha. *)
-hxExponents = N[Range[-2, 0, 1/10]];
+hxExponents = N[Range[-2, 0, 2/10]];
 hxList = Developer`ToPackedArray[N[10^hxExponents]];
 
 
@@ -389,7 +389,7 @@ timeGridType = "Linear";
        dt   = 1.;
    dt need not be an integer. *)
 tmin = 0.;
-tmax = 10^5;
+tmax = 10^6;
 dt = 1.;
 
 
@@ -1505,11 +1505,31 @@ If[
     (* ======================================================== *)
 
     If[TrueQ[exportMovingAverageLogPlot] && nSamples >= movingAverageWindow,
-        movingAverageData = (MovingAverage[#, movingAverageWindow] &) /@ rawData;
-
         movingAverageDataPositiveTime = (
             Select[#, First[#] > 0. &] &
         ) /@ movingAverageData;
+        
+        movingAverageData = Map[
+    Function[data,
+        Module[{times, values, sums, n, first},
+            times = data[[All, 1]];
+            values = data[[All, 2]];
+            sums = Prepend[Accumulate[values], 0.];
+            n = Length[values];
+
+            Transpose[{
+                times,
+                Table[
+                    first = Max[1, i - movingAverageWindow + 1];
+                    (sums[[i + 1]] - sums[[first]])/
+                        (i - first + 1),
+                    {i, n}
+                ]
+            }]
+        ]
+    ],
+    rawData
+];
 
         movingAverageTitle = Style[
             Row[

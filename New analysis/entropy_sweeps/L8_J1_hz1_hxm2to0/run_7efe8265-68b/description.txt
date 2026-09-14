@@ -1,0 +1,38 @@
+Prethermal entropy sweep
+
+Mode: Ensemble
+
+L = 8; J = 1.; hz = 1.
+
+hxExponents = {-2., -1.8, -1.6, -1.4, -1.2, -1., -0.8, -0.6, -0.4, -0.2, 0.}
+
+hx values = {0.01, 0.015848931924611134, 0.025118864315095794, 0.039810717055349734, 0.06309573444801933, 0.1, 0.15848931924611134, 0.251188643150958, 0.3981071705534972, 0.6309573444801932, 1.}
+
+Initial states: QMB RandomChainProductState[L], one product of local spin states per seed.
+
+State count = 50
+
+Seeds = {12345, 12346, 12347, 12348, 12349, 12350, 12351, 12352, 12353, 12354, 12355, 12356, 12357, 12358, 12359, 12360, 12361, 12362, 12363, 12364, 12365, 12366, 12367, 12368, 12369, 12370, 12371, 12372, 12373, 12374, 12375, 12376, 12377, 12378, 12379, 12380, 12381, 12382, 12383, 12384, 12385, 12386, 12387, 12388, 12389, 12390, 12391, 12392, 12393, 12394}
+
+Each state is generated with BlockRandom[SeedRandom[stateSeed]; RandomChainProductState[L]].
+
+Exactly the same initial state list is used for every hx in this sweep.
+
+Initial vectors are retained in metadata.wxf for exact reuse; no individual entropy trajectories are saved.
+
+Linear grid: t(i) = tmin + i dt, i = 0,...,nSteps (both endpoints).
+tmin = 0.; tmax = 100000.; dt = 1.
+
+nSteps = 100000; nSamples = 100001
+
+Batch size = 64; recurrence reseed interval = 100000
+
+Observable: arithmetic mean of individual pure-state half-chain entanglement entropies, in nats.
+
+The ensemble average is taken before any plotting or moving average.
+
+The saved entropy is unsmoothed. No member trajectories or density-matrix averages are exported.
+
+Wolfram version: 15.0.1 for Microsoft Windows (64-bit) (July 2, 2026)
+
+QMB init path: C:\Users\Miguel\Github\libs\QMB\Kernel\init.m
