@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* ::Title::Closed:: *)
+(* ::Title:: *)
 (* Setup*)
 
 
@@ -1202,17 +1202,17 @@ If[
    Kernel shutdown is intentionally absent from this file. *)
 
 
-(* ::Title:: *)
+(* ::Title::Closed:: *)
 (*Only log sampling*)
 
 
 (* Physical parameters *)
 logOnlyL = 8;
 logOnlyJ = 1.;
-logOnlyHz = 1.;
+logOnlyHz = 2.;
 
 (* hx = 10^alpha *)
-logOnlyHxExponents = N[Range[-8, 0, 4/10]];
+logOnlyHxExponents = N[Range[-4, 0, 5/10]];
 logOnlyHxList = Developer`ToPackedArray[
     N[10^logOnlyHxExponents]
 ];
@@ -3781,7 +3781,7 @@ logOnlyPlotResults[
 
 
 
-(* ::Title:: *)
+(* ::Title::Closed:: *)
 (* Export log-only plots *)
 
 

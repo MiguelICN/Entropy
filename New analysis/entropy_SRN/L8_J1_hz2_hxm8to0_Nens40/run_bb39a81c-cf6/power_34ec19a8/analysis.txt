@@ -1,0 +1,10 @@
+SRN threshold power laws; h = hx, g = hz; entropy in nats.
+Parameters: <|"L" -> 8, "J" -> 1., "hz" -> 2., "ensembleSize" -> 40|>
+Moving-average window: 200 samples; growing startup, original times.
+Thresholds: {0.6, 1.4}
+hx fit ranges (aligned with thresholds): {Automatic, Automatic}
+First smoothed sample >= threshold, without interpolation. Censored fields excluded.
+Fit is Log[T] = logA + b Log[hx]; at least 3 distinct crossing fields required.
+Regression standard errors do not quantify ensemble, smoothing or sampling uncertainty.
+See crossings.csv for all fields, censoring, sampling brackets and fit selection.
+See power_laws.wxf for fitted pairs, local slopes and log residuals.

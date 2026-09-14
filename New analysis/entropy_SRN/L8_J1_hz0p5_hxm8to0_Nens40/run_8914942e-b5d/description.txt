@@ -1,0 +1,20 @@
+SRN logarithmic prethermalization analysis. h = hx; g = hz; entropy in nats.
+Hamiltonian: QMB IsingHamiltonian[hx,hz,J,L], unchanged from the supplied LOG workflow.
+Parameters: <|"L" -> 8, "J" -> 1., "hz" -> 0.5, "hxExponents" -> {-8., -7.5, -7., -6.5, -6., -5.5, -5., -4.5, -4., -3.5, -3., -2.5, -2., -1.5, -1., -0.5, 0.}, "hxList" -> {1.*^-8, 3.162277660168379*^-8, 1.*^-7, 3.162277660168379*^-7, 1.*^-6, 3.162277660168379*^-6, 0.00001, 0.000031622776601683795, 0.0001, 0.00031622776601683794, 0.001, 0.0031622776601683794, 0.01, 0.03162277660168379, 0.1, 0.31622776601683794, 1.}|>
+RPS: QMB RandomChainProductState[L], generated once per seed and reused at every hx.
+Single RPS = ensemble member 1. Ensemble mean = arithmetic mean of member entropies.
+Ensemble size: 40; seeds: {12345, 12346, 12347, 12348, 12349, 12350, 12351, 12352, 12353, 12354, 12355, 12356, 12357, 12358, 12359, 12360, 12361, 12362, 12363, 12364, 12365, 12366, 12367, 12368, 12369, 12370, 12371, 12372, 12373, 12374, 12375, 12376, 12377, 12378, 12379, 12380, 12381, 12382, 12383, 12384}
+Initial state vectors and exact sampled time array are saved in metadata.wxf.
+Positive logarithmic grid including both endpoints, with no added t=0 point.
+log10(tmin), log10(tmax): {-1., 10.}
+pointsPerDecade parameter: 2000
+N = Round[(logTMax-logTMin)*pointsPerDecade] = 22000
+t_i = 10^(logTMin+(i-1)*(logTMax-logTMin)/(N-1)), i=1,...,N.
+Delta log10(t): 0.0005000227283058321
+Physical time step is variable: delta t_i = t_i*(10^deltaLog10t-1).
+Moving average: trailing 200 samples, with growing startup windows; time coordinates unchanged.
+Crossing thresholds: {0.6, 1.4}; fit ranges: Automatic
+Dynamics uses machine precision, direct absolute phases and the original entropy cutoff 1e-14.
+Changing sampling density at a fixed sample window changes the smoothing span in log time.
+Existing kernels are reused; each run receives a fresh immutable configuration and unique directory.
+Wolfram version: 15.0.1 for Microsoft Windows (64-bit) (July 2, 2026)

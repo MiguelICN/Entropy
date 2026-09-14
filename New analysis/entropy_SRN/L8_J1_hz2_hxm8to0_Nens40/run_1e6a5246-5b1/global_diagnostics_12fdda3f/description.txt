@@ -1,0 +1,16 @@
+Single-RPS global diagnostics; saved ensemble member 1, no new random state.
+Physical parameters and exact logarithmic time grid are read from the saved run.
+Perturbed trajectory: psi_h(t)=Exp[-I H(hx)t] psi(0).
+Reference trajectory: psi_0(t)=Exp[-I H0 t] psi(0), H0=IsingHamiltonian[0,hz,J,L].
+Loschmidt echo: Abs[<psi_0(t)|psi_h(t)>]^2.
+IPR: Sum_n Abs[<E_n^(0)|psi_h(t)>]^4 in the numerical eigenbasis of H0.
+For exact H0 degeneracies, IPR depends on the chosen eigenvectors inside that degenerate subspace.
+Survival probability: Abs[<psi(0)|psi_h(t)>]^2.
+Entropy is recomputed from the same perturbed state used for all other diagnostics.
+Same trailing sample moving average with growing startup as the main entropy plots.
+Moving-average window: 200
+Requested display time window: Automatic
+Smoothing occurs before display zoom; time coordinates are never averaged.
+All four panels share the same visible logarithmic time interval and plot geometry.
+Raw WXF data are saved before plotting.
+Use srnGlobalReplot on any global_XX.wxf to change window/zoom without dynamics.

@@ -1,0 +1,17 @@
+Single RPS spectra and survival: saved ensemble member 1, no new random state.
+Physical parameters and time grid are read from the saved run, not live globals.
+Schmidt probabilities lambda=s^2; entanglement energies xi=-2 Log[s].
+All levels retained with Tolerance->0, sorted by descending lambda at each time.
+Rank is not an eigenvector label. Tiny machine-precision levels may be inaccurate.
+Survival P(t)=Abs[Conjugate[psi0].psi(t)]^2 under the same Hamiltonian.
+Same trailing sample moving average and growing startup as the main entropy plots.
+Moving-average window: 200
+Requested display time window: Automatic
+Smoothing occurs before display zoom; time coordinates are never averaged.
+Energy smoothing is Mean[-Log[lambda]], not -Log[Mean[lambda]].
+Zero Schmidt coefficients imply Infinity; affected energy averages stay infinite.
+Raw WXF data are saved before plots; infinity is omitted only for drawing.
+Entropy is recomputed alongside spectra; the existing saved entropy is retained separately.
+The saved-entropy comparison is recorded and reported, not used to abort the new computation.
+Norm, trace, Hermiticity, reflection symmetry and reconstruction checks remain enforced.
+Use srnSpecReplot on any spec_XX.wxf to change window/zoom without dynamics.
