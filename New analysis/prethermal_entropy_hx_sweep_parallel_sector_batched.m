@@ -363,17 +363,17 @@ powerOfTenLabel[x_?NumericQ, size_: 22] := Style[
 ];
 
 
-(* ::Title::Closed:: *)
+(* ::Title:: *)
 (*Parameters*)
 
 
 L = 8;
 J = 1.;
-hz = 1.;
+hz = 2.;
 
 
 (* hx = 10^alpha. *)
-hxExponents = N[Range[-2, 0, 2/10]];
+hxExponents = N[Range[-6, -2, 5/10]];
 hxList = Developer`ToPackedArray[N[10^hxExponents]];
 
 
@@ -389,8 +389,8 @@ timeGridType = "Linear";
        dt   = 1.;
    dt need not be an integer. *)
 tmin = 0.;
-tmax = 10^6;
-dt = 1.;
+tmax = 10^5;
+dt = 0.1;
 
 
 (* LOG GRID PARAMETERS.
@@ -398,7 +398,7 @@ dt = 1.;
    11001 positive samples from 10^-1 to 10^10. *)
 logTMin = -1.;
 logTMax = 10.;
-pointsPerDecade = 2000;
+pointsPerDecade = 5000;
 includeZeroInLogGrid = True;
 
 
@@ -706,7 +706,7 @@ If[!StringQ[manifestExportResult] || !FileExistsQ[manifestPath],
 ];
 
 
-(* ::Title:: *)
+(* ::Title::Closed:: *)
 (*Automatic hx sweep*)
 
 
@@ -1269,7 +1269,7 @@ Print["Whole parallel sweep wall time [s] = ", sweepSeconds];
 Print["============================================================"];
 
 
-(* ::Title::Closed:: *)
+(* ::Title:: *)
 (*Plotting and export*)
 
 

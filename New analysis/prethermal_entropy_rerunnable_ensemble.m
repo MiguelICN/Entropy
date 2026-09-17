@@ -1061,20 +1061,20 @@ replotEntropySweep[directory_String, window_Integer : 200] := Module[
 
 
 
-(* ::Title::Closed:: *)
+(* ::Title:: *)
 (* Parameters*)
 
 
 L = 8;
 J = 1.;
-hz = 1.;
-hxExponents = N[Range[-2, 0, 2/10]];
+hz = 2.;
+hxExponents = N[Range[-4, 0, 5/10]];
 
 (* Linear or logarithmic grid; times are NEVER used in folder names. *)
 timeGridType = "Linear";
 tmin = 0.;
-tmax = 10^5;
-dt = 1.;
+tmax = 10^4;
+dt = 0.1;
 logTMin = -1.;
 logTMax = 10.;
 pointsPerDecade = 2000;
@@ -1098,7 +1098,7 @@ movingAverageWindow = 200;
 exportPlots = True;
 
 
-(* ::Title::Closed:: *)
+(* ::Title:: *)
 (* Single RPS sweep*)
 
 
